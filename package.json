@@ -1,0 +1,25 @@
+{
+  "name": "hotspot",
+  "version": "1.0.0",
+  "description": "Anonymous photo sharing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BillionaireBoysClub/hotspot.git"
+  },
+  "author": "Clifford Fajardo, Eric Eng, Gabriel Matias, Orobosa Omoregie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BillionaireBoysClub/hotspot/issues"
+  },
+  "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "supertest": "^1.1.0"
+  }
+}
