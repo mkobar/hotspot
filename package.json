@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "A photo sharing application.",
   "repository": {
-      "type": "git",
-      "url": "git+https://github.com/BillionaireBoysClub/hotspot.git"
-    },
-    "author": "Clifford Fajardo, Eric Eng, Gabriel Matias, Orobosa Omoregie",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/BillionaireBoysClub/hotspot/issues"
-    },
-    "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
-
+    "type": "git",
+    "url": "git+https://github.com/BillionaireBoysClub/hotspot.git"
+  },
+  "author": "Clifford Fajardo, Eric Eng, Gabriel Matias, Orobosa Omoregie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BillionaireBoysClub/hotspot/issues"
+  },
+  "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
@@ -38,5 +37,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios"
+  ]
 }
