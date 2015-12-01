@@ -7,7 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
-<<<<<<< 66547f0b7a121799d0727c39f0356d5c4c7f33b9
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
@@ -24,9 +26,6 @@
             "PACKAGE_NAME": "com.ionicframework.starter"
         },
         "ionic-plugin-keyboard": {
-=======
-        "cordova-plugin-camera": {
->>>>>>> feat: added cordova camera plugin
             "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
