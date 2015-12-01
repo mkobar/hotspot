@@ -7,24 +7,24 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    
+
     .state('main', {
       url: '/main',
       abstract:true,
       templateUrl: 'templates/main.html'
     })
-      
-        
+
+
     .state('main.home', {
       url: '/home',
       views: {
         'home-tab': {
           templateUrl: 'templates/home.html',
-          controller: 'homeCtrl'
+          controller: 'HomeCtrl'
         }
       }
     })
-        
+
 
 
     .state('main.camera', {
@@ -36,9 +36,9 @@ angular.module('app.routes', [])
         }
       }
     })
-        
-      
-        
+
+
+
     .state('main.map', {
       url: '/map',
       views: {
@@ -48,29 +48,29 @@ angular.module('app.routes', [])
         }
       }
     })
-      
-    
-      
-        
+
+
+
+
     .state('comments', {
       url: '/comments',
       templateUrl: 'templates/comments.html',
       controller: 'commentsCtrl'
     })
-        
-      
-    
- 
 
 
-        
+
+
+
+
+
     .state('startUp', {
       url: '/startup',
       templateUrl: 'templates/startUp.html',
       controller: 'startUpCtrl'
     })
-        
-      
+
+
 
 
   // if none of the above states are matched, use this as the fallback
