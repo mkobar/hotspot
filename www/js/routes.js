@@ -20,7 +20,7 @@ angular.module('app.routes', [])
       views: {
         'home-tab': {
           templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
+          controller: 'homeCtrl'
         }
       }
     })
