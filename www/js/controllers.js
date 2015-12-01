@@ -9,7 +9,12 @@ angular.module('app.controllers', [])
 })
       
 .controller('cameraCtrl', function($scope) {
-
+	$scope.takePicture = function(){
+		navigator.camera.getPicture(function(imageURL){
+		}, function(err){
+			console.log("error: ", err);
+		}, cameraOptions);
+	};
 })
    
 .controller('mapCtrl', function($scope) {
