@@ -8,18 +8,46 @@ angular.module('app.routes', [])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
+    .state('main', {
+      url: '/main',
+      abstract:true,
+      templateUrl: 'templates/main.html'
+    })
       
         
     .state('main.home', {
       url: '/home',
       views: {
-        'tab2': {
+        'home-tab': {
           templateUrl: 'templates/home.html',
           controller: 'homeCtrl'
         }
       }
     })
         
+
+
+    .state('main.camera', {
+      url: '/camera',
+      views: {
+        'camera-tab': {
+          templateUrl: 'templates/camera.html',
+          controller: 'cameraCtrl'
+        }
+      }
+    })
+        
+      
+        
+    .state('main.map', {
+      url: '/map',
+      views: {
+        'map-tab': {
+          templateUrl: 'templates/map.html',
+          controller: 'mapCtrl'
+        }
+      }
+    })
       
     
       
@@ -32,43 +60,9 @@ angular.module('app.routes', [])
         
       
     
-      
-    .state('main', {
-      url: '/main',
-      abstract:true,
-      templateUrl: 'templates/main.html'
-    })
-      
-    
-      
-        
-    .state('main.camera', {
-      url: '/camera',
-      views: {
-        'tab1': {
-          templateUrl: 'templates/camera.html',
-          controller: 'cameraCtrl'
-        }
-      }
-    })
-        
-      
-    
-      
-        
-    .state('main.map', {
-      url: '/map',
-      views: {
-        'tab4': {
-          templateUrl: 'templates/map.html',
-          controller: 'mapCtrl'
-        }
-      }
-    })
-        
-      
-    
-      
+ 
+
+
         
     .state('startUp', {
       url: '/startup',
@@ -77,7 +71,7 @@ angular.module('app.routes', [])
     })
         
       
-    ;
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
