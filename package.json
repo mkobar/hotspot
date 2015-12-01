@@ -37,7 +37,5 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": [
-    "ios"
-  ]
+  "cordovaPlatforms": []
 }
