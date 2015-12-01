@@ -39,6 +39,7 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
+<<<<<<< 66547f0b7a121799d0727c39f0356d5c4c7f33b9:platforms/ios/HelloCordova.xcodeproj/project.pbxproj
 		10E16D8BED3F4B9D8F628420 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 908482CC470A48058483F9E9 /* CDVLogger.m */; };
 		E379C01C5ED143F0B8F3EBD6 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = FFAB416B48D54D34B372FE0A /* CDVDevice.m */; };
 		9EED235955BF41E58F50E703 /* CDVSplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC6D77071D447F0B7CEE1DF /* CDVSplashScreen.m */; };
@@ -46,6 +47,14 @@
 		7AD7DA837C9C4A95A2E0AA70 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EC4EDD366647C4B243F76A /* CDVStatusBar.m */; };
 		E2E196937BD54F04A26C2F6C /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 19823327EEE2412F93E9BD95 /* IonicKeyboard.m */; };
 		B2CA504B32BB4B4FAFECA033 /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4D473061474DB891024C2B /* UIWebViewExtension.m */; };
+=======
+		EBA6BE49F95847E0BF1D9C1B /* UIImage+CropScaleOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 808A8587FF254C969BC06EFD /* UIImage+CropScaleOrientation.m */; };
+		F2A79F1FF62E4244BAB0BC82 /* CDVCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FEC1B68A8A34A7E82DCF6C7 /* CDVCamera.m */; };
+		07BE67360D34465EB246B59B /* CDVJpegHeaderWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F31B6F57EEF436DB6170CEE /* CDVJpegHeaderWriter.m */; };
+		79C62FADAA3C4E9DAD73F9D1 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08507A46DBC49D2923972C1 /* ImageIO.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		A98E611C48E94C22B591A0CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3255371C4BE54FBA9CC12F5F /* CoreLocation.framework */; };
+		79A35CD0186E4F55A35B0231 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC44B523CFD461DB03EF739 /* AVFoundation.framework */; };
+>>>>>>> feat: added cordova camera plugin:platforms/ios/Hello Cordova.xcodeproj/project.pbxproj
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +77,7 @@
 /* Begin PBXFileReference section */
 		1D3623240D0F684500981E51 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* HelloCordova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloCordova.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* Hello Cordova.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello Cordova.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F766FDD13BBADB100FB74C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		1F766FE013BBADB100FB74C0 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Localizable.strings; sourceTree = "<group>"; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,7 +102,7 @@
 		30B4F2FF19D5E07200D9F7D8 /* Default-Landscape-736h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-736h.png"; sourceTree = "<group>"; };
 		30C1856519D5FC0A00212699 /* icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-60@3x.png"; sourceTree = "<group>"; };
 		30FC414816E50CA1004E6F35 /* icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72@2x.png"; sourceTree = "<group>"; };
-		32CA4F630368D1EE00C91783 /* HelloCordova-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HelloCordova-Prefix.pch"; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* Hello Cordova-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Hello Cordova-Prefix.pch"; sourceTree = "<group>"; };
 		5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		7E7966D41810823500FA85AD /* icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40.png"; sourceTree = "<group>"; };
 		7E7966D51810823500FA85AD /* icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-40@2x.png"; sourceTree = "<group>"; };
@@ -105,11 +114,12 @@
 		7E7966DB1810823500FA85AD /* icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76@2x.png"; sourceTree = "<group>"; };
 		7E7966DC1810823500FA85AD /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small.png"; sourceTree = "<group>"; };
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
-		8D1107310486CEB800E47090 /* HelloCordova-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HelloCordova-Info.plist"; path = "../HelloCordova-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Hello Cordova-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Hello Cordova-Info.plist"; path = "../Hello Cordova-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		EB87FDF21871DA7A0020F90C /* merges */ = {isa = PBXFileReference; lastKnownFileType = folder; name = merges; path = ../../merges; sourceTree = "<group>"; };
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
+<<<<<<< 66547f0b7a121799d0727c39f0356d5c4c7f33b9:platforms/ios/HelloCordova.xcodeproj/project.pbxproj
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "HelloCordova/config.xml"; sourceTree = "<group>"; };
 		908482CC470A48058483F9E9 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		D3096D0E93FE44D2BC342200 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
@@ -125,6 +135,19 @@
 		1D4D473061474DB891024C2B /* UIWebViewExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIWebViewExtension.m"; path = "ionic-plugin-keyboard/UIWebViewExtension.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		7BA1F023BF5340D6A59264A3 /* IonicKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		ED1FA52795924FA4B5C744DC /* UIWebViewExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIWebViewExtension.h"; path = "ionic-plugin-keyboard/UIWebViewExtension.h"; sourceTree = "<group>"; fileEncoding = 4; };
+=======
+		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "Hello Cordova/config.xml"; sourceTree = "<group>"; };
+		808A8587FF254C969BC06EFD /* UIImage+CropScaleOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIImage+CropScaleOrientation.m"; path = "cordova-plugin-camera/UIImage+CropScaleOrientation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		1FEC1B68A8A34A7E82DCF6C7 /* CDVCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVCamera.m"; path = "cordova-plugin-camera/CDVCamera.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		8F31B6F57EEF436DB6170CEE /* CDVJpegHeaderWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVJpegHeaderWriter.m"; path = "cordova-plugin-camera/CDVJpegHeaderWriter.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		7855ACEA2805439B9218FC50 /* UIImage+CropScaleOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+CropScaleOrientation.h"; path = "cordova-plugin-camera/UIImage+CropScaleOrientation.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		1F7A4449CD9645F595964444 /* CDVCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVCamera.h"; path = "cordova-plugin-camera/CDVCamera.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		4F3573568B774CB7886FEDF9 /* CDVJpegHeaderWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVJpegHeaderWriter.h"; path = "cordova-plugin-camera/CDVJpegHeaderWriter.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		8CB26EDE747347189F816D31 /* CDVExif.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVExif.h"; path = "cordova-plugin-camera/CDVExif.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		A08507A46DBC49D2923972C1 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "ImageIO.framework"; path = "System/Library/Frameworks/ImageIO.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		3255371C4BE54FBA9CC12F5F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreLocation.framework"; path = "System/Library/Frameworks/CoreLocation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		3EC44B523CFD461DB03EF739 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AVFoundation.framework"; path = "System/Library/Frameworks/AVFoundation.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+>>>>>>> feat: added cordova camera plugin:platforms/ios/Hello Cordova.xcodeproj/project.pbxproj
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +159,9 @@
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
+				79C62FADAA3C4E9DAD73F9D1 /* ImageIO.framework in Frameworks */,
+				A98E611C48E94C22B591A0CF /* CoreLocation.framework in Frameworks */,
+				79A35CD0186E4F55A35B0231 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,13 +178,13 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 			);
 			name = Classes;
-			path = "HelloCordova/Classes";
+			path = "Hello Cordova/Classes";
 			sourceTree = SOURCE_ROOT;
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* HelloCordova.app */,
+				1D6058910D05DD3D006BFB54 /* Hello Cordova.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,11 +210,11 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32CA4F630368D1EE00C91783 /* HelloCordova-Prefix.pch */,
+				32CA4F630368D1EE00C91783 /* Hello Cordova-Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
-			path = "HelloCordova";
+			path = "Hello Cordova";
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -196,10 +222,10 @@
 			children = (
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
-				8D1107310486CEB800E47090 /* HelloCordova-Info.plist */,
+				8D1107310486CEB800E47090 /* Hello Cordova-Info.plist */,
 			);
 			name = Resources;
-			path = "HelloCordova/Resources";
+			path = "Hello Cordova/Resources";
 			sourceTree = "<group>";
 		};
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
@@ -208,6 +234,9 @@
 				5B1594DC16A7569C00FEF299 /* AssetsLibrary.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
+				A08507A46DBC49D2923972C1 /* ImageIO.framework */,
+				3255371C4BE54FBA9CC12F5F /* CoreLocation.framework */,
+				3EC44B523CFD461DB03EF739 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -223,6 +252,7 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< 66547f0b7a121799d0727c39f0356d5c4c7f33b9:platforms/ios/HelloCordova.xcodeproj/project.pbxproj
 				908482CC470A48058483F9E9 /* CDVLogger.m */,
 				D3096D0E93FE44D2BC342200 /* CDVLogger.h */,
 				FFAB416B48D54D34B372FE0A /* CDVDevice.m */,
@@ -237,9 +267,18 @@
 				1D4D473061474DB891024C2B /* UIWebViewExtension.m */,
 				7BA1F023BF5340D6A59264A3 /* IonicKeyboard.h */,
 				ED1FA52795924FA4B5C744DC /* UIWebViewExtension.h */,
+=======
+				808A8587FF254C969BC06EFD /* UIImage+CropScaleOrientation.m */,
+				1FEC1B68A8A34A7E82DCF6C7 /* CDVCamera.m */,
+				8F31B6F57EEF436DB6170CEE /* CDVJpegHeaderWriter.m */,
+				7855ACEA2805439B9218FC50 /* UIImage+CropScaleOrientation.h */,
+				1F7A4449CD9645F595964444 /* CDVCamera.h */,
+				4F3573568B774CB7886FEDF9 /* CDVJpegHeaderWriter.h */,
+				8CB26EDE747347189F816D31 /* CDVExif.h */,
+>>>>>>> feat: added cordova camera plugin:platforms/ios/Hello Cordova.xcodeproj/project.pbxproj
 			);
 			name = Plugins;
-			path = "HelloCordova/Plugins";
+			path = "Hello Cordova/Plugins";
 			sourceTree = SOURCE_ROOT;
 		};
 		308D052D1370CCF300D202BF /* icons */ = {
@@ -293,9 +332,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* HelloCordova */ = {
+		1D6058900D05DD3D006BFB54 /* Hello Cordova */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "HelloCordova" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Hello Cordova" */;
 			buildPhases = (
 				304B58A110DAC018002A0835 /* Copy www directory */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
@@ -307,9 +346,9 @@
 			dependencies = (
 				301BF551109A68C00062928A /* PBXTargetDependency */,
 			);
-			name = "HelloCordova";
-			productName = "HelloCordova";
-			productReference = 1D6058910D05DD3D006BFB54 /* HelloCordova.app */;
+			name = "Hello Cordova";
+			productName = "Hello Cordova";
+			productReference = 1D6058910D05DD3D006BFB54 /* Hello Cordova.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -344,7 +383,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* HelloCordova */,
+				1D6058900D05DD3D006BFB54 /* Hello Cordova */,
 			);
 		};
 /* End PBXProject section */
@@ -421,6 +460,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+<<<<<<< 66547f0b7a121799d0727c39f0356d5c4c7f33b9:platforms/ios/HelloCordova.xcodeproj/project.pbxproj
 				10E16D8BED3F4B9D8F628420 /* CDVLogger.m in Sources */,
 				E379C01C5ED143F0B8F3EBD6 /* CDVDevice.m in Sources */,
 				9EED235955BF41E58F50E703 /* CDVSplashScreen.m in Sources */,
@@ -428,6 +468,11 @@
 				7AD7DA837C9C4A95A2E0AA70 /* CDVStatusBar.m in Sources */,
 				E2E196937BD54F04A26C2F6C /* IonicKeyboard.m in Sources */,
 				B2CA504B32BB4B4FAFECA033 /* UIWebViewExtension.m in Sources */,
+=======
+				EBA6BE49F95847E0BF1D9C1B /* UIImage+CropScaleOrientation.m in Sources */,
+				F2A79F1FF62E4244BAB0BC82 /* CDVCamera.m in Sources */,
+				07BE67360D34465EB246B59B /* CDVJpegHeaderWriter.m in Sources */,
+>>>>>>> feat: added cordova camera plugin:platforms/ios/Hello Cordova.xcodeproj/project.pbxproj
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,10 +496,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HelloCordova/HelloCordova-Prefix.pch";
+				GCC_PREFIX_HEADER = "Hello Cordova/Hello Cordova-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
+				INFOPLIST_FILE = "Hello Cordova/Hello Cordova-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -468,7 +513,7 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "HelloCordova";
+				PRODUCT_NAME = "Hello Cordova";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -480,10 +525,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "HelloCordova/HelloCordova-Prefix.pch";
+				GCC_PREFIX_HEADER = "Hello Cordova/Hello Cordova-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "HelloCordova/HelloCordova-Info.plist";
+				INFOPLIST_FILE = "Hello Cordova/Hello Cordova-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -497,7 +542,7 @@
 					"-weak-lSystem",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "HelloCordova";
+				PRODUCT_NAME = "Hello Cordova";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -593,7 +638,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "HelloCordova" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Hello Cordova" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
