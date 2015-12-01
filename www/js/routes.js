@@ -10,8 +10,8 @@ angular.module('app.routes', [])
     
       
         
-    .state('tabsController.home', {
-      url: '/newsFeed',
+    .state('main.home', {
+      url: '/home',
       views: {
         'tab2': {
           templateUrl: 'templates/home.html',
@@ -25,7 +25,7 @@ angular.module('app.routes', [])
       
         
     .state('comments', {
-      url: '/page2',
+      url: '/comments',
       templateUrl: 'templates/comments.html',
       controller: 'commentsCtrl'
     })
@@ -33,17 +33,17 @@ angular.module('app.routes', [])
       
     
       
-    .state('tabsController', {
-      url: '/page3',
+    .state('main', {
+      url: '/main',
       abstract:true,
-      templateUrl: 'templates/tabsController.html'
+      templateUrl: 'templates/main.html'
     })
       
     
       
         
-    .state('tabsController.camera', {
-      url: '/page7',
+    .state('main.camera', {
+      url: '/camera',
       views: {
         'tab1': {
           templateUrl: 'templates/camera.html',
@@ -56,8 +56,8 @@ angular.module('app.routes', [])
     
       
         
-    .state('tabsController.map', {
-      url: '/page9',
+    .state('main.map', {
+      url: '/map',
       views: {
         'tab4': {
           templateUrl: 'templates/map.html',
@@ -80,6 +80,6 @@ angular.module('app.routes', [])
     ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/page3/newsFeed');
+  $urlRouterProvider.otherwise('/main/home');
 
 });
