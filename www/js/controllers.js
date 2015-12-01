@@ -18,5 +18,5 @@ angular.module('app.controllers', [])
    
 .controller('startUpCtrl', function($scope) {
 
-})
+});
  
