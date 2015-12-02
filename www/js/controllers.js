@@ -10,13 +10,20 @@ angular.module('app.controllers', [])
 
 .controller('cameraCtrl', [
   '$scope',
-  function($scope) {
-	$scope.takePicture = function(){
-		navigator.camera.getPicture(function(imageURL){
-		}, function(err){
-			console.log("error: ", err);
-		}, cameraOptions);
-	};
+  'Camera',
+  function($scope, Camera) {
+
+    $scope.takePhoto = function(){
+      Camera.takePicture();
+    };
+
+    $scope.getPhoto = function() {
+       Camera.getPicture().then(function(imageURI) {
+         console.log(imageURI);
+       }, function(err) {
+         console.err(err);
+       });
+     };
 }])
 
 .controller('commentsCtrl',[
