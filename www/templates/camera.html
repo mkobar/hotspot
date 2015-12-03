@@ -1,4 +1,16 @@
 <!-- Dummy Camera view, will be removed in the future - simply using for emulation purposes -->
 <ion-view title="Camera">
-    <ion-content padding="'true'" style="background: url(img/JRV7IaoQOWoIdNIIpBgE_02.jpg) no-repeat center;" class="has-header"></ion-content>
+    <ion-content padding="'true'" style="" class="has-header">
+
+      <button class="button button-full button-assertive" ng-click="takePhoto()">
+        Take Photo
+      </button>
+
+      <button class="button button-full button-assertive" ng-click="choosePhoto()">
+        Choose Photo
+      </button>
+
+      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+
+    </ion-content>
 </ion-view>
