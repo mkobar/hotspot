@@ -1,23 +1,18 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', [
-  '$scope',
-  'UserPosts',
-  function($scope, UserPosts) {
+.controller('homeCtrl', ['$scope','UserPosts', function($scope, UserPosts) {
     $scope.posts = UserPosts.posts;
 }])
 
 
-.controller('cameraCtrl', [
-  '$scope',
-  'Camera',
-  function($scope, Camera) {
+.controller('cameraCtrl', ['$scope','Camera', function($scope, Camera) {
 
     $scope.takePicture = function(){
-      $scope.imgURI = Camera.takePhoto();
+      Camera.takePhoto();
     };
 
-    // $scope.imgURI = Camera.imgURI;
+    $scope.picture = Camera.imgURI;
+    console.log('imgURI: ',typeof $scope.imgURI);
 
     // $scope.takePhoto = function (){
 

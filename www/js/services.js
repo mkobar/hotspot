@@ -21,7 +21,7 @@ angular.module('app.services', [])
 
 .factory('Camera', ['$cordovaCamera', function($cordovaCamera){
 
-  // var imgURI = '';
+  var imgURI;
 
   var takePhoto = function (){
 
@@ -41,8 +41,7 @@ angular.module('app.services', [])
 
     $cordovaCamera.getPicture(options)
       .then(function (imageData) {
-        var imgURI = "data:image/jpeg;base64," + imageData;
-        return imgURI;
+        imgURI = "data:image/jpeg;base64," + imageData;
           }, function (err) {
             // An error occured. Show a message to the user
             console.log('error', err);
@@ -51,7 +50,7 @@ angular.module('app.services', [])
 
   return {
     takePhoto : takePhoto,
-    // imgURI : imgURI
+    imgURI : imgURI
   };
 
 }]);
