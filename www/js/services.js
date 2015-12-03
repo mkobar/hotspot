@@ -21,33 +21,37 @@ angular.module('app.services', [])
 
 .factory('Camera', ['$cordovaCamera', function($cordovaCamera){
 
-  return {
+  // var imgURI = '';
 
-    getPicture: function(options) {
-         var q = $q.defer();
+  var takePhoto = function (){
 
-         navigator.camera.getPicture(function(result) {
-           // Do any magic you need
-           q.resolve(result);
-         }, function(err) {
-           q.reject(err);
-         }, options);
+    var options = {
+      quality: 75,
+      destinationType: Camera.DestinationType.DATA_URL,
+      //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
+      sourceType: Camera.PictureSourceType.CAMERA,
+      allowEdit: true,
+      encodingType: Camera.EncodingType.JPEG,
+      targetWidth: 300,
+      targetHeight: 300,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+      correctOrientation: true
+    };
 
-         return q.promise;
-       },
-
-    takePicture: function() {
-      navigator.camera.getPicture(function(imageURI) {
-
-        // imageURI is the URL of the image that we can use for
-        // an <img> element or backgroundImage.
-
-      }, function(err) {
-
-        // Ruh-roh, something bad happened
-        alert('error: ', err);
-
-      }, cameraOptions);
-    }
+    $cordovaCamera.getPicture(options)
+      .then(function (imageData) {
+        var imgURI = "data:image/jpeg;base64," + imageData;
+        return imgURI;
+          }, function (err) {
+            // An error occured. Show a message to the user
+            console.log('error', err);
+      });
   };
+
+  return {
+    takePhoto : takePhoto,
+    // imgURI : imgURI
+  };
+
 }]);

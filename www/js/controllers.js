@@ -10,33 +10,39 @@ angular.module('app.controllers', [])
 
 .controller('cameraCtrl', [
   '$scope',
-  '$cordovaCamera',
-  function($scope, $cordovaCamera) {
+  'Camera',
+  function($scope, Camera) {
 
-    $scope.takePhoto = function (){
-
-      var options = {
-        quality: 75,
-        destinationType: Camera.DestinationType.DATA_URL,
-        //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-        correctOrientation: true
-      };
-
-      $cordovaCamera.getPicture(options)
-        .then(function (imageData) {
-          $scope.imgURI = "data:image/jpeg;base64," + imageData;
-            }, function (err) {
-              // An error occured. Show a message to the user
-              console.log('error', err);
-        });
+    $scope.takePicture = function(){
+      $scope.imgURI = Camera.takePhoto();
     };
+
+    // $scope.imgURI = Camera.imgURI;
+
+    // $scope.takePhoto = function (){
+
+    //   var options = {
+    //     quality: 75,
+    //     destinationType: Camera.DestinationType.DATA_URL,
+    //     //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
+    //     sourceType: Camera.PictureSourceType.CAMERA,
+    //     allowEdit: true,
+    //     encodingType: Camera.EncodingType.JPEG,
+    //     targetWidth: 300,
+    //     targetHeight: 300,
+    //     popoverOptions: CameraPopoverOptions,
+    //     saveToPhotoAlbum: false,
+    //     correctOrientation: true
+    //   };
+
+    //   $cordovaCamera.getPicture(options)
+    //     .then(function (imageData) {
+    //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    //         }, function (err) {
+    //           // An error occured. Show a message to the user
+    //           console.log('error', err);
+    //     });
+    // };
 
     //functionality to retreive photos from photo library
     // $scope.choosePhoto = function () {
