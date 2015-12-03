@@ -1,68 +1,71 @@
 angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope','UserPosts', function($scope, UserPosts) {
-    $scope.posts = UserPosts.posts;
+  $scope.posts = UserPosts.posts;
 }])
 
 
 .controller('cameraCtrl', ['$scope','Camera', function($scope, Camera) {
 
-    $scope.takePicture = function(){
-      Camera.takePhoto();
-    };
+  $scope.$watch('Camera.imgURI', function(newValue, oldValue){
+    $scope.picture = newValue;
+  });
+  $scope.takePicture = function(){
+    Camera.takePhoto();
+  };
 
-    $scope.picture = Camera.imgURI;
-    console.log('imgURI: ',typeof $scope.imgURI);
 
-    // $scope.takePhoto = function (){
+  console.log('imgURI: ',typeof $scope.picture);
 
-    //   var options = {
-    //     quality: 75,
-    //     destinationType: Camera.DestinationType.DATA_URL,
-    //     //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
-    //     sourceType: Camera.PictureSourceType.CAMERA,
-    //     allowEdit: true,
-    //     encodingType: Camera.EncodingType.JPEG,
-    //     targetWidth: 300,
-    //     targetHeight: 300,
-    //     popoverOptions: CameraPopoverOptions,
-    //     saveToPhotoAlbum: false,
-    //     correctOrientation: true
-    //   };
+  // $scope.takePhoto = function (){
 
-    //   $cordovaCamera.getPicture(options)
-    //     .then(function (imageData) {
-    //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
-    //         }, function (err) {
-    //           // An error occured. Show a message to the user
-    //           console.log('error', err);
-    //     });
-    // };
+  //   var options = {
+  //     quality: 75,
+  //     destinationType: Camera.DestinationType.DATA_URL,
+  //     //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
+  //     sourceType: Camera.PictureSourceType.CAMERA,
+  //     allowEdit: true,
+  //     encodingType: Camera.EncodingType.JPEG,
+  //     targetWidth: 300,
+  //     targetHeight: 300,
+  //     popoverOptions: CameraPopoverOptions,
+  //     saveToPhotoAlbum: false,
+  //     correctOrientation: true
+  //   };
 
-    //functionality to retreive photos from photo library
-    // $scope.choosePhoto = function () {
+  //   $cordovaCamera.getPicture(options)
+  //     .then(function (imageData) {
+  //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
+  //         }, function (err) {
+  //           // An error occured. Show a message to the user
+  //           console.log('error', err);
+  //     });
+  // };
 
-    //   var options = {
-    //     quality: 75,
-    //     destinationType: Camera.DestinationType.DATA_URL,
-    //     //selects an image from the photo library
-    //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-    //     allowEdit: true,
-    //     encodingType: Camera.EncodingType.JPEG,
-    //     targetWidth: 300,
-    //     targetHeight: 300,
-    //     popoverOptions: CameraPopoverOptions,
-    //     saveToPhotoAlbum: false
-    //   };
+  //functionality to retreive photos from photo library
+  // $scope.choosePhoto = function () {
 
-    //   $cordovaCamera.getPicture(options)
-    //     .then(function (imageData) {
-    //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
-    //     }, function (err) {
-    //         // An error occured. Show a message to the user
-    //         console.log('error: ', err);
-    //        });
-    // };
+  //   var options = {
+  //     quality: 75,
+  //     destinationType: Camera.DestinationType.DATA_URL,
+  //     //selects an image from the photo library
+  //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+  //     allowEdit: true,
+  //     encodingType: Camera.EncodingType.JPEG,
+  //     targetWidth: 300,
+  //     targetHeight: 300,
+  //     popoverOptions: CameraPopoverOptions,
+  //     saveToPhotoAlbum: false
+  //   };
+
+  //   $cordovaCamera.getPicture(options)
+  //     .then(function (imageData) {
+  //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
+  //     }, function (err) {
+  //         // An error occured. Show a message to the user
+  //         console.log('error: ', err);
+  //        });
+  // };
 
 }])
 

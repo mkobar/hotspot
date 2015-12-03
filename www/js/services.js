@@ -21,7 +21,7 @@ angular.module('app.services', [])
 
 .factory('Camera', ['$cordovaCamera', function($cordovaCamera){
 
-  var imgURI;
+  var imgURI = 'hello';
 
   var takePhoto = function (){
 
