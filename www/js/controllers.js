@@ -18,13 +18,15 @@ angular.module('app.controllers', [])
       var options = {
         quality: 75,
         destinationType: Camera.DestinationType.DATA_URL,
+        //setting source type to 'Camera.PictureSourceType.CAMERA' uses the devices native camera
         sourceType: Camera.PictureSourceType.CAMERA,
         allowEdit: true,
         encodingType: Camera.EncodingType.JPEG,
         targetWidth: 300,
         targetHeight: 300,
         popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
+        saveToPhotoAlbum: false,
+        correctOrientation: true
       };
 
       $cordovaCamera.getPicture(options)
@@ -36,28 +38,30 @@ angular.module('app.controllers', [])
         });
     };
 
-    $scope.choosePhoto = function () {
+    //functionality to retreive photos from photo library
+    // $scope.choosePhoto = function () {
 
-      var options = {
-        quality: 75,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 300,
-        targetHeight: 300,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false
-      };
+    //   var options = {
+    //     quality: 75,
+    //     destinationType: Camera.DestinationType.DATA_URL,
+    //     //selects an image from the photo library
+    //     sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+    //     allowEdit: true,
+    //     encodingType: Camera.EncodingType.JPEG,
+    //     targetWidth: 300,
+    //     targetHeight: 300,
+    //     popoverOptions: CameraPopoverOptions,
+    //     saveToPhotoAlbum: false
+    //   };
 
-      $cordovaCamera.getPicture(options)
-        .then(function (imageData) {
-          $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        }, function (err) {
-            // An error occured. Show a message to the user
-            console.log('error: ', err);
-           });
-    };
+    //   $cordovaCamera.getPicture(options)
+    //     .then(function (imageData) {
+    //       $scope.imgURI = "data:image/jpeg;base64," + imageData;
+    //     }, function (err) {
+    //         // An error occured. Show a message to the user
+    //         console.log('error: ', err);
+    //        });
+    // };
 
 }])
 

@@ -19,7 +19,7 @@ angular.module('app.services', [])
   return o;
 }])
 
-.factory('Camera', ['$q', function($q){
+.factory('Camera', ['$cordovaCamera', function($cordovaCamera){
 
   return {
 
