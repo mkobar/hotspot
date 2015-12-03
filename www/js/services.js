@@ -45,6 +45,7 @@ angular.module('app.services', [])
       }, function(err) {
 
         // Ruh-roh, something bad happened
+        alert('error: ', err);
 
       }, cameraOptions);
     }
