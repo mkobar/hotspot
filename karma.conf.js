@@ -15,16 +15,24 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'www/lib/ionic/js/angular/angular.js',
-      // 'www/lib/ionic/js/*.js',
-      'www/lib/ionic/js/angular-ui/*.js',
+    /*
+       ionic.bundle.js is a concatenation of:
+       ionic.js, angular.js, angular-animate.js,
+       angular-sanitize.js, angular-ui-router.js,
+       and ionic-angular.js
+     */
+     'www/lib/ionic/js/ionic.bundle.js',
+
+      // our app code
       'www/js/*.js',
+
+      // our spec files
       'test/*.js'
     ],
 
-
     // list of files to exclude
     exclude: [
+    'karma.conf.js'
     ],
 
 
@@ -37,7 +45,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ['nyan'],
 
 
     // web server port
@@ -59,7 +67,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
