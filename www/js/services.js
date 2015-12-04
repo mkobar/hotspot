@@ -1,6 +1,6 @@
 angular.module('app.services', [])
 
-.factory('UserPosts', [function(){
+.factory('LoadPostsFactory', [function(){
   var o = {
     posts: [
       {
@@ -19,7 +19,7 @@ angular.module('app.services', [])
   return o;
 }])
 
-.factory('CameraFactory', ['$cordovaCamera', function($cordovaCamera){
+.factory('CameraFactory', ['$cordovaCamera','$http', function($cordovaCamera, $http){
 
   var takePhoto = function (){
 
@@ -40,8 +40,17 @@ angular.module('app.services', [])
     return $cordovaCamera.getPicture(options);
   };
 
+  var postPhoto = function(imgURI){
+    return $http({
+      method: 'POST',
+      url: '/addPost',
+      data: image
+    });
+  };
+
   return {
     takePhoto : takePhoto,
+    postPhoto : postPhoto
   };
 
 }]);

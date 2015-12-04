@@ -3,14 +3,14 @@
     <ion-content padding="'true'" style="" class="has-header">
 
       <button class="button button-full button-assertive" ng-click="takePicture()">
-        Take Photo
+        Take Picture
       </button>
 
 
-      <img ng-show="image !== undefined" ng-src="{{image}}" style="text-align: center">
+      <img ng-show="post.imageURI !== undefined" ng-src="{{post.imageURI}}" style="text-align: center">
 
-      <button ng-show="image !== undefined" class="button button-full button-assertive" ng-click="choosePhoto()">
-        Save Photo
+      <button ng-show="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="createPost()">
+        Post Picture
       </button>
 
     </ion-content>
