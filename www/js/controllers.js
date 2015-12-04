@@ -5,17 +5,28 @@ angular.module('app.controllers', [])
 }])
 
 
-.controller('cameraCtrl', ['$scope','Camera', function($scope, Camera) {
+.controller('cameraCtrl', ['$scope','CameraFactory', function($scope, CameraFactory) {
 
-  $scope.$watch('Camera.imgURI', function(newValue, oldValue){
-    $scope.picture = newValue;
+  // var picture = CameraFactory.imgURI;
+  // console.log(picture);
+  $scope.$watch('picture', function(newValue, oldValue){
+    console.log('its running');
+    // $scope.picture = newValue;
   });
+
   $scope.takePicture = function(){
-    Camera.takePhoto();
+    CameraFactory.takePhoto()
+      .then(function (imageData) {
+        $scope.image = "data:image/jpeg;base64," + imageData;
+          console.log($scope.image);
+          }, function (err) {
+            // An error occured. Show a message to the user
+            console.log('error', err);
+      });
   };
 
 
-  console.log('imgURI: ',typeof $scope.picture);
+  // console.log('imgURI: ',typeof $scope.picture);
 
   // $scope.takePhoto = function (){
 

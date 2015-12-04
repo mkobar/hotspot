@@ -19,9 +19,7 @@ angular.module('app.services', [])
   return o;
 }])
 
-.factory('Camera', ['$cordovaCamera', function($cordovaCamera){
-
-  var imgURI = 'hello';
+.factory('CameraFactory', ['$cordovaCamera', function($cordovaCamera){
 
   var takePhoto = function (){
 
@@ -39,13 +37,7 @@ angular.module('app.services', [])
       correctOrientation: true
     };
 
-    $cordovaCamera.getPicture(options)
-      .then(function (imageData) {
-        imgURI = "data:image/jpeg;base64," + imageData;
-          }, function (err) {
-            // An error occured. Show a message to the user
-            console.log('error', err);
-      });
+    return $cordovaCamera.getPicture(options);
   };
 
   return {
