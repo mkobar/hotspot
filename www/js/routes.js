@@ -68,7 +68,7 @@ angular.module('app.routes', [])
       url: '/startup',
       templateUrl: 'templates/startUp.html',
       controller: 'startUpCtrl'
-    })
+    });
 
 
 

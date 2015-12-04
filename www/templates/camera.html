@@ -2,15 +2,16 @@
 <ion-view title="Camera">
     <ion-content padding="'true'" style="" class="has-header">
 
-      <button class="button button-full button-assertive" ng-click="takePhoto()">
+      <button class="button button-full button-assertive" ng-click="takePicture()">
         Take Photo
       </button>
 
-      <button class="button button-full button-assertive" ng-click="choosePhoto()">
-        Choose Photo
-      </button>
 
-      <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}" style="text-align: center">
+      <img ng-show="image !== undefined" ng-src="{{image}}" style="text-align: center">
+
+      <button ng-show="image !== undefined" class="button button-full button-assertive" ng-click="choosePhoto()">
+        Save Photo
+      </button>
 
     </ion-content>
 </ion-view>
