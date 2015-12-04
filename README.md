@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/BillionaireBoysClub/hotspot.png?label=ready&title=Ready)](http://waffle.io/BillionaireBoysClub/hotspot)
+
 # Project Name
 
 > Pithy project description
