@@ -13,13 +13,13 @@ module.exports = (function() {
 					response.json(results);
 					console.log('success');
 				}
-			})
+			});
 		},
 		create: function(request, response) {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
 				comments: request.body.comments,
-				imageURL: request.body.imgURI, //imgURI
+				imageURL: request.body.imageURL, //imageURL
 				caption: request.body.caption,
 				location: request.body.location
 			});
@@ -43,7 +43,7 @@ module.exports = (function() {
 					} else {
 						console.log('success');
 					}
-			})
+			});
 		},
 		destroy: function(request, response) {
 			Post.remove({_id: request.body.id}, function(error) {
@@ -53,10 +53,18 @@ module.exports = (function() {
 						console.log('success');
 					}
 					response.end();
-			})
+			});
+		},
+		find_by_id: function(request, response){
+			Post.find({_id: request.params.id}, function(error, result){
+				if(error) {
+					console.log('error in find_by_id');
+				} else {
+					response.json(result);
+				}
+			});
 		}
-	}
+	};
 })();
-
 
 
