@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: true})); //for parsing application/x-ww
 
 var path = require('path');
 //set up a static file server that points to the client directory
-app.use(express.static(path.join(__dirname, './www')));
+app.use(express.static(path.join(__dirname, './client')));
 
 //import mongoose.js
 require('./server/config/mongoose.js');
@@ -17,4 +17,4 @@ require('./server/config/routes.js')(app);
 
 app.listen(3000, function() {
 	console.log('listening at port 3000');
-})
+});

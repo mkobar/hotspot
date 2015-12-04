@@ -20,4 +20,8 @@ module.exports = function(app) {
 		posts.destroy(request, response);
 	});
 
+	app.get('/getPostById/:id', function(request, response){
+		posts.find_by_id(request, response);
+	});
+
 };

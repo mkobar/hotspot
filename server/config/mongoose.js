@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var path = require('path');
 
+//connect to the hotspot database
 mongoose.connect('mongodb://localhost/hotspot');
 
 //specify the path to the models
