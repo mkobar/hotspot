@@ -6,11 +6,12 @@
         Take Photo
       </button>
 
-      <!-- <button class="button button-full button-assertive" ng-click="choosePhoto()">
-        Choose Photo
-      </button> -->
 
       <img ng-show="image !== undefined" ng-src="{{image}}" style="text-align: center">
+
+      <button ng-show="image !== undefined" class="button button-full button-assertive" ng-click="choosePhoto()">
+        Save Photo
+      </button>
 
     </ion-content>
 </ion-view>

@@ -42,7 +42,6 @@ angular.module('app.services', [])
 
   return {
     takePhoto : takePhoto,
-    imgURI : imgURI
   };
 
 }]);
