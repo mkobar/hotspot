@@ -9,6 +9,14 @@ angular.module('app.controllers', [])
 
 .controller('cameraCtrl', ['$scope','$location','CameraFactory', function($scope, $location, CameraFactory) {
 
+  $scope.post = {
+    upvotes: 0,
+    comments: [],
+    imageURI: undefined,
+    caption: '',
+    location: ''
+  };
+
   $scope.takePicture = function(){
     CameraFactory.takePhoto()
       .then(function (imageData) {
@@ -19,16 +27,8 @@ angular.module('app.controllers', [])
       });
   };
 
-  $scope.post = {
-    upvotes: 0,
-    comments: [],
-    imageURI: '',
-    caption: '',
-    location: ''
-  };
-
   $scope.createPost = function(){
-    CameraFactory.postPhoto($scope.image)
+    CameraFactory.postPhoto($scope.post.imageURI)
       .then(function(){
         $location.path('/');
       })

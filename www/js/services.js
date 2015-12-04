@@ -44,7 +44,7 @@ angular.module('app.services', [])
     return $http({
       method: 'POST',
       url: '/addPost',
-      data: image
+      data: imgURI
     });
   };
 
