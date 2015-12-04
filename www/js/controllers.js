@@ -9,10 +9,6 @@ angular.module('app.controllers', [])
 
 .controller('cameraCtrl', ['$scope','CameraFactory', function($scope, CameraFactory) {
 
-  $scope.$watch('picture', function(newValue, oldValue){
-    console.log('its running');
-  });
-
   $scope.takePicture = function(){
     CameraFactory.takePhoto()
       .then(function (imageData) {
