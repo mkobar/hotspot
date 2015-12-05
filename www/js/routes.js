@@ -53,7 +53,7 @@ angular.module('app.routes', [])
 
 
     .state('comments', {
-      url: '/comments',
+      url: '/comments/{id}', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
       templateUrl: 'templates/comments.html',
       controller: 'commentsCtrl'
     })
@@ -64,10 +64,10 @@ angular.module('app.routes', [])
 
 
 
-    .state('startUp', {
-      url: '/startup',
-      templateUrl: 'templates/startUp.html',
-      controller: 'startUpCtrl'
+    .state('splashPage', {
+      url: '/splashPage',
+      templateUrl: 'templates/splashPage.html',
+      controller: 'splashPageCtrl'
     });
 
 

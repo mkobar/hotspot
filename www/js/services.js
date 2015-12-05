@@ -1,22 +1,27 @@
 angular.module('app.services', [])
 
-.factory('UserPosts', [function(){
-  var o = {
+.factory('LoadPostsFactory', [function(){
+  "use strict";
+  var service = {
     posts: [
       {
-        image: "http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg",
+        caption: "Going to the beach where I belong #Cali",
+        imageURL: "http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg",
         upvotes: 10,
-        comments:"going to the beach #summer",
+        location: '',
+        comments:["What beach is that?", "second comment"]
       },
       {
-        image: "http://www.surrey.ca/images/cos-master/pageImages/HawthornePark.jpg",
-        upvotes: 5,
-        comments:"going to the park #california",
+        caption: "Relaxing at the park #park",
+        imageURL: "http://www.surrey.ca/images/cos-master/pageImages/HawthornePark.jpg",
+        upvotes: 4,
+        location: '',
+        comments:["Park  is awesome", "nice green day"]
       }
     ]
   };
 
-  return o;
+  return service;
 }])
 
 .factory('CameraFactory', ['$cordovaCamera', function($cordovaCamera){
