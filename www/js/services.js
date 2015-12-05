@@ -24,10 +24,9 @@ angular.module('app.services', [])
   return service;
 }])
 
-.factory('CameraFactory', ['$cordovaCamera','$http', function($cordovaCamera, $http){
+.factory('CameraFactory', ['$cordovaCamera','$cordovaGeolocation','$http', function($cordovaCamera, $cordovaGeolocation, $http){
 
   var takePhoto = function (){
-
     var options = {
       quality: 75,
       destinationType: Camera.DestinationType.DATA_URL,
@@ -45,17 +44,30 @@ angular.module('app.services', [])
     return $cordovaCamera.getPicture(options);
   };
 
+  var getPosition = function(){
+    var options = {
+      setTimeout : 10000,
+      enableHighAccuracy : true
+    };
+
+    return $cordovaGeolocation.getCurrentPosition(options);
+  };
+
   var postPhoto = function(userPost){
     return $http({
       method: 'POST',
       url: '/addPost',
       data: userPost
     });
+    // .then(function(resp){
+    //   console.log('this is the response from you request: ', resp);
+    // });
   };
 
   return {
     takePhoto : takePhoto,
-    postPhoto : postPhoto
+    postPhoto : postPhoto,
+    getPosition : getPosition
   };
 
 }]);
