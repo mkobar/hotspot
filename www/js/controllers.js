@@ -7,7 +7,7 @@ angular.module('app.controllers', [])
 }])
 
 
-.controller('cameraCtrl', ['$scope','$state','CameraFactory',function($scope, $state, CameraFactory) {
+.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory',function($scope, $state, CameraFactory, LocationFactory) {
 
   $scope.post = {
     upvotes: 0,
@@ -29,7 +29,7 @@ angular.module('app.controllers', [])
   };
 
   $scope.getLocation = function(){
-    CameraFactory.getPosition()
+    LocationFactory.getPosition()
       .then(function(position){
         $scope.post.location.long = position.coords.longitude;
         $scope.post.location.lat = position.coords.latitude;
@@ -43,7 +43,6 @@ angular.module('app.controllers', [])
     $scope.post.comments.push($scope.post.caption);
 
     CameraFactory.postPhoto($scope.post)
-    // $state.go('main.home');
       .then(function(){
         console.log('posted! redirecting you now.');
         $state.go('main.home');
@@ -73,7 +72,25 @@ angular.module('app.controllers', [])
 
 
 //controller for interacting with the map view
-.controller('mapCtrl',['$scope',function($scope) {
+.controller('mapCtrl',['$scope','LocationFactory',function($scope, LocationFactory) {
+
+  $scope.getLocation = function(){
+    LocationFactory.getPosition()
+      .then(function(position){
+        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+        var mapOptions = {
+          center: latLng,
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+      }, function(error){
+        console.log("Could not get location");
+      });
+  }();
 
 }])
 
