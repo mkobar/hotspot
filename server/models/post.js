@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
 	upvotes: Number,
-	comments: String, //array of strings
+	comments: Array,
 	imageURI: String,
 	caption: String,
-	location: String
+	location: Object
 });
 
 //instantiate the model using a Schema

@@ -48,6 +48,7 @@ angular.module('app.controllers', [])
 
     CameraFactory.postPhoto($scope.post)
       .then(function(){
+        console.log('posted! redirecting you now.');
         $state.go('main.home');
       })
       .catch(function(err){

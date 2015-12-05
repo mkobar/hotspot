@@ -59,6 +59,9 @@ angular.module('app.services', [])
       url: '/addPost',
       data: userPost
     });
+    // .then(function(resp){
+    //   console.log('this is the response from you request: ', resp);
+    // });
   };
 
   return {

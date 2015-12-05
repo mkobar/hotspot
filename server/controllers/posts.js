@@ -20,7 +20,7 @@ module.exports = (function() {
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
 				comments: request.body.comments,
 				imageURI: request.body.imageURI, //imageURL
-				// caption: request.body.caption,
+				caption: request.body.caption,
 				location: request.body.location
 			});
 			post.save(function(error) {
