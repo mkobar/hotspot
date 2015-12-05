@@ -18,7 +18,7 @@ angular.module('app.controllers', [])
     comments: [],
     imageURI: undefined,
     caption: '',
-    location: ''
+    location: {}
   };
 
   $scope.takePicture = function(){
@@ -30,6 +30,16 @@ angular.module('app.controllers', [])
     //       console.log('error', err);
     //   });
     $scope.post.imageURI = 'yooooooo';
+  };
+
+  $scope.getLocation = function(){
+    CameraFactory.getPosition()
+      .then(function(position){
+        $scope.post.location.long = position.coords.longitude;
+        $scope.post.location.lat = position.coords.latitude;
+      }, function(err){
+        console.log('There was an error: ', err);
+      });
   };
 
   $scope.addPost = function(){

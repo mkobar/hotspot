@@ -2,7 +2,7 @@
 <ion-view title="Camera">
     <ion-content padding="'true'" style="" class="has-header">
 
-      <button ng-hide="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture()">
+      <button ng-hide="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
         Take Picture
       </button>
 
