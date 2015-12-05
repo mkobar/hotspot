@@ -1,15 +1,18 @@
 <!-- Comments view that from click the comments tab on a Card(post) -->
+<!-- commentrsCtrl attached here-->
 <ion-view title="Comments">
     <ion-content padding="'true'" class="has-header">
         <ion-list>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">Nice camera angle!</ion-item>
-            <ion-item menu-close="">back button on top left</ion-item>
-            <ion-item menu-close="">wheres the back button</ion-item>
+          <ion-item menu-close="" ng-repeat="comment in post.comments">
+            {{comment}}
+          </ion-item>
+
+
+
+            <ion-item menu-close="">HC:back button on top left</ion-item>
+            <ion-item menu-close="">HC:wheres the back button</ion-item>
+
+            <!-- input field to comments-->
             <label class="item item-input" name="photo-comment">
                 <input type="text" placeholder="comment">
             </label>
