@@ -1,17 +1,13 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', [
-  '$scope',
-  'LoadPostsFactory',
-  '$stateParams',
-   function($scope, LoadPostsFactory,$stateParams) {
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',function($scope, LoadPostsFactory,$stateParams) {
   $scope.posts = LoadPostsFactory.posts;
   $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
 }])
 
 
-.controller('cameraCtrl', ['$scope','$state','CameraFactory', function($scope, $state, CameraFactory) {
+.controller('cameraCtrl', ['$scope','$state','CameraFactory',function($scope, $state, CameraFactory) {
 
   $scope.post = {
     upvotes: 0,
@@ -65,11 +61,8 @@ angular.module('app.controllers', [])
    this view
 */
 
-.controller('commentsCtrl',[
-  '$scope',
-  '$stateParams', //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
-  'LoadPostsFactory',
-   function($scope, $stateParams, LoadPostsFactory) {
+//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
+.controller('commentsCtrl',['$scope','$stateParams', 'LoadPostsFactory',function($scope, $stateParams, LoadPostsFactory) {
     // $scope.posts = LoadPostsFactory.posts;
     // console.log('LoadPostsFactory', LoadPostsFactory);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];//obj
@@ -80,18 +73,14 @@ angular.module('app.controllers', [])
 
 
 //controller for interacting with the map view
-.controller('mapCtrl',[
-  '$scope',
-   function($scope) {
+.controller('mapCtrl',['$scope',function($scope) {
 
 }])
 
 
 
 //for future app start up page
-.controller('splashPageCtrl',[
-  '$scope',
-   function($scope) {
+.controller('splashPageCtrl',['$scope',function($scope) {
 }]);
 
 
@@ -99,10 +88,7 @@ angular.module('app.controllers', [])
 
 
 //***********addComment code (not complete)
-// controller('', [
-//   '$scope',
-//   'posts',
-//   function($scope, posts){
+// controller('', ['$scope','posts',function($scope, posts){
 //     $scope.posts = posts.posts;
 
 //     $scope.addComment = function(){
