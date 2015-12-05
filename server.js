@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({extended: true})); //for parsing application/x-ww
 
 var path = require('path');
 //set up a static file server that points to the client directory
-app.use(express.static(path.join(__dirname, './client')));
+app.use(express.static(path.join(__dirname, './www')));
 
 //import mongoose.js
 require('./server/config/mongoose.js');
