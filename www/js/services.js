@@ -5,7 +5,6 @@ angular.module('app.services', [])
   function($http){
     var o = {
       posts: [
-      /*
         {
           caption: "Going to the beach where I belong #Cali",
           imageURL: "http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg",
@@ -20,16 +19,24 @@ angular.module('app.services', [])
           location: '',
           comments:["Park  is awesome", "nice green day"]
         }
-      */
       ]
     };
 
     //load all posts from server
-    o.getAll = function(){
-      return $http.get("/posts/")
-      .then(function(res){
-        res.data;
-      });
+    o.getPosts = function(){
+      console.log('inside get Posts');
+      return  function(){
+        console.log(123);
+        angular.copy([{caption:"hello"}], o.posts); // (src, dest)
+      };
+      // $http.get('/posts')
+      // .success(function(data){
+      //   angular.copy(data, o.posts); // (src, dest)
+      // });
+
+
+
+
     };
 
 
