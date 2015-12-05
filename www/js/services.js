@@ -3,7 +3,6 @@ angular.module('app.services', [])
 .factory('LoadPostsFactory', [function(){
   "use strict";
   var service = {
-
     posts: [
       {
         caption: "Going to the beach where I belong #Cali",
