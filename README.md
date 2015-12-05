@@ -2,13 +2,7 @@
 
 # Project Name
 
-> Pithy project description
-
-## Team
-
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+> " tagline "
 
 ## Table of Contents
 
@@ -17,8 +11,25 @@
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Team](#team)
+1. [Team](#Team)
 1. [Contributing](#contributing)
+
+
+
+### Team
+
+[![CliffordFajardo](https://avatars0.githubusercontent.com/u/6743796?v=3&s=70)](https://github.com/cliffordfajardo) | [![Eric Eng](https://avatars1.githubusercontent.com/u/5885829?v=3&s=70)](https://github.com/starcraft168) | [![Gabriel Matias](https://avatars1.githubusercontent.com/u/11906352?v=3&s=70)](https://github.com/starcraft168) |[![Orobosa Omoregie](https://avatars2.githubusercontent.com/u/3477479?v=3&s=70)](https://github.com/saposki)
+--- | --- | --- | --- | --- | --- | ---
+[Clifford Fajardo](https://github.com/cliffordfajardo)<br>Website here | [Eric Eng](https://github.com/GMatias93)<br>Website here | [Gabriel Matias](https://github.com/GMatias93)<br>Website here | [Orobosa Omoregie](https://github.com/saposki)<br>Website here
+
+
+### Technology Stack
+<img src="http://i.imgur.com/dktBkgD.png"> |<img src="http://i.imgur.com/DTLdYkx.png">|  <img src="http://i.imgur.com/P5hKmWx.png">|<img src="http://i.imgur.com/hi6gCzf.png">|
+--- | --- | --- | --- | --- |
+Angularjs| Ionic | MongoDB| Nodejs
+
+
+
 
 ## Usage
 
@@ -35,7 +46,6 @@
 ## Development
 
 ### Installing Dependencies
-
 From within the root directory:
 
 ```sh
@@ -44,13 +54,13 @@ npm install
 bower install
 ```
 
-### Roadmap
 
+
+### Roadmap
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 
 
 ## Contributing
-
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 
@@ -84,7 +94,7 @@ More info on this can be found on the Ionic [Getting Started](http://ionicframew
 ## Issues
 Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
 
-## Updating Repository 
+## Updating Repository
 If your forked your master, then you need to add the upstream master
 
     git remote add upstream https://github.com/BillionaireBoysClub/hotspot.git
@@ -93,10 +103,10 @@ This is how you fetch the upstream changes to your own master copy
 
     git pull --rebase upstream master
 
-When working on your feature, make your own feature branch 
+When working on your feature, make your own feature branch
 
     git checkout -b <featureBranchName>
 
-Next: 
-    
-    Make a pull request to the upstream from your master 
+Next:
+
+    Make a pull request to the upstream from your master
