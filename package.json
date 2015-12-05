@@ -13,7 +13,8 @@
   },
   "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan"
+    "test": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
+    "test": "mocha test"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
@@ -38,6 +39,9 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.19",
     "protractor": "^3.0.0",
+    "mocha": "*",
+    "chai": "*",
+    "supertest": "*",
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
