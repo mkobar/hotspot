@@ -13,8 +13,9 @@
   },
   "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
-    "test": "mocha test"
+    "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
+    "servertest": "mocha test",
+    "start": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
