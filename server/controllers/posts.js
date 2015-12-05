@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post'); //assign the variable so that the controller has access to the model
 
-//define CRUD operations - eventually send to the routes - export a called function that returns an object 
-//same as exporting an object 
+//define CRUD operations - eventually send to the routes - export a called function that returns an object
+//same as exporting an object
 module.exports = (function() {
 	return {
 		show: function(request, response) {
@@ -19,7 +19,7 @@ module.exports = (function() {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
 				comments: request.body.comments,
-				imageURL: request.body.imageURL, //imageURL
+				imageURI: request.body.imageURI, //imageURL
 				caption: request.body.caption,
 				location: request.body.location
 			});
@@ -32,10 +32,10 @@ module.exports = (function() {
 			});
 		},
 		update: function(request, response) { // update takes in a (query, update object, and callback)
-			Post.update({_id: request.body.id}, 
-				{upvotes: request.body.upvotes, 
-				comments: request.body.comments, 
-				imageURL: request.body.imageURL, 
+			Post.update({_id: request.body.id},
+				{upvotes: request.body.upvotes,
+				comments: request.body.comments,
+				imageURI: request.body.imageURI,
 				caption:request.body.caption,
 				location:request.body.location}, function(error) {
 					if(error) {

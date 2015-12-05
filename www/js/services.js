@@ -40,11 +40,11 @@ angular.module('app.services', [])
     return $cordovaCamera.getPicture(options);
   };
 
-  var postPhoto = function(imgURI){
+  var postPhoto = function(userPost){
     return $http({
       method: 'POST',
       url: '/addPost',
-      data: imgURI
+      data: userPost
     });
   };
 
