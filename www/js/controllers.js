@@ -34,7 +34,7 @@ angular.module('app.controllers', [])
 
   $scope.addPost = function(){
     console.log('this is the post being posted', $scope.post);
-    // $scope.post.comments.push($scope.caption);
+    $scope.post.comments.push($scope.post.caption);
 
     CameraFactory.postPhoto($scope.post)
       .then(function(){

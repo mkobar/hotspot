@@ -8,7 +8,7 @@
 
       <img ng-show="post.imageURI !== undefined" ng-src="{{post.imageURI}}" style="text-align: center">
 
-      <input ng-show="post.imageURI !== undefined" ng-model="caption">
+      <input ng-show="post.imageURI !== undefined" ng-model="post.caption">
 
       <button ng-show="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="addPost()">
         Post Picture
