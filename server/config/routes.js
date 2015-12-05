@@ -10,6 +10,7 @@ module.exports = function(app) {
 
 	app.post('/addPost', function(request, response) {
 		posts.create(request, response);
+		response.send();
 	});
 
 	app.post('/updatePost', function(request, response) {

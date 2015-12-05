@@ -28,7 +28,9 @@ module.exports = (function() {
 					console.log('error in create');
 				} else {
 					console.log('success');
+					response.status(200);
 				}
+
 			});
 		},
 		update: function(request, response) { // update takes in a (query, update object, and callback)
