@@ -98,7 +98,6 @@ Issues have been disabled on this repo, if you do find an issue or have a questi
 ## Updating Repository 
 If you forked your master, then you need to add the upstream master
 
-
     git remote add upstream https://github.com/BillionaireBoysClub/hotspot.git
 
 This is how you fetch the upstream changes to your own master copy
