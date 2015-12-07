@@ -21,7 +21,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Sub-Heading ##
   > Anybody who loves to take pictures and share them to the world, creating historical artifact that can later be accessed.
 ## Summary ##
-  > Allows the user curate history events in a visually appealing manner.
+  > Allows the user to curate historical events in a visually appealing manner.
 ## Problem ##
   > At the bare minimum it answers the question:  how is this image historically significant to me and my immedidate environment?
 ## Solution ##
