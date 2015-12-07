@@ -15,10 +15,12 @@ module.exports = function(app) {
 
 	app.post('/updatePost', function(request, response) {
 		posts.update(request, response);
+		response.send();
 	});
 
 	app.post('/removePost', function(request, response) {
 		posts.destroy(request, response);
+		response.send();
 	});
 
 	app.get('/getPostById/:id', function(request, response){
