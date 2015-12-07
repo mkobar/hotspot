@@ -61,18 +61,15 @@ angular.module('app.controllers', [])
    this view
 */
 
-.controller('commentsCtrl',[
-  '$scope',
-  '$stateParams', //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
-  'LoadPostsFactory',
-   function($scope, $stateParams, LoadPostsFactory) {
+//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams'LoadPostsFactory',
+.controller('commentsCtrl',['$scope', '$stateParams', function($scope, $stateParams, LoadPostsFactory) {
 
     $scope.post = LoadPostsFactory.posts[$stateParams.id];//obj
     console.log("$scope.post", $scope.post);
 
 
     $scope.addComment = function(){
-      console.log('add comment worked??')
+      console.log('add comment worked??');
       if($scope.message === "" || $scope.message === undefined){return;}
       //clear input fields after submit
       $scope.message = '';
