@@ -27,7 +27,7 @@ angular.module('app.controllers', [])
     //       console.log('error', err);
     //   });
     $scope.post.imageURI = 'yooooooo';
-  };
+  }();
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
@@ -37,7 +37,7 @@ angular.module('app.controllers', [])
       }, function(err){
         console.log('There was an error: ', err);
       });
-  };
+  }();
 
   $scope.addPost = function(){
     console.log('this is the post being posted', $scope.post);
