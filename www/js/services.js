@@ -1,27 +1,57 @@
 angular.module('app.services', [])
 
-.factory('LoadPostsFactory', [function(){
-  "use strict";
-  var service = {
-    posts: [
-      {
-        caption: "Going to the beach where I belong #Cali",
-        imageURL: "http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg",
-        upvotes: 10,
-        location: '',
-        comments:["What beach is that?", "second comment"]
-      },
-      {
-        caption: "Relaxing at the park #park",
-        imageURL: "http://www.surrey.ca/images/cos-master/pageImages/HawthornePark.jpg",
-        upvotes: 4,
-        location: '',
-        comments:["Park  is awesome", "nice green day"]
-      }
-    ]
-  };
+.factory('LoadPostsFactory', [
+  '$http',
+  function($http){
+    var o = {
+      posts: [
+        // {
+        //   caption: "Going to the beach where I belong #Cali",
+        //   imageURL: "http://www.freelargeimages.com/wp-content/uploads/2015/07/Beach_Wallpaper_02.jpg",
+        //   upvotes: 10,
+        //   location: '',
+        //   comments:["What beach is that?", "second comment"]
+        // },
+        // {
+        //   caption: "Relaxing at the park #park",
+        //   imageURL: "http://www.surrey.ca/images/cos-master/pageImages/HawthornePark.jpg",
+        //   upvotes: 4,
+        //   location: '',
+        //   comments:["Park  is awesome", "nice green day"]
+        // }
+      ]
+    };
+    // console.log('factory before get', o.posts);
+    //load all posts from server
+    o.getPosts = function(){
+      console.log('inside get Posts');
+      return $http({
+        method: 'GET',
+        url: '/posts'
+    })
+    .success(function(response){
+      console.log('inside success..response-->', response);
+      angular.copy(response, o.posts); // (src, dest)
+      // return response;
+      console.log('o.posts after', o.posts)
+    });
 
-  return service;
+
+
+      //  $http.get('#/posts')
+      // .success(function(data){
+      //   console.log('inside success..data', data);
+      //   angular.copy(data, o.posts); // (src, dest)
+
+      // });
+
+
+
+
+    };
+
+
+  return o;
 }])
 
 .factory('CameraFactory', ['$cordovaCamera','$http', function($cordovaCamera, $http){
@@ -79,3 +109,7 @@ angular.module('app.services', [])
   };
 
 }]);
+
+function add(a,b){
+  return a + c;
+}

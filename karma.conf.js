@@ -23,6 +23,9 @@ module.exports = function(config) {
      */
      'www/lib/ionic/js/ionic.bundle.js',
 
+     // (Required) angular mocks for testing suite
+     'www/lib/angular-mocks/angular-mocks.js',
+
       // our app code
       'www/js/*.js',
 

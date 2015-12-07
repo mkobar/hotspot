@@ -2,6 +2,7 @@ angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',function($scope, LoadPostsFactory,$stateParams) {
   $scope.posts = LoadPostsFactory.posts;
+  console.log('$scope.posts after factory loaded', $scope.posts);
   $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
 }])
@@ -60,12 +61,22 @@ angular.module('app.controllers', [])
    this view
 */
 
-//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
-.controller('commentsCtrl',['$scope','$stateParams', 'LoadPostsFactory',function($scope, $stateParams, LoadPostsFactory) {
-    // $scope.posts = LoadPostsFactory.posts;
-    // console.log('LoadPostsFactory', LoadPostsFactory);
+.controller('commentsCtrl',[
+  '$scope',
+  '$stateParams', //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
+  'LoadPostsFactory',
+   function($scope, $stateParams, LoadPostsFactory) {
+
     $scope.post = LoadPostsFactory.posts[$stateParams.id];//obj
     console.log("$scope.post", $scope.post);
+
+
+    $scope.addComment = function(){
+      console.log('add comment worked??')
+      if($scope.message === "" || $scope.message === undefined){return;}
+      //clear input fields after submit
+      $scope.message = '';
+    };
 
 }])
 
@@ -101,16 +112,7 @@ angular.module('app.controllers', [])
 }]);
 
 
-
-
-
-//***********addComment code (not complete)
-// controller('', ['$scope','posts',function($scope, posts){
-//     $scope.posts = posts.posts;
-
-//     $scope.addComment = function(){
-//       if($scope.message === "" || $scope.message === undefined){return;}
-//       //clear input fields after submit
-//       $scope.message = '';
-//     };
-// }])
+/*controller for loading screen
+http://pathgather.github.io/please-wait/
+http://ionicframework.com/docs/api/service/$ionicLoading/
+*/
