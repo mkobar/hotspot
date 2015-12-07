@@ -72,6 +72,7 @@ angular.module('app.controllers', [])
 
 
     $scope.addComment = function(){
+      console.log('add comment worked??')
       if($scope.message === "" || $scope.message === undefined){return;}
       //clear input fields after submit
       $scope.message = '';
