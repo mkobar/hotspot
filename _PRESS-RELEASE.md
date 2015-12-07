@@ -19,21 +19,21 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
   > HotSpot.
 ## Sub-Heading ##
-  > Anybody who loves to take pictures and share them to the world, creating historical artifact that can be later be accessed.
+  > Anybody who loves to take pictures and share them to the world, creating historical artifact that can later be accessed.
 ## Summary ##
-  > Allows the users curate history events in a visually appealing manner.
+  > Allows the user curate history events in a visually appealing manner.
 ## Problem ##
   > At the bare minimum it answers the question:  how is this image historically significant to me and my immedidate environment?
 ## Solution ##
   > It archives uploaded images with geographical coordinates as current events that can be accessed at later dates as relevant historical artifacts
-    It allows users to hashtag images
-    It allwos users to add comments to images
-    It allows users to upvote images
+    It allows user to hashtag images
+    It allwos user to add comments to images
+    It allows user to upvote images
 ## Quote from You ##
-  > We are what comes to mind if you have the audacity to fuse instagram and the history channel
+  > We are what comes to mind if you have the audacity to fuse instagram with the history channel
 ## How to Get Started ##
-  > It's as simple as downloading the app, launching the app, taking a picture sending with relevant tags and comments and just like that you become a co-curator of history
+  > It's as simple as downloading the app, launching the app, taking a picture uploading image with relevant tags and comments, and just like that you become a co-curator of history
 ## Customer Quote ##
-  > This app is beyond instagram selfies, its puts to meaningful use the technologies that have made selfies a thing
+  > This app is beyond instagram selfies, its puts to meaningful use, the technologies that have made selfies a thing
 ## Closing and Call to Action ##
   > History books, curated by yesterday's philosophers are gathering dust on shelves, in todays world, the visual curator is the philosopher and their curation are at palms reach.
