@@ -17,28 +17,23 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
-
+  > HotSpot.
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
+  > Anybody who loves to take pictures and share them to the world, creating historical artifact that can later be accessed.
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
-
+  > Allows the user to curate historical events in a visually appealing manner.
 ## Problem ##
-  > Describe the problem your product solves.
-
+  > At the bare minimum it answers the question:  how is this image historically significant to me and my immedidate environment?
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
-
+  > It archives uploaded images with geographical coordinates as current events that can be accessed at later dates as relevant historical artifacts
+    It allows user to hashtag images
+    It allwos user to add comments to images
+    It allows user to upvote images
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
-
+  > We are what comes to mind if you have the audacity to fuse instagram with the history channel
 ## How to Get Started ##
-  > Describe how easy it is to get started.
-
+  > It's as simple as downloading the app, launching the app, taking a picture uploading image with relevant tags and comments, and just like that you become a co-curator of history
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
+  > This app is beyond instagram selfies, its puts to meaningful use, the technologies that have made selfies a thing
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  > History books, curated by yesterday's philosophers are gathering dust on shelves, in todays world, the visual curator is the philosopher and their curation are at palms reach.
