@@ -80,11 +80,24 @@ angular.module('app.controllers', [])
 
 
 //controller for interacting with the map view
-.controller('mapCtrl',['$scope','LocationFactory',function($scope, LocationFactory) {
+.controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory',function($scope, $ionicLoading, LocationFactory) {
+
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0
+  });
+
+  $scope.hide = function(){
+    $ionicLoading.hide();
+  };
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
+        $scope.hide();
         var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         var mapOptions = {
