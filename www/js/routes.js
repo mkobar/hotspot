@@ -23,9 +23,14 @@ angular.module('app.routes', [])
           controller: 'homeCtrl', //why is the resolve useful?
           //resolve allows us to provide our controller with data before it gets loaded. This saves you the burden of asynchronously making $http calls (and even service calls) inside your controller and promotes a separation of concerns. Added benefit of resolve, if I try to make a url request that doesn't exist from my current page, resolve will only change the view if the request url exists.
           resolve: {
-            thiscanbeanything:  function(){
-                console.log( {anything: 'anything!'});
-            }
+            postPromise: ['LoadPostsFactory', function(LoadPostsFactory){
+              console.log('hello fron resolve');
+              return LoadPostsFactory.getPosts();
+            }]
+
+            // function(LoadPostsFactory){
+            //     console.log('resolve---', {anything: 'anything!'});
+            // }
           }
         }
       }

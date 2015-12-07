@@ -8,10 +8,11 @@ module.exports = (function() {
 		show: function(request, response) {
 			Post.find({}, function(error, results) {
 				if(error) {
-					console.log('error in show');
+				  console.log('error in show');
 				} else {
 					response.json(results);
 					console.log('success');
+          console.log('from show ', results);
 				}
 			});
 		},
@@ -62,7 +63,8 @@ module.exports = (function() {
 				if(error) {
 					console.log('error in find_by_id');
 				} else {
-					response.json(result);
+          // console.log(' from find_by_id: response.json(result)', JSON.stringify(result));
+          response.json(result);
 				}
 			});
 		}

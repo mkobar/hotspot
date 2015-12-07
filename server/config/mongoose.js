@@ -5,7 +5,7 @@ var path = require('path');
 //connect to the hotspot database
 mongoose.connect('mongodb://localhost/hotspot');
 
-//specify the path to the models
+//specify the path to the models AKA require()'ing files in models folder
 var models_path = path.join(__dirname, './../models');
 
 //readdirSync returns an array of filenames in that folder
@@ -15,3 +15,4 @@ fs.readdirSync(models_path).forEach(function(file) {
 		require(models_path + '/' + file);
 	}
 });
+

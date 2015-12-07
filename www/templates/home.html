@@ -15,7 +15,7 @@
         <div class="list card" ng-repeat="post in posts">
           <!-- Card Start-->
           <div class="item item-body">
-              <img class="full-image" ng-src="{{post.imageURL}}">
+              <img class="full-image" ng-src="{{post.imageURI}}">
               <p>
                 {{post.caption}}
               </p>
@@ -30,7 +30,7 @@
               <i class="icon ion-thumbsup"></i>
               Upvotes
             </a>
-            <a class="tab-item" href="#/comments/{{$index}}">
+            <a class="tab-item" href="#/comments/{{post._id}}">
               <i class="icon ion-chatbox"></i>
               Comment
             </a>

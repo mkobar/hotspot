@@ -2,7 +2,7 @@ angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',function($scope, LoadPostsFactory,$stateParams) {
   $scope.posts = LoadPostsFactory.posts;
-  console.log('$scope.posts', $scope.posts);
+  console.log('$scope.posts after factory loaded', $scope.posts);
   $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
 }])
@@ -72,6 +72,7 @@ angular.module('app.controllers', [])
 
 
     $scope.addComment = function(){
+      console.log('add comment worked??')
       if($scope.message === "" || $scope.message === undefined){return;}
       //clear input fields after submit
       $scope.message = '';

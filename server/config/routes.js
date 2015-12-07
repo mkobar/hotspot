@@ -5,6 +5,7 @@ var posts = require('./../controllers/posts.js');
 
 module.exports = function(app) {
 	app.get('/posts', function(request, response) {
+    console.log('request', request, 'response', response);
 		posts.show(request, response);
 	});
 
