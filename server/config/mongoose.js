@@ -3,6 +3,7 @@ var fs = require('fs');
 var path = require('path');
 
 //connect to the hotspot database
+
 // mongoose.connect('mongodb://localhost/hotspot');
 mongoose.connect('mongodb://hotspot:123@ds027719.mongolab.com:27719/heroku_0vjk4zkx');
 
