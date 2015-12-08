@@ -1,25 +1,19 @@
 <!-- Comments view that from click the comments tab on a Card(post) -->
 <!-- commentrsCtrl attached here-->
-<ion-view title="Comments">
+<ion-view title="Comments" >
     <ion-content padding="'true'" class="has-header">
-        <ion-list>
-          <ion-item menu-close="" ng-repeat="comment in post.comments">
+        <ion-list ng-repeat="comment in post.comments">
+          <ion-item menu-close="" >
             {{comment}}
           </ion-item>
-
-
-
-            <ion-item menu-close="">HC:back button on top left</ion-item>
-            <ion-item menu-close="">HC:wheres the back button</ion-item>
-
-            <!-- input field to comments-->
-            <label class="item item-input" name="photo-comment">
-              <form ng-submit="addComment()">
-                <input type="text" placeholder="comment">
-                <button type="submit"></button>
-              </form>
-
-            </label>
         </ion-list>
+        <!-- input field to comments-->
+<!--         <label class="item item-input" name="photo-comment">
+          <form ng-submit="addComment()" ng-controller="commentsCtrl">
+            <input type="text" placeholder="comment" ng-model="message">
+            <button type="submit"></button>
+          </form>
+
+        </label> -->
     </ion-content>
 </ion-view>

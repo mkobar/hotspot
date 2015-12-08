@@ -5,7 +5,7 @@ var posts = require('./../controllers/posts.js');
 
 module.exports = function(app) {
 	app.get('/posts', function(request, response) {
-    console.log('request', request, 'response', response);
+    console.log('GET to /posts worked');
 		posts.show(request, response);
 	});
 
@@ -24,7 +24,8 @@ module.exports = function(app) {
 		response.send();
 	});
 
-	app.get('/getPostById/:id', function(request, response){
+	app.get('/posts/:id', function(request, response){
+    console.log('GET to /posts/:id ..worked');
 		posts.find_by_id(request, response);
 	});
 

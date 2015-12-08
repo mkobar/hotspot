@@ -12,7 +12,6 @@ module.exports = (function() {
 				} else {
 					response.json(results);
 					console.log('success');
-          console.log('from show ', results);
 				}
 			});
 		},
@@ -59,12 +58,14 @@ module.exports = (function() {
 			});
 		},
 		find_by_id: function(request, response){
+      console.log('inside ...find_by_id');console.log('--request.params.id', request.params.id);
+
 			Post.find({_id: request.params.id}, function(error, result){
 				if(error) {
 					console.log('error in find_by_id');
 				} else {
-          // console.log(' from find_by_id: response.json(result)', JSON.stringify(result));
-          response.json(result);
+          console.log('inside of else of find_by_id'); console.log(JSON.stringify(result[0]));
+          response.json(result[0]); //object return back is wrapped in an array, so I'm directly accesing it's value
 				}
 			});
 		}

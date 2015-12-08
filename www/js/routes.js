@@ -23,20 +23,27 @@ angular.module('app.routes', [])
           controller: 'homeCtrl', //why is the resolve useful?
           //resolve allows us to provide our controller with data before it gets loaded. This saves you the burden of asynchronously making $http calls (and even service calls) inside your controller and promotes a separation of concerns. Added benefit of resolve, if I try to make a url request that doesn't exist from my current page, resolve will only change the view if the request url exists.
           resolve: {
-            postPromise: ['LoadPostsFactory', function(LoadPostsFactory){
-              console.log('hello fron resolve');
+            getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
               return LoadPostsFactory.getPosts();
             }]
-
-            // function(LoadPostsFactory){
-            //     console.log('resolve---', {anything: 'anything!'});
-            // }
           }
         }
       }
     })
 
 
+    .state('comments', {
+      url: '/posts/{id}', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
+      templateUrl: 'templates/comments.html',
+      controller: 'commentsCtrl',
+      resolve: { //singlePost gets resolved to a value. To access the resolved value, add single post to controller
+        singlePost: ['$stateParams','LoadPostsFactory', function($stateParams, LoadPostsFactory){
+          console.log('resolve worked');
+          console.log('$stateParams.id', $stateParams.id); //grabbing stateparam from URL in comments view
+          return LoadPostsFactory.getSinglePost($stateParams.id);
+        }]
+      }
+    })
 
     .state('main.camera', {
       url: '/camera',
@@ -63,11 +70,6 @@ angular.module('app.routes', [])
 
 
 
-    .state('comments', {
-      url: '/comments/{id}', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
-      templateUrl: 'templates/comments.html',
-      controller: 'commentsCtrl'
-    })
 
 
 
