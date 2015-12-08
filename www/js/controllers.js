@@ -95,7 +95,7 @@ angular.module('app.controllers', [])
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', '$ionicGesture', 'LocationFactory',function($scope, $ionicLoading, $ionicGesture, LocationFactory) {
 
-  var circle;
+  // var circle;
 
   $scope.radius = {
     min: '1609.34',
@@ -118,6 +118,7 @@ angular.module('app.controllers', [])
         $ionicLoading.hide();
 
         var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var radiusBar = angular.element(document.querySelector('#radius'));
 
         var mapOptions = {
           center: latLng,
@@ -127,9 +128,9 @@ angular.module('app.controllers', [])
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        circle = new google.maps.Circle({
+        var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
-            // editable: true,
+            editable: true,
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: '#FF0000',
@@ -139,14 +140,33 @@ angular.module('app.controllers', [])
             radius: parseInt($scope.radius.value, 10)
           });
 
-        // $ionicGesture.on('swipe', circle.setRadius(parseInt($scope.radius.value, 10)), document.getElementById("radius"));
+        google.maps.event.addDomListener(radiusBar, 'click', function(){
+          console.log('clicked!');
+        });
 
       }, function(error){
-        console.log("Could not get location");
+        console.log("Could not get location: ", error);
       });
   }();
 
-  // circle.setRadius(radius:25);
+// console.log('this is circle: ', circle);
+  // $ionicGesture.on('swipe', function(event){
+  //   LocationFactory.getLocation()
+  //     .then(function(position){
+  //       var circle = new google.maps.Circle({
+  //           strokeColor: '#FF0000',
+  //           // editable: true,
+  //           strokeOpacity: 0.8,
+  //           strokeWeight: 2,
+  //           fillColor: '#FF0000',
+  //           fillOpacity: 0.35,
+  //           map: $scope.map,
+  //           center: latLng,
+  //           radius: parseInt($scope.radius.value, 10)
+  //         });
+  //     });
+  // }, elem);
+  // circle.setRadius(25);
 
 }])
 
