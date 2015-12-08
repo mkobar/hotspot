@@ -90,14 +90,12 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
-  $scope.hide = function(){
-    $ionicLoading.hide();
-  };
-
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
-        $scope.hide();
+
+        $ionicLoading.hide();
+
         var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
         var mapOptions = {
@@ -108,10 +106,22 @@ angular.module('app.controllers', [])
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+        var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: $scope.map,
+            center: latLng,
+            radius: $scope.radius
+          });
+
       }, function(error){
         console.log("Could not get location");
       });
   }();
+
 
 }])
 
