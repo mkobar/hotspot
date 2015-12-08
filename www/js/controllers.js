@@ -1,9 +1,14 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',function($scope, LoadPostsFactory,$stateParams) {
-  $scope.posts = LoadPostsFactory.posts;
-  console.log('$scope.posts after factory loaded', $scope.posts);
-  $scope.post = LoadPostsFactory.posts[$stateParams.id];
+.controller('homeCtrl', [
+  '$scope',
+  'LoadPostsFactory',
+  '$stateParams',
+  function($scope, LoadPostsFactory,$stateParams) {
+    $scope.posts = LoadPostsFactory.posts;
+    console.log('$scope.posts after factory loaded', $scope.posts);
+    // $scope.post = LoadPostsFactory.posts[$stateParams.id];
+
 
 }])
 
@@ -67,18 +72,22 @@ angular.module('app.controllers', [])
   'LoadPostsFactory',
   'singlePost',
    function($scope, $stateParams, LoadPostsFactory, singlePost) {
-    $scope.post = singlePost;
-    console.log('singlePost?--', $scope.post);
+      $scope.post = singlePost;
+      console.log('singlePost?--', $scope.post);
 
 
 
+      $scope.addComment = function(){
+        console.log('inside add comment');
+        if($scope.message === "" || $scope.message === undefined){
+          return;
+        } else {
+          console.log('enter worked');
+          LoadPostsFactory.posts.push({comments: [$scope.message]});
+          console.log('factory after', LoadPostsFactory);
 
-    $scope.addComment = function(){
-      console.log('inside add comment');
-      if($scope.message === "" || $scope.message === undefined){return;}
-      LoadPostsFactory.posts.push({comments: [$scope.message]});
-      console.log('factory after', LoadPostsFactory);
-    };
+        }
+      };
 }])
 
 
