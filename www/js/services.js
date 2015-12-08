@@ -1,12 +1,9 @@
 angular.module('app.services', [])
 
-.factory('LoadPostsFactory', [
-  '$http',
-  function($http){
-    var o = {
-      posts: []
-    };
 
+.factory('LoadPostsFactory', ['$http', function($http){
+    var posts = [];
+    // console.log('factory before get', posts);
     //load all posts from server
     o.getPosts = function(){
       return $http({method: 'GET',url: '/posts'})

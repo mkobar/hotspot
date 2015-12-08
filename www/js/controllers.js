@@ -93,7 +93,15 @@ angular.module('app.controllers', [])
 
 
 //controller for interacting with the map view
-.controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory',function($scope, $ionicLoading, LocationFactory) {
+.controller('mapCtrl',['$scope', '$ionicLoading', '$ionicGesture', 'LocationFactory',function($scope, $ionicLoading, $ionicGesture, LocationFactory) {
+
+  var circle;
+
+  $scope.radius = {
+    min: '1609.34',
+    max:'80467.2',
+    value: '40233.6'
+  };
 
   $ionicLoading.show({
     content: 'Loading',
@@ -119,22 +127,26 @@ angular.module('app.controllers', [])
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        var cityCircle = new google.maps.Circle({
+        circle = new google.maps.Circle({
             strokeColor: '#FF0000',
+            // editable: true,
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: '#FF0000',
             fillOpacity: 0.35,
             map: $scope.map,
             center: latLng,
-            radius: $scope.radius
+            radius: parseInt($scope.radius.value, 10)
           });
+
+        // $ionicGesture.on('swipe', circle.setRadius(parseInt($scope.radius.value, 10)), document.getElementById("radius"));
 
       }, function(error){
         console.log("Could not get location");
       });
   }();
 
+  // circle.setRadius(radius:25);
 
 }])
 
