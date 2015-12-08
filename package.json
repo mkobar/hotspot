@@ -2,6 +2,9 @@
   "name": "hotSpot",
   "version": "1.0.0",
   "description": "A photo sharing application.",
+  "engines": {
+    "node": "4.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BillionaireBoysClub/hotspot.git"
