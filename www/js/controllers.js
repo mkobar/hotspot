@@ -118,7 +118,8 @@ angular.module('app.controllers', [])
         $ionicLoading.hide();
 
         var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        var radiusBar = angular.element(document.querySelector('#radius'));
+        var radiusBar = document.getElementById("radius");
+        var map = document.getElementById("map");
 
         var mapOptions = {
           center: latLng,
@@ -126,11 +127,16 @@ angular.module('app.controllers', [])
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        $scope.map = new google.maps.Map(map, mapOptions);
+
+        //setting custom event in order to change the circles radiusBar
+        // var customCircle = function(options){};
+        // customCircle.prototype = new google.maps.Circle();
+        // customCircle.prototype.changeRadius = changeRadius;
 
         var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
-            editable: true,
+            // editable: true,
             strokeOpacity: 0.8,
             strokeWeight: 2,
             fillColor: '#FF0000',
@@ -141,8 +147,15 @@ angular.module('app.controllers', [])
           });
 
         google.maps.event.addDomListener(radiusBar, 'click', function(){
-          console.log('clicked!');
+          // alert('clicked!');
+          var rad = parseInt($scope.radius.value, 10);
+          circle.setRadius(rad);
         });
+
+        // google.maps.event.addDomListener(map, 'dblclick', function(){
+        //   var rad = circle.getRadius();
+        //   $scope.radius.value += rad;
+        // });
 
       }, function(error){
         console.log("Could not get location: ", error);
@@ -166,7 +179,6 @@ angular.module('app.controllers', [])
   //         });
   //     });
   // }, elem);
-  // circle.setRadius(25);
 
 }])
 
