@@ -5,7 +5,11 @@
   "engines": {
     "node": "4.1.1"
   },
-  "scripts": { "start" : "node server.js" },
+  "scripts": {
+    "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
+    "servertest": "mocha test",
+    "start": "nodemon server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BillionaireBoysClub/hotspot.git"
@@ -16,11 +20,6 @@
     "url": "https://github.com/BillionaireBoysClub/hotspot/issues"
   },
   "homepage": "https://github.com/BillionaireBoysClub/hotspot#readme",
-  "scripts": {
-    "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
-    "servertest": "mocha test",
-    "start": "nodemon server.js"
-  },
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
