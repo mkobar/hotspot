@@ -6,7 +6,10 @@ angular.module('app.services', [])
     // console.log('factory before get', posts);
     //load all posts from server
     var getPosts = function(){
-      return $http({method: 'GET',url: '/posts'})
+      return $http({
+        method: 'GET',
+        url: '/posts'
+      })
       .success(function(response){
         console.log('getPosts() worked');
         angular.copy(response, posts); // (src, dest)
@@ -17,7 +20,10 @@ angular.module('app.services', [])
     //retrieve an individual post from database
     var getSinglePost = function(id){
       console.log('inside getSinglePost');
-      return $http({method: 'GET',url: '/posts/' + id})
+      return $http({
+        method: 'GET',
+        url: '/posts/' + id
+      })
       .then(function(response){
         console.log('response.data', response.data);
         return response.data;
@@ -25,7 +31,10 @@ angular.module('app.services', [])
     };
 
     var upvotePost = function(){
-      return $http({method: 'GET',url: '/posts/' + id})
+      return $http({
+        method: 'GET',
+        url: '/posts/' + id
+      })
       .then(function(response){
         console.log('response.data', response.data);
         return response.data;
