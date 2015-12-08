@@ -3,28 +3,29 @@ angular.module('app.services', [])
 .factory('LoadPostsFactory', [
   '$http',
   function($http){
-    var posts = [];
-    // console.log('factory before get', posts);
+    var o = {
+      posts: []
+    };
+
     //load all posts from server
-    var getPosts = function(){
-      console.log('inside get Posts');
-      return $http({
-        method: 'GET',
-        url: '/posts'
-    })
-    .success(function(response){
-      console.log('inside success..response-->', response);
-      angular.copy(response, posts); // (src, dest)
-      // return response;
-      console.log('posts after', posts);
-    });
+    o.getPosts = function(){
+      return $http({method: 'GET',url: '/posts'})
+      .success(function(response){
+        console.log('getPosts() worked');
+        angular.copy(response, o.posts); // (src, dest)
+       });
+    };
 
-      //  $http.get('#/posts')
-      // .success(function(data){
-      //   console.log('inside success..data', data);
-      //   angular.copy(data, posts); // (src, dest)
 
-      // });
+    //retrieve an individual post from database
+    o.getSinglePost = function(id){
+      console.log('inside getSinglePost');
+      return $http({method: 'GET',url: '/posts/' + id})
+      .then(function(response){
+        console.log('response.data', response.data);
+        return response.data;
+      });
+
     };
 
 

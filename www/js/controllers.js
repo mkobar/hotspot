@@ -17,7 +17,7 @@ angular.module('app.controllers', [])
     caption: '',
     location: {}
   };
-
+  $scope.post.caption = "";
   $scope.takePicture = function(){
     // CameraFactory.takePhoto()
     //   .then(function (imageData) {
@@ -61,20 +61,24 @@ angular.module('app.controllers', [])
    this view
 */
 
-//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams'LoadPostsFactory',
-.controller('commentsCtrl',['$scope', '$stateParams', function($scope, $stateParams, LoadPostsFactory) {
+.controller('commentsCtrl',[
+  '$scope',
+  '$stateParams', //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
+  'LoadPostsFactory',
+  'singlePost',
+   function($scope, $stateParams, LoadPostsFactory, singlePost) {
+    $scope.post = singlePost;
+    console.log('singlePost?--', $scope.post);
 
-    $scope.post = LoadPostsFactory.posts[$stateParams.id];//obj
-    console.log("$scope.post", $scope.post);
+
 
 
     $scope.addComment = function(){
-      console.log('add comment worked??');
+      console.log('inside add comment');
       if($scope.message === "" || $scope.message === undefined){return;}
-      //clear input fields after submit
-      $scope.message = '';
+      LoadPostsFactory.posts.push({comments: [$scope.message]});
+      console.log('factory after', LoadPostsFactory);
     };
-
 }])
 
 

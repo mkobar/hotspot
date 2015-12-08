@@ -19,7 +19,7 @@
   "scripts": {
     "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
     "servertest": "mocha test",
-    "start": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan"
+    "start": "nodemon server.js"
   },
   "dependencies": {
     "body-parser": "^1.14.1",
