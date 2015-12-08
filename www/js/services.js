@@ -5,17 +5,17 @@ angular.module('app.services', [])
     var posts = [];
     // console.log('factory before get', posts);
     //load all posts from server
-    o.getPosts = function(){
+    var getPosts = function(){
       return $http({method: 'GET',url: '/posts'})
       .success(function(response){
         console.log('getPosts() worked');
-        angular.copy(response, o.posts); // (src, dest)
+        angular.copy(response, posts); // (src, dest)
        });
     };
 
 
     //retrieve an individual post from database
-    o.getSinglePost = function(id){
+    var getSinglePost = function(id){
       console.log('inside getSinglePost');
       return $http({method: 'GET',url: '/posts/' + id})
       .then(function(response){
@@ -24,7 +24,7 @@ angular.module('app.services', [])
       });
     };
 
-    o.upvotePost = function(){
+    var upvotePost = function(){
       return $http({method: 'GET',url: '/posts/' + id})
       .then(function(response){
         console.log('response.data', response.data);
@@ -34,7 +34,12 @@ angular.module('app.services', [])
 
 
 
-  return o;
+  return {
+    posts: posts,
+    getPosts: getPosts,
+    getSinglePost: getSinglePost,
+    upvotePost: upvotePost
+  };
 }])
 
 .factory('CameraFactory', ['$cordovaCamera','$http', function($cordovaCamera, $http){
@@ -77,20 +82,18 @@ angular.module('app.services', [])
 
 
 
-.factory('LocationFactory', [
-  '$cordovaGeolocation',
-   function($cordovaGeolocation){
+.factory('LocationFactory', ['$cordovaGeolocation', function($cordovaGeolocation){
 
-    var getPosition = function(){
-      var options = {
-        setTimeout : 10000,
-        enableHighAccuracy : true
-      };
-      return $cordovaGeolocation.getCurrentPosition(options);
+  var getPosition = function(){
+    var options = {
+      setTimeout : 10000,
+      enableHighAccuracy : true
     };
+    return $cordovaGeolocation.getCurrentPosition(options);
+  };
 
-    return {
-      getPosition : getPosition
-    };
+  return {
+    getPosition : getPosition
+  };
 
 }]);
