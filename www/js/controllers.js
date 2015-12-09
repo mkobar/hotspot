@@ -71,27 +71,23 @@ angular.module('app.controllers', [])
    this view
 */
 
-//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
-.controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory','singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
-  $scope.post = singlePost;
-  console.log('singlePost?--', $scope.post);
+.controller('commentsCtrl',['$scope','$stateParams', 'LoadPostsFactory','singlePost',function($scope, $stateParams, LoadPostsFactory, singlePost) {
+      $scope.post = singlePost; //works..it's the unique ID
 
+      $scope.comment = { input: ""};
+      $scope.addComment = function(){
+        if(!$scope.comment.input) {return;}
+        //send comment to database
+        LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
+        .then(function(comment){
+          console.log('inside controller then..comment =?', comment);
+          console.log(comment.data);
+        });
 
-  $scope.comment = { input: ""};
-  $scope.addComment = function(){
-    if(!$scope.comment.input) {return;}
-    console.log('$scope.comment === obj ?', $scope.comment.input);
-
-    LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
-    .then(function(comment){
-      console.log('inside controller then..comment =?', comment);
-      console.log(comment.data);
-    });
-
-    //update users comment view
-    $scope.post.comments.push($scope.comment.input);
-    $scope.comment.input = "";
-  };
+        //update users comment view
+        $scope.post.comments.push($scope.comment.input);
+        $scope.comment.input = "";
+      };
 }])
 
 
