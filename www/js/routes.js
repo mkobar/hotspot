@@ -33,12 +33,11 @@ angular.module('app.routes', [])
 
 
     .state('comments', {
-      url: '/posts/{id}', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
+      url: '/posts/{id}/comments', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
       templateUrl: 'templates/comments.html',
       controller: 'commentsCtrl',
       resolve: { //singlePost gets resolved to a value. To access the resolved value, add single post to controller
         singlePost: ['$stateParams','LoadPostsFactory', function($stateParams, LoadPostsFactory){
-          console.log('resolve worked');
           console.log('$stateParams.id', $stateParams.id); //grabbing stateparam from URL in comments view
           return LoadPostsFactory.getSinglePost($stateParams.id);
         }]
