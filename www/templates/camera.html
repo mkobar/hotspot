@@ -2,15 +2,15 @@
 <ion-view title="Camera">
     <ion-content padding="'true'" style="" class="has-header">
 
-      <button ng-hide="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
+     <!--  <button ng-hide="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
         Take Picture
-      </button>
+      </button> -->
 
-      <img ng-show="post.imageURI !== undefined" ng-src="{{post.imageURI}}" style="text-align: center">
+      <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
 
-      <input ng-show="post.imageURI !== undefined" ng-model="post.caption">
+      <input ng-show="userPost.imageURI !== undefined" ng-model="userPost.caption">
 
-      <button ng-show="post.imageURI !== undefined" class="button button-full button-assertive" ng-click="addPost()">
+      <button ng-show="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="addPost()">
         Post Picture
       </button>
 
