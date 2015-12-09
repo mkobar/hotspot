@@ -77,9 +77,6 @@ angular.module('app.services', [])
       url: '/addPost',
       data: userPost
     });
-    // .then(function(resp){
-    //   console.log('this is the response from you request: ', resp);
-    // });
   };
 
   return {
@@ -98,6 +95,7 @@ angular.module('app.services', [])
       setTimeout : 10000,
       enableHighAccuracy : true
     };
+
     return $cordovaGeolocation.getCurrentPosition(options);
   };
 
