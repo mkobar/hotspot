@@ -77,7 +77,7 @@ angular.module('app.services', [])
   var postPhoto = function(userPost){
     return $http({
       method: 'POST',
-      url: '/addPost',
+      url: 'http://gentle-spire-1503.herokuapp.com/addPost',
       data: userPost
     });
   };

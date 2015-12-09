@@ -5,19 +5,20 @@ var posts = require('./../controllers/posts.js');
 
 module.exports = function(app) {
   //get posts from database
-	app.get('/posts', function(request, response) {
+	app.get('gentle-spire-1503.herokuapp.com/posts', function(request, response) {
     console.log('GET to /posts worked');
 		posts.show(request, response);
 	});
 
+
   //create a post
-	app.post('/addPost', function(request, response) {
+	app.post('gentle-spire-1503.herokuapp.com/addPost', function(request, response) {
 		posts.create(request, response);
 		response.send();
 	});
 
   //add comment to a post
-	app.post('/posts/:id/comments', function(request, response) {
+  app.post('gentle-spire-1503.herokuapp.com/posts/:id/comments', function(request, response) {
     console.log('inside POST (server) /posts/:id/comments');
     console.log('request.body',request.body);
 		posts.update(request, response);
@@ -25,21 +26,20 @@ module.exports = function(app) {
 	});
 
   //upvote a post
-  app.put('/posts/:id/upvote', function(request, response) {
+  app.put('gentle-spire-1503.herokuapp.com/posts/:id/upvote', function(request, response) {
     console.log('inside POST (server) /posts/:id/comments');
     console.log('request.body',request.body);
     posts.update(request, response);
     response.send();
   });
 
-  //remove a post
-	app.post('/removePost', function(request, response) {
+	app.post('gentle-spire-1503.herokuapp.com/removePost', function(request, response) {
 		posts.destroy(request, response);
 		response.send();
 	});
 
-  //returning a single post
-	app.get('/posts/:id', function(request, response){
+
+	app.get('gentle-spire-1503.herokuapp.com/posts/:id', function(request, response){
     console.log('GET to /posts/:id ..worked');
 		posts.find_by_id(request, response);
 	});
