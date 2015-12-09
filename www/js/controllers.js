@@ -96,14 +96,14 @@ angular.module('app.controllers', [])
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', '$ionicGesture', 'LocationFactory',function($scope, $ionicLoading, $ionicGesture, LocationFactory) {
 
-  // var circle;
-
+  //refers to range bar underneath the map
   $scope.radius = {
     min: '1609.34',
     max:'80467.2',
     value: '40233.6'
   };
 
+  //loading icon while map loads
   $ionicLoading.show({
     content: 'Loading',
     animation: 'fade-in',
@@ -112,6 +112,7 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
+  //IIFE
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
@@ -131,11 +132,6 @@ angular.module('app.controllers', [])
 
         $scope.map = new google.maps.Map(map, mapOptions);
 
-        //setting custom event in order to change the circles radiusBar
-        // var customCircle = function(options){};
-        // customCircle.prototype = new google.maps.Circle();
-        // customCircle.prototype.changeRadius = changeRadius;
-
         var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
             // editable: true,
@@ -148,39 +144,17 @@ angular.module('app.controllers', [])
             radius: parseInt($scope.radius.value, 10)
           });
 
+        //modifies circle radius whenever user interacts with range bar
         google.maps.event.addDomListener(radiusBar, 'click', function(){
           // alert('clicked!');
           var rad = parseInt($scope.radius.value, 10);
           circle.setRadius(rad);
         });
 
-        // google.maps.event.addDomListener(map, 'dblclick', function(){
-        //   var rad = circle.getRadius();
-        //   $scope.radius.value += rad;
-        // });
-
       }, function(error){
         console.log("Could not get location: ", error);
       });
   }();
-
-// console.log('this is circle: ', circle);
-  // $ionicGesture.on('swipe', function(event){
-  //   LocationFactory.getLocation()
-  //     .then(function(position){
-  //       var circle = new google.maps.Circle({
-  //           strokeColor: '#FF0000',
-  //           // editable: true,
-  //           strokeOpacity: 0.8,
-  //           strokeWeight: 2,
-  //           fillColor: '#FF0000',
-  //           fillOpacity: 0.35,
-  //           map: $scope.map,
-  //           center: latLng,
-  //           radius: parseInt($scope.radius.value, 10)
-  //         });
-  //     });
-  // }, elem);
 
 }])
 
