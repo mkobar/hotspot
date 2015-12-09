@@ -10,40 +10,50 @@ angular.module('app.controllers', [])
 
 .controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory',function($scope, $state, CameraFactory, LocationFactory) {
 
-  $scope.post = {
+  //sets default values for userpost
+  $scope.userPost = {
     upvotes: 0,
     comments: [],
     imageURI: undefined,
     caption: '',
     location: {}
   };
-  $scope.post.caption = "";
+
+  /*
+  prompts user to take picturem most of the fuction body is commented because
+  the Camera object is not defined outside of a mobile device so for testing purposes
+  I have added a random string('yooooooo') in place of an actual image
+  */
   $scope.takePicture = function(){
     // CameraFactory.takePhoto()
     //   .then(function (imageData) {
-    //     $scope.post.imageURI = "data:image/jpeg;base64," + imageData;
+    //     $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
     //     }, function (err) {
     //       // An error occured. Show a message to the user
     //       console.log('error', err);
     //   });
-    $scope.post.imageURI = 'yooooooo';
+    $scope.userPost.imageURI = 'yooooooo';
   }();
 
+  //this is an IIFE same as the takePicture fuction so that the user will not
+  //have to click an extra button after moving to the camera view
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
-        $scope.post.location.long = position.coords.longitude;
-        $scope.post.location.lat = position.coords.latitude;
+        $scope.userPost.location.long = position.coords.longitude;
+        $scope.userPost.location.lat = position.coords.latitude;
       }, function(err){
         console.log('There was an error: ', err);
       });
   }();
 
+  //
   $scope.addPost = function(){
-    console.log('this is the post being posted', $scope.post);
-    $scope.post.comments.push($scope.post.caption);
+    console.log('this is the userPost being posted', $scope.userPost);
+    //adding the capture caption to the comments array in the userPost object
+    $scope.userPost.comments.push($scope.userPost.caption);
 
-    CameraFactory.postPhoto($scope.post)
+    CameraFactory.postPhoto($scope.userPost)
       .then(function(){
         console.log('posted! redirecting you now.');
         $state.go('main.home');
