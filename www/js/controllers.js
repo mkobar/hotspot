@@ -119,7 +119,8 @@ angular.module('app.controllers', [])
 
         var mapOptions = {
           center: latLng,
-          zoom: 15,
+          disableDoubleClickZoom: true,
+          zoom: 7,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -136,6 +137,12 @@ angular.module('app.controllers', [])
             radius: $scope.radius
           });
 
+        //modifies circle radius whenever user interacts with range bar
+        google.maps.event.addDomListener(radiusBar, 'drag', function(){
+          // alert('clicked!');
+          var rad = parseInt($scope.radius.value, 10);
+          circle.setRadius(rad);
+        });
       }, function(error){
         console.log("Could not get location");
       });

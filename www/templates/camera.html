@@ -5,14 +5,20 @@
      <!--  <button ng-hide="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
         Take Picture
       </button> -->
-
       <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
 
-      <input ng-show="userPost.imageURI !== undefined" ng-model="userPost.caption">
+      <label class="item item-input" name="photo-comment">
+          <form ng-submit="addComment()">
+            <!-- <input type="text" placeholder="comment" ng-model="message"> -->
+            <input type="text" placeholder="caption" ng-model="userPost.caption">
+            <!-- <button type="submit">send</button> -->
+            <button class="button button-full button-assertive" ng-click="addPost()">
+              Post Picture
+            </button>
+          </form>
+        </label>
 
-      <button ng-show="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="addPost()">
-        Post Picture
-      </button>
+
 
     </ion-content>
 </ion-view>
