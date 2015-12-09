@@ -34,17 +34,16 @@ module.exports = (function() {
 			});
 		},
 		update: function(request, response) { // update takes in a (query, update object, and callback)
-			Post.update({_id: request.body.id},
-				{upvotes: request.body.upvotes,
-				comments: request.body.comments,
-				imageURI: request.body.imageURI,
-				caption:request.body.caption,
-				location:request.body.location}, function(error) {
-					if(error) {
-						console.log('error in update');
-					} else {
-						console.log('success');
-					}
+      console.dir('response inside update', request);
+      // var query = { _id: request };//
+      Post.findOne({_id: request.body.id}, function(error, post) {
+        console.log('findOne...post--->\n', post);
+				if(error) { console.log('error in update');}
+        post.save(function(error){
+            console.log('inside save before error if');
+            if(error) console.log('error in adding new comment');
+        });
+        post.comments.push(request.body.comment);
 			});
 		},
 		destroy: function(request, response) {
@@ -58,13 +57,12 @@ module.exports = (function() {
 			});
 		},
 		find_by_id: function(request, response){
-      console.log('inside ...find_by_id');console.log('--request.params.id', request.params.id);
 
 			Post.find({_id: request.params.id}, function(error, result){
 				if(error) {
 					console.log('error in find_by_id');
 				} else {
-          console.log('inside of else of find_by_id'); console.log(JSON.stringify(result[0]));
+          console.log('inside of else of find_by_id');
           response.json(result[0]); //object return back is wrapped in an array, so I'm directly accesing it's value
 				}
 			});
