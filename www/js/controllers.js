@@ -77,17 +77,20 @@ angular.module('app.controllers', [])
   console.log('singlePost?--', $scope.post);
 
 
-
+  $scope.comment = { input: ""};
   $scope.addComment = function(){
-    console.log('inside add comment');
-    if($scope.message === "" || $scope.message === undefined){
-      return;
-    } else {
-      console.log('enter worked');
-      LoadPostsFactory.posts.push({comments: [$scope.message]});
-      console.log('factory after', LoadPostsFactory);
+    if(!$scope.comment.input) {return;}
+    console.log('$scope.comment === obj ?', $scope.comment.input);
 
-    }
+    LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
+    .then(function(comment){
+      console.log('inside controller then..comment =?', comment);
+      console.log(comment.data);
+    });
+
+    //update users comment view
+    $scope.post.comments.push($scope.comment.input);
+    $scope.comment.input = "";
   };
 }])
 
