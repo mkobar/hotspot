@@ -8,7 +8,7 @@ angular.module('app.services', [])
     return $http({method: 'GET',url: '/posts'})
     .then(function(response){
       console.log('getPosts() worked');
-      angular.copy(response.data, o.posts); // (src, dest)
+      angular.copy(response.data, posts); // (src, dest)
      });
   };
 

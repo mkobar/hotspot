@@ -9,9 +9,7 @@ angular.module('app.controllers', [])
 
 
 .controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory',function($scope, $state, CameraFactory, LocationFactory) {
-
-  //sets default values for userpost
-  $scope.userPost = {
+  $scope.post = {
     upvotes: 0,
     comments: [],
     imageURI: undefined,
@@ -81,13 +79,15 @@ angular.module('app.controllers', [])
         LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
         .then(function(comment){
           console.log('inside controller then..comment =?', comment);
-          console.log(comment.data);
         });
 
         //update users comment view
         $scope.post.comments.push($scope.comment.input);
         $scope.comment.input = "";
       };
+
+
+
 }])
 
 
