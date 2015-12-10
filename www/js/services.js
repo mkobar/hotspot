@@ -19,7 +19,7 @@ angular.module('app.services', [])
   var getSinglePost = function(id){
     return $http({
        method:'GET',
-       url: apiEndPoint.url + id
+       url: apiEndPoint.url + '/posts/' + id
     })
     .then(function(response){
       return response.data;
@@ -31,7 +31,7 @@ angular.module('app.services', [])
     console.log('args for addComment:\n id=',id, '\ncomment=', comment);
     return $http({
       method:'POST',
-      url: apiEndPoint.url + id + '/comments',
+      url: apiEndPoint.url + '/posts/' + id + '/comments',
       data: {id: id ,comment: comment}
     })
     .then(function(response){
@@ -43,7 +43,7 @@ angular.module('app.services', [])
     console.log('args for upvote :\n id=',id);
     return $http({
       method:'PUT',
-      url: apiEndPoint.url + id + '/upvote',
+      url: apiEndPoint.url + '/posts/' + id + '/upvote',
       data: {id: id}
     })
     .then(function(response){
