@@ -1,38 +1,49 @@
 angular.module('app.services', [])
 
 .factory('LoadPostsFactory', ['$http', function($http){
-    var posts = [];
+  var posts = [];
 
     //get all posts
-    var getPosts = function(){
-      return $http({method: 'GET',url: '/posts'})
-      .then(function(response){
-        console.log('getPosts() worked');
-        angular.copy(response.data, o.posts); // (src, dest)
-       });
-    };
+  var getPosts = function(){
+    return $http({method: 'GET',url: '/posts'})
+    .then(function(response){
+      console.log('getPosts() worked');
+      angular.copy(response.data, posts); // (src, dest)
+     });
+  };
 
-    //get a single post
-    var getSinglePost = function(id){
-      return $http({
-        method:'GET',
-        url:'/posts/'+ id
-      }).then(function(response){
-        return response.data;
-      });
-    };
+  //get a single post
+  var getSinglePost = function(id){
+    return $http({
+       method:'GET',
+       url:'/posts/'+ id
+    }).then(function(response){
+      return response.data;
+    });
+  };
 
     //add a comment from comments view
-    var addComment = function(id, comment){
-      console.log('args for addComment:\n id=',id, '\ncomment=', comment);
-      return $http({
-        method:'POST',
-        url:'/posts/' + id + '/comments',
-        data: {id: id ,comment: comment}
-      }).then(function(response){
-        console.log('response in addComment POST', response.data);
-      });
-    };
+  var addComment = function(id, comment){
+    console.log('args for addComment:\n id=',id, '\ncomment=', comment);
+    return $http({
+      method:'POST',
+      url:'/posts/' + id + '/comments',
+      data: {id: id ,comment: comment}
+    }).then(function(response){
+      console.log('response in addComment POST', response.data);
+    });
+  };
+
+  var upvotePost = function(id){
+    console.log('args for upvote :\n id=',id);
+    return $http({
+      method:'PUT',
+      url:'/posts/' + id + '/upvote',
+      data: {id: id}
+    }).then(function(response){
+      console.log('response in upvotePost PUT', response.data);
+    });
+  };
 
   return {
     addComment: addComment,
