@@ -1,6 +1,6 @@
 angular.module('app.routes', [])
 
-.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -79,11 +79,5 @@ angular.module('app.routes', [])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
-
-  // $httpProvider.defaults.useXDomain = true;
-  // $httpProvider.defaults.withCredentials = true;
-  // delete $httpProvider.defaults.headers.common["X-Requested-With"];
-  // $httpProvider.defaults.headers.common["Accept"] = "application/json";
-  // $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
 
 }]);
