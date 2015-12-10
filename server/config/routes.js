@@ -12,19 +12,19 @@ module.exports = function(app) {
   });
 
   //get posts from database
-	app.get('https://gentle-spire-1503.herokuapp.com/posts', function(request, response) {
+	app.get('/posts', function(request, response) {
     console.log('GET to /posts worked');
 		posts.show(request, response);
 	});
 
   //create a post
-	app.post('https://gentle-spire-1503.herokuapp.com/addPost', function(request, response) {
+	app.post('/addPost', function(request, response) {
 		posts.create(request, response);
 		response.send();
 	});
 
   //add comment to a post
-  app.post('https://gentle-spire-1503.herokuapp.com/posts/:id/comments', function(request, response) {
+  app.post('/posts/:id/comments', function(request, response) {
     console.log('inside POST (server) /posts/:id/comments');
     console.log('request.body',request.body);
 		posts.update(request, response);
@@ -32,19 +32,19 @@ module.exports = function(app) {
 	});
 
   //upvote a post
-  app.put('https://gentle-spire-1503.herokuapp.com/posts/:id/upvote', function(request, response) {
+  app.put('/posts/:id/upvote', function(request, response) {
     console.log('inside POST (server) /posts/:id/comments');
     console.log('request.body',request.body);
     posts.update(request, response);
     response.send();
   });
 
-	app.post('https://gentle-spire-1503.herokuapp.com/removePost', function(request, response) {
+	app.post('/removePost', function(request, response) {
 		posts.destroy(request, response);
 		response.send();
 	});
 
-	app.get('https://gentle-spire-1503.herokuapp.com/posts/:id', function(request, response){
+	app.get('/posts/:id', function(request, response){
     console.log('GET to /posts/:id ..worked');
 		posts.find_by_id(request, response);
 	});
