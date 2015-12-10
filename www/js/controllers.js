@@ -16,41 +16,40 @@ angular.module('app.controllers', [])
 
 
 .controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory',function($scope, $state, CameraFactory, LocationFactory) {
-  $scope.userPost = {
+  $scope.post = {
     upvotes: 0,
     comments: [],
     imageURI: undefined,
     caption: '',
     location: {}
   };
-
-  // $scope.post.caption = "";
+  $scope.post.caption = "";
   $scope.takePicture = function(){
     // CameraFactory.takePhoto()
     //   .then(function (imageData) {
-    //     $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+    //     $scope.post.imageURI = "data:image/jpeg;base64," + imageData;
     //     }, function (err) {
     //       // An error occured. Show a message to the user
     //       console.log('error', err);
     //   });
-    $scope.userPost.imageURI = 'yooooooo';
+    $scope.post.imageURI = 'yooooooo';
   }();
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
-        $scope.userPost.location.long = position.coords.longitude;
-        $scope.userPost.location.lat = position.coords.latitude;
+        $scope.post.location.long = position.coords.longitude;
+        $scope.post.location.lat = position.coords.latitude;
       }, function(err){
         console.log('There was an error: ', err);
       });
   }();
 
   $scope.addPost = function(){
-    console.log('this is the userPost being posted', $scope.userPost);
-    $scope.userPost.comments.push($scope.userPost.caption);
+    console.log('this is the post being posted', $scope.post);
+    $scope.post.comments.push($scope.post.caption);
 
-    CameraFactory.postPhoto($scope.userPost)
+    CameraFactory.postPhoto($scope.post)
       .then(function(){
         console.log('posted! redirecting you now.');
         $state.go('main.home');
@@ -68,26 +67,32 @@ angular.module('app.controllers', [])
    this view
 */
 
-//in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
-.controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
-  $scope.post = singlePost; //works..it's the unique ID
-  console.log('singlePost?--', $scope.post);
+.controller('commentsCtrl',[
+  '$scope',
+  '$stateParams', //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
+  'LoadPostsFactory',
+  'singlePost',
+   function($scope, $stateParams, LoadPostsFactory, singlePost) {
+      $scope.post = singlePost; //works..it's the unique ID
+      console.log('singlePost?--', $scope.post);
 
 
-  $scope.comment = { input: ""};
-  $scope.addComment = function(){
-    if(!$scope.comment.input) {return;}
-    console.log('$scope.comment === obj ?', $scope.comment.input);
+      $scope.comment = { input: ""};
+      $scope.addComment = function(){
+        if(!$scope.comment.input) {return;}
+        console.log('$scope.comment === obj ?', $scope.comment.input);
 
-    LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
-    .then(function(comment){
-      console.log('inside controller then..comment =?', comment);
-    });
+        LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
+        .then(function(comment){
+          console.log('inside controller then..comment =?', comment);
+        });
 
-    //update users comment view
-    $scope.post.comments.push($scope.comment.input);
-    $scope.comment.input = "";
-  };
+        //update users comment view
+        $scope.post.comments.push($scope.comment.input);
+        $scope.comment.input = "";
+      };
+
+
 
 }])
 
@@ -114,8 +119,7 @@ angular.module('app.controllers', [])
 
         var mapOptions = {
           center: latLng,
-          disableDoubleClickZoom: true,
-          zoom: 7,
+          zoom: 15,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -132,12 +136,6 @@ angular.module('app.controllers', [])
             radius: $scope.radius
           });
 
-        //modifies circle radius whenever user interacts with range bar
-        google.maps.event.addDomListener(radiusBar, 'drag', function(){
-          // alert('clicked!');
-          var rad = parseInt($scope.radius.value, 10);
-          circle.setRadius(rad);
-        });
       }, function(error){
         console.log("Could not get location");
       });
