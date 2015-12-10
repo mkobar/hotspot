@@ -18,6 +18,13 @@ require('./server/config/routes.js')(app);
 //Heroku Deployment purposes
 var port = Number(process.env.PORT || 3000);
 
+// app.all("http://gentle-spire-1503.herokuapp.com/", function (req, res, next) {
+//     response.header("Access-Control-Allow-Origin", "*");
+//     response.header("Access-Control-Allow-Headers", "Content-Type");
+//     response.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//     return next();
+// });
+
 app.listen(port, function() {
 	console.log('listening at port 3000');
 });
