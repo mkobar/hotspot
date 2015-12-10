@@ -10,6 +10,7 @@ module.exports = function(app) {
 		posts.show(request, response);
 	});
 
+  //create a post
 	app.post('/addPost', function(request, response) {
 		posts.create(request, response);
 		response.send();
@@ -23,6 +24,15 @@ module.exports = function(app) {
 		response.send();
 	});
 
+  //upvote a post
+  app.put('/posts/:id/upvote', function(request, response) {
+    console.log('inside POST (server) /posts/:id/comments');
+    console.log('request.body',request.body);
+    posts.update(request, response);
+    response.send();
+  });
+
+  //remove a post
 	app.post('/removePost', function(request, response) {
 		posts.destroy(request, response);
 		response.send();
