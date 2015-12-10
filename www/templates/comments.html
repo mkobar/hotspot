@@ -2,7 +2,7 @@
 <!-- commentrsCtrl attached here-->
 <ion-view title="Comments" >
     <ion-content padding="'true'" class="has-header">
-        <ion-list ng-repeat="comment in post.comments">
+        <ion-list ng-repeat="comment in post.comments track by $index">
           <ion-item menu-close="" >
             {{comment}}
           </ion-item>
