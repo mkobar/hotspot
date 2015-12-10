@@ -29,6 +29,10 @@ angular.module('app', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+  })
+
+  .constant('apiEndPoint', {
+    url:'http://gentle-spire-1503.herokuapp.com'
   });
 });
 
