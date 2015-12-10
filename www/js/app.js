@@ -14,9 +14,6 @@ angular.module('app', [
   'ngCordova'
   //next dependencies go here...
 ])
-.constant("config", {
-    "serverURL": " gentle-spire-1503.herokuapp.com"
-})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

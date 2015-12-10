@@ -5,6 +5,12 @@ var posts = require('./../controllers/posts.js');
 
 module.exports = function(app) {
 
+  app.use(function(request, response, next){
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept");
+    next();
+  });
+
   //get posts from database
 	app.get('http://gentle-spire-1503.herokuapp.com/posts', function(request, response) {
     console.log('GET to /posts worked');
