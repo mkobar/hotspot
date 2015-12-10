@@ -34,17 +34,20 @@ module.exports = (function() {
 			});
 		},
 		update: function(request, response) { // update takes in a (query, update object, and callback)
-      console.dir('response inside update', request);
-      // var query = { _id: request };//
+
       Post.findOne({_id: request.body.id}, function(error, post) {
-        console.log('findOne...post--->\n', post);
+        // console.log('findOne...post--->\n', post);
 				if(error) { console.log('error in update');}
+        if(request.body.comment){
+          post.comments.push(request.body.comment);
+        } else {
+          post.upvotes++;
+        }
         post.save(function(error){
-            console.log('inside save before error if');
-            if(error) console.log('error in adding new comment');
+          if(error) console.log('error in adding new comment');
         });
-        post.comments.push(request.body.comment);
 			});
+
 		},
 		destroy: function(request, response) {
 			Post.remove({_id: request.body.id}, function(error) {
