@@ -27,12 +27,12 @@ angular.module('app.controllers', [])
   $scope.takePicture = function(){
     // CameraFactory.takePhoto()
     //   .then(function (imageData) {
-    //     $scope.post.imageURI = "data:image/jpeg;base64," + imageData;
+    //     $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
     //     }, function (err) {
     //       // An error occured. Show a message to the user
     //       console.log('error', err);
     //   });
-    $scope.post.imageURI = 'yooooooo';
+    $scope.userPost.imageURI = 'yooooooo';
   }();
 
   $scope.getLocation = function(){
