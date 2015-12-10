@@ -30,7 +30,7 @@ angular.module('app', [
 })
 
 .constant('apiEndPoint', {
-  url: 'http://gentle-spire-1503.herokuapp.com'
+  url: 'https://gentle-spire-1503.herokuapp.com'
 });
 
 
