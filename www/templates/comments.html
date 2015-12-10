@@ -9,11 +9,10 @@
         </ion-list>
         <!-- input field to comments-->
         <label class="item item-input" name="photo-comment">
-          <form ng-submit="addComment()">
-            <input type="text" placeholder="comment" ng-model="message">
+          <form ng-submit="addComment(comment._id, comment)">
+            <input type="text" placeholder="comment" ng-model="comment.input">
             <button type="submit">send</button>
           </form>
         </label>
-        {{message}}
     </ion-content>
 </ion-view>

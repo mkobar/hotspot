@@ -1,49 +1,41 @@
 angular.module('app.services', [])
 
-
 .factory('LoadPostsFactory', ['$http', function($http){
     var posts = [];
-    // console.log('factory before get', posts);
-    //load all posts from server
+
+    //get all posts
     var getPosts = function(){
-      return $http({
-        method: 'GET',
-        url: '/posts'
-      })
-      .success(function(response){
+      return $http({method: 'GET',url: '/posts'})
+      .then(function(response){
         console.log('getPosts() worked');
-        angular.copy(response, posts); // (src, dest)
+        angular.copy(response.data, o.posts); // (src, dest)
        });
     };
 
-
-    //retrieve an individual post from database
+    //get a single post
     var getSinglePost = function(id){
-      console.log('inside getSinglePost');
       return $http({
-        method: 'GET',
-        url: '/posts/' + id
-      })
-      .then(function(response){
-        console.log('response.data', response.data);
+        method:'GET',
+        url:'/posts/'+ id
+      }).then(function(response){
         return response.data;
       });
     };
 
-    var upvotePost = function(){
+    //add a comment from comments view
+    var addComment = function(id, comment){
+      console.log('args for addComment:\n id=',id, '\ncomment=', comment);
       return $http({
-        method: 'GET',
-        url: '/posts/' + id
-      })
-      .then(function(response){
-        console.log('response.data', response.data);
-        return response.data;
+        method:'POST',
+        url:'/posts/' + id + '/comments',
+        data: {id: id ,comment: comment}
+      }).then(function(response){
+        console.log('response in addComment POST', response.data);
       });
     };
-
-
 
   return {
+    addComment: addComment,
     posts: posts,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
@@ -80,8 +72,8 @@ angular.module('app.services', [])
   };
 
   return {
-    takePhoto : takePhoto,
-    postPhoto : postPhoto,
+    takePhoto: takePhoto,
+    postPhoto: postPhoto,
   };
 
 }])

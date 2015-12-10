@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var posts = require('./../controllers/posts.js');
 
 module.exports = function(app) {
+  //get posts from database
 	app.get('/posts', function(request, response) {
     console.log('GET to /posts worked');
 		posts.show(request, response);
@@ -14,7 +15,10 @@ module.exports = function(app) {
 		response.send();
 	});
 
-	app.post('/updatePost', function(request, response) {
+  //add comment to a post
+	app.post('/posts/:id/comments', function(request, response) {
+    console.log('inside POST (server) /posts/:id/comments');
+    console.log('request.body',request.body);
 		posts.update(request, response);
 		response.send();
 	});
@@ -24,6 +28,7 @@ module.exports = function(app) {
 		response.send();
 	});
 
+  //returning a single post
 	app.get('/posts/:id', function(request, response){
     console.log('GET to /posts/:id ..worked');
 		posts.find_by_id(request, response);
