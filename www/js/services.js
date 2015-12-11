@@ -183,4 +183,24 @@ angular.module('app.services', [])
     getPosition : getPosition
   };
 
+}])
+
+.factory('UserFactory', ['$cordovaDevice', function($cordovaDevice){
+
+  var getUser = function(){
+    var userId = $cordovaDevice.getUUID();
+    console.log('This is the user-ID: ', userId);
+  };
+
+  return {
+    getUser: getUser
+  };
+
 }]);
+
+
+
+
+
+
+

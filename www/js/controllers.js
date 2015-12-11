@@ -173,7 +173,10 @@ angular.module('app.controllers', [])
 
 
 //for future app start up page
-.controller('splashPageCtrl',['$scope',function($scope) {
+.controller('splashPageCtrl',['$scope', 'userFactory', function($scope, userFactory) {
+  document.addEventListener('deviceready', function(){
+    userFactory.getUser();
+  });
 }]);
 
 
