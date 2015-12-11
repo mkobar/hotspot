@@ -173,10 +173,13 @@ angular.module('app.controllers', [])
 
 
 //for future app start up page
-.controller('splashPageCtrl',['$scope', 'userFactory', function($scope, userFactory) {
+.controller('splashPageCtrl',['$scope', '$cordovaDevice', function($scope, $cordovaDevice) {
+
   document.addEventListener('deviceready', function(){
-    userFactory.getUser();
-  });
+    var UUID = $cordovaDevice.getUUID();
+    console.log('This is the UUID: ', UUID);
+  }, false);
+
 }]);
 
 
