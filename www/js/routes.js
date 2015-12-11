@@ -26,10 +26,6 @@ angular.module('app.routes', [])
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
               return LoadPostsFactory.getPosts();
             }],
-            //just checking here for the location to ensure the http request is going through
-            // getLongLat: ['LoadPostsFactory', function(LoadPostsFactory) {
-            //   return LoadPostsFactory.getLongLat();
-            // }]
           }
         }
       }

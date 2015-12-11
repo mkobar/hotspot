@@ -5,7 +5,7 @@ angular.module('app.services', [])
 
   var posts = [];
 
-    //get all posts
+  //get all posts
   var getPosts = function(){
     return $http({
         method: 'GET',
@@ -22,7 +22,7 @@ angular.module('app.services', [])
 
      });
   };
-  //get an array of location object with latitude and longitude properties
+  //get an array of location objects with latitude and longitude properties
   var getLongLat = function() {
     var arr = [];
     for(var i=0; i<posts.length; i++) {
@@ -34,7 +34,7 @@ angular.module('app.services', [])
     }
     return arr;
   };
-
+  //there's a slight delay in getting the current location
   var getPosition = function(){
     var options = {
       setTimeout : 10000,
@@ -42,14 +42,40 @@ angular.module('app.services', [])
     };
     var current = $cordovaGeolocation.getCurrentPosition(options);
     current.then(function(position) {
-      var obj = {};
-      obj.lat = position.coords.latitude;
-      obj.lng = position.coords.longitude;
+      var currentObj = {};
+      currentObj.lat = position.coords.latitude;
+      currentObj.long = position.coords.longitude;
       console.log('current position here', obj);
       return obj;
     })
     // return $cordovaGeolocation.getCurrentPosition(options);
   };
+
+  //get distance of two longitude and latitude coordinates. coords1 and coords2 are objects.
+  var haversineDistance = function(coords1, coords2, isMiles) {
+    var toRad = function(x) {
+      return x * Math.PI / 180;
+    };
+
+    var lon1 = coords1.long;
+    var lat1 = coords1.lat;
+    var lon2 = coords2.long;
+    var lat2 = coords2.lat;
+    var R = 6371; // km
+    var x1 = lat2 - lat1;
+    var dLat = toRad(x1);
+    var x2 = lon2 - lon1;
+    var dLon = toRad(x2);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    if(isMiles) d /= 1.60934;
+    return d;
+  };
+
+
   //get a single post
   var getSinglePost = function(id){
     return $http({
