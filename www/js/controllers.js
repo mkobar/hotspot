@@ -84,7 +84,6 @@ angular.module('app.controllers', [])
 //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
   $scope.post = singlePost;
-
   document.addEventListener('deviceready', function(){
     var UUID = $cordovaDevice.getUUID();
     console.log('This is the UUID: ', UUID);
