@@ -1,7 +1,9 @@
 angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope', 'LoadPostsFactory', '$stateParams', 'userFactory', function($scope, LoadPostsFactory, $stateParams, userFactory) {
-    console.log('userID: ', userFactory.userId);
+
+    $scope.userID = userFactory.userId;
+    console.log('userID: ', $scope.userID);
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
