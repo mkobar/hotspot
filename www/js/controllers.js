@@ -103,6 +103,12 @@ angular.module('app.controllers', [])
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory',function($scope, $ionicLoading, LocationFactory) {
 
+  $scope.radius = {
+    min : "1609.34",
+    max : "80467.2",
+    value: "40233.6"
+  };
+
   $ionicLoading.show({
     content: 'Loading',
     animation: 'fade-in',
@@ -121,14 +127,14 @@ angular.module('app.controllers', [])
 
         var mapOptions = {
           center: latLng,
-          disableDoubleClickZoom: true,
+          disableDoubleClickZoom: false,
           zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-        var cityCircle = new google.maps.Circle({
+        var circle = new google.maps.Circle({
             strokeColor: '#FF0000',
             strokeOpacity: 0.8,
             strokeWeight: 2,
@@ -140,7 +146,7 @@ angular.module('app.controllers', [])
           });
 
         //modifies circle radius whenever user interacts with range bar
-        google.maps.event.addDomListener(radiusBar, 'drag', function(){
+        google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function(){
           // alert('clicked!');
           var rad = parseInt($scope.radius.value, 10);
           circle.setRadius(rad);
@@ -148,7 +154,12 @@ angular.module('app.controllers', [])
       }, function(error){
         console.log("Could not get location");
       });
-  }();
+  };
+
+  $scope.$on('$ionicView.enter', function(){
+    $scope.getLocation();
+    console.log('success');
+  });
 
 
 }])
