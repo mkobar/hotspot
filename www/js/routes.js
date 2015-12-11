@@ -71,12 +71,7 @@ angular.module('app.routes', [])
     .state('splashPage', {
       url: '/splashPage',
       templateUrl: 'templates/splashPage.html',
-      controller: 'splashPageCtrl',
-      resolve: {
-        getUserId: ['userFactory', function(userFactory){
-          userFactory.getUser();
-        }]
-      }
+      controller: 'splashPageCtrl'
     });
 
 
