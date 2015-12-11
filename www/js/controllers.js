@@ -85,6 +85,10 @@ angular.module('app.controllers', [])
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
   $scope.post = singlePost;
 
+  document.addEventListener('deviceready', function(){
+    var UUID = $cordovaDevice.getUUID();
+    console.log('This is the UUID: ', UUID);
+  }, false);
 
   $scope.comment = { input: ""};
   $scope.addComment = function(){
@@ -175,10 +179,6 @@ angular.module('app.controllers', [])
 //for future app start up page
 .controller('splashPageCtrl',['$scope', '$cordovaDevice', function($scope, $cordovaDevice) {
 
-  document.addEventListener('deviceready', function(){
-    var UUID = $cordovaDevice.getUUID();
-    console.log('This is the UUID: ', UUID);
-  }, false);
 
 }]);
 
