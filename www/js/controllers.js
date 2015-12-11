@@ -1,7 +1,7 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',
-  function($scope, LoadPostsFactory,$stateParams) {
+.controller('homeCtrl', ['$scope', 'LoadPostsFactory', '$stateParams', 'userFactory', function($scope, LoadPostsFactory, $stateParams, userFactory) {
+    console.log('userID: ', userFactory.userId);
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
@@ -84,11 +84,6 @@ angular.module('app.controllers', [])
 //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
   $scope.post = singlePost;
-  document.addEventListener('deviceready', function(){
-    var UUID = $cordovaDevice.getUUID();
-    console.log('This is the UUID: ', UUID);
-  }, false);
-
   $scope.comment = { input: ""};
   $scope.addComment = function(){
     if(!$scope.comment.input) {return;}
@@ -176,8 +171,11 @@ angular.module('app.controllers', [])
 
 
 //for future app start up page
-.controller('splashPageCtrl',['$scope', '$cordovaDevice', function($scope, $cordovaDevice) {
+.controller('splashPageCtrl',['$scope', 'userFactory', function($scope, userFactory) {
 
+  document.addEventListener('deviceready', function(){
+    userFactory.getUser();
+  }, false);
 
 }]);
 

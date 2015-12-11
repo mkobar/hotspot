@@ -186,14 +186,16 @@ angular.module('app.services', [])
 }])
 
 .factory('UserFactory', ['$cordovaDevice', function($cordovaDevice){
+  var userId;
 
   var getUser = function(){
-    var userId = $cordovaDevice.getUUID();
+    userId = $cordovaDevice.getUUID();
     console.log('This is the user-ID: ', userId);
   };
 
   return {
-    getUser: getUser
+    getUser: getUser,
+    userId: userId
   };
 
 }]);
