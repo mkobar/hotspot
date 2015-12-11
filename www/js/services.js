@@ -1,6 +1,8 @@
 angular.module('app.services', [])
 
+
 .factory('LoadPostsFactory', ['$http', 'apiEndPoint', function($http, apiEndPoint){
+
   var posts = [];
 
     //get all posts
@@ -11,10 +13,43 @@ angular.module('app.services', [])
       })
     .then(function(response){
       console.log('getPosts() worked');
+
       angular.copy(response.data, posts); // (src, dest)
+      console.log('posts', posts);
+      console.log('all long and lats', getLongLat());
+      getPosition();
+
+
      });
   };
+  //get an array of location object with latitude and longitude properties
+  var getLongLat = function() {
+    var arr = [];
+    for(var i=0; i<posts.length; i++) {
+      for(var key in posts[i]) {
+        if(key === "location") {
+          arr.push(posts[i][key]);
+        }
+      }
+    }
+    return arr;
+  };
 
+  var getPosition = function(){
+    var options = {
+      setTimeout : 10000,
+      enableHighAccuracy : true
+    };
+    var current = $cordovaGeolocation.getCurrentPosition(options);
+    current.then(function(position) {
+      var obj = {};
+      obj.lat = position.coords.latitude;
+      obj.lng = position.coords.longitude;
+      console.log('current position here', obj);
+      return obj;
+    })
+    // return $cordovaGeolocation.getCurrentPosition(options);
+  };
   //get a single post
   var getSinglePost = function(id){
     return $http({
@@ -56,7 +91,9 @@ angular.module('app.services', [])
     posts: posts,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
-    upvotePost: upvotePost
+    upvotePost: upvotePost,
+    getLongLat: getLongLat,
+    getPosition: getPosition
   };
 }])
 
