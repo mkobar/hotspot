@@ -15,7 +15,7 @@ angular.module('app.controllers', [])
 }])
 
 
-.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory',function($scope, $state, CameraFactory, LocationFactory) {
+.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', function($scope, $state, CameraFactory, LocationFactory) {
   $scope.userPost = {
     upvotes: 0,
     comments: [],
@@ -26,15 +26,16 @@ angular.module('app.controllers', [])
 
   // $scope.post.caption = "";
   $scope.takePicture = function(){
-    // CameraFactory.takePhoto()
-    //   .then(function (imageData) {
-    //     $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
-    //     }, function (err) {
-    //       // An error occured. Show a message to the user
-    //       console.log('error', err);
-    //   });
-    $scope.userPost.imageURI = 'yooooooo';
-  }();
+    CameraFactory.takePhoto()
+      .then(function (imageData) {
+        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+          // An error occured. Show a message to the user
+          console.log('error', err);
+          $state.go('main.home');
+      });
+    // $scope.userPost.imageURI = 'yooooooo';
+  };
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
@@ -44,7 +45,13 @@ angular.module('app.controllers', [])
       }, function(err){
         console.log('There was an error: ', err);
       });
-  }();
+  };
+  $scope.$on('$ionicView.enter', function(){
+    $scope.userPost.caption = "";
+    $scope.takePicture();
+    $scope.getLocation();
+    console.log('success');
+  });
 
   $scope.addPost = function(){
     console.log('this is the userPost being posted', $scope.userPost);
@@ -115,7 +122,7 @@ angular.module('app.controllers', [])
         var mapOptions = {
           center: latLng,
           disableDoubleClickZoom: true,
-          zoom: 7,
+          zoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
