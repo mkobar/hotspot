@@ -77,8 +77,7 @@ angular.module('app.controllers', [])
 
 //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
-  $scope.post = singlePost; //works..it's the unique ID
-  console.log('singlePost?--', $scope.post);
+  $scope.post = singlePost;
 
 
   $scope.comment = { input: ""};
@@ -95,7 +94,6 @@ angular.module('app.controllers', [])
     $scope.post.comments.push($scope.comment.input);
     $scope.comment.input = "";
   };
-
 }])
 
 
