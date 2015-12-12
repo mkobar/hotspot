@@ -4317,10 +4317,13 @@ a.subdued {
   left: 0;
   z-index: 9; }
 
+/*original code value  = none*/
 .bar .back-button.hide,
 .bar .buttons .hide {
-  display: none; }
+  display: inline; }
 
+
+*/
 .nav-bar-tabs-top .bar {
   background-image: none; }
 

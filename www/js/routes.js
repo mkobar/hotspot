@@ -1,6 +1,6 @@
 angular.module('app.routes', [])
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -80,4 +80,4 @@ angular.module('app.routes', [])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/main/home');
 
-}]);
+});
