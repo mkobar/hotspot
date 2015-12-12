@@ -1,7 +1,8 @@
 angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope', 'LoadPostsFactory','$stateParams', 'UserFactory', function($scope, LoadPostsFactory, $stateParams, UserFactory) {
-    console.log('user id: ', UserFactory.userId);
+    $scope.userIdentification = UserFactory.userId;
+    console.log('user id: ', $scope.userIdentification);
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
@@ -173,7 +174,7 @@ angular.module('app.controllers', [])
 //for future app start up page
 .controller('splashPageCtrl',['$scope', 'UserFactory', function($scope, UserFactory) {
   document.addEventListener('deviceready', function(){
-    UserFactory.getUser();
+    UserFactory.userId = UserFactory.getUser();
   });
 }]);
 
