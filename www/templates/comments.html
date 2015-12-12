@@ -1,6 +1,13 @@
 <!-- Comments view that from click the comments tab on a Card(post) -->
 <!-- commentrsCtrl attached here-->
 <ion-view title="Comments" >
+
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">
+      Back
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
     <ion-content padding="'true'" class="has-header">
         <ion-list ng-repeat="comment in post.comments">
           <ion-item menu-close="" >
