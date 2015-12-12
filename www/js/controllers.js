@@ -11,12 +11,6 @@ angular.module('app.controllers', [])
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
-
-
-
-
-
-
 }])
 
 
@@ -155,16 +149,12 @@ angular.module('app.controllers', [])
       }, function(error){
         console.log("Could not get location");
       });
-
   };
 
   $scope.$on('$ionicView.enter', function(){
     $scope.getLocation();
     console.log('success');
   });
-
-
-
 }])
 
 

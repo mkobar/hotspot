@@ -39,7 +39,7 @@ angular.module('app.services', [])
   };
   //there's a slight delay in getting the current location
   var getPosition = function(){
-    var LongLatArray = getLongLat(data); 
+    var LongLatArray = getLongLat(data);
 
     LocationFactory.getPosition()
     .then(function(position) {
@@ -56,7 +56,7 @@ angular.module('app.services', [])
       console.log('new distance property inside data',data);
       angular.copy(data, posts);
       console.log('final result', posts);
-    })
+    });
   };
 
   //get distance of two longitude and latitude coordinates. coords1 and coords2 are objects.
