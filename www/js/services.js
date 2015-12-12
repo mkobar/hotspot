@@ -1,9 +1,11 @@
 angular.module('app.services', [])
 
-.factory('LoadPostsFactory', ['$http', 'apiEndPoint', function($http, apiEndPoint){
-  var posts = [];
 
-    //get all posts
+.factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
+  var posts = []; //after putting the distance property into posts, you may pass into the
+  var data = []; //put the getPosts data into here first
+
+  //get all posts
   var getPosts = function(){
     return $http({
         method: 'GET',
@@ -11,9 +13,76 @@ angular.module('app.services', [])
       })
     .then(function(response){
       console.log('getPosts() worked');
-      angular.copy(response.data, posts); // (src, dest)
+
+      angular.copy(response.data, data); // (src, dest)
+
+      console.log('response posts', posts);
+      console.log('response data', data);
+      console.log('all long and lats', getLongLat(data));
+      getPosition(); //note getPosition()
+      // angular.copy(data, posts); // (src, dest)
+      console.log('final result', posts);
+
      });
   };
+  //get an array of location objects with latitude and longitude properties
+  var getLongLat = function(data) {
+    var arr = [];
+    for(var i=0; i<data.length; i++) {
+      for(var key in data[i]) {
+        if(key === "location") {
+          arr.push(data[i][key]);
+        }
+      }
+    }
+    return arr;
+  };
+  //there's a slight delay in getting the current location
+  var getPosition = function(){
+    var LongLatArray = getLongLat(data); 
+
+    LocationFactory.getPosition()
+    .then(function(position) {
+      var currentObj = {};
+      currentObj.lat = position.coords.latitude;
+      currentObj.long = position.coords.longitude;
+      console.log('current position here', currentObj);
+
+
+      for(var i=0; i<LongLatArray.length; i++) {
+        var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
+        data[i]['distance'] = distance;
+      }
+      console.log('new distance property inside data',data);
+      angular.copy(data, posts);
+      console.log('final result', posts);
+    })
+  };
+
+  //get distance of two longitude and latitude coordinates. coords1 and coords2 are objects.
+  var haversineDistance = function(coords1, coords2, isMiles) {
+    var toRad = function(x) {
+      return x * Math.PI / 180;
+    };
+
+    var lon1 = coords1.long;
+    var lat1 = coords1.lat;
+    var lon2 = coords2.long;
+    var lat2 = coords2.lat;
+    var R = 6371; // km
+    var x1 = lat2 - lat1;
+    var dLat = toRad(x1);
+    var x2 = lon2 - lon1;
+    var dLon = toRad(x2);
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    if(isMiles) d /= 1.60934;
+    return d;
+  };
+
 
   //get a single post
   var getSinglePost = function(id){
@@ -56,7 +125,9 @@ angular.module('app.services', [])
     posts: posts,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
-    upvotePost: upvotePost
+    upvotePost: upvotePost,
+    getLongLat: getLongLat,
+    getPosition: getPosition
   };
 }])
 

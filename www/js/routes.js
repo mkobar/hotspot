@@ -25,7 +25,7 @@ angular.module('app.routes', [])
           resolve: {
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
               return LoadPostsFactory.getPosts();
-            }]
+            }],
           }
         }
       }
