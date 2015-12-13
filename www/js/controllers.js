@@ -11,11 +11,6 @@ angular.module('app.controllers', [])
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
-
-    $scope.search = function(){
-
-    };
-
 }])
 
 
