@@ -25,6 +25,7 @@ angular.module('app', [
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+      navigator.splashscreen.hide();
     }
   });
 })
