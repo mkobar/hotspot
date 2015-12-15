@@ -185,7 +185,8 @@ angular.module('app.services', [])
   };
 
   var getRadius = function() {
-    console.log('heyyyyyyyyyyy', radius.value); //verify that getting the location is correct
+    console.log('heyyyyyyyyyyy', parseInt(radius.value,10) /1609.344); //verify that getting the location is correct
+    console.log('heyyyyyyyyyyy', radius.value);
     return radius;
   }
 

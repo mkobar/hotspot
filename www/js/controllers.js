@@ -6,7 +6,7 @@ angular.module('app.controllers', [])
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
-    $scope.bounds = parseInt(LocationFactory.getRadius().value,10);
+    $scope.bounds = parseInt(LocationFactory.getRadius().value,10) /1609.344;
 
 
     $scope.upvotePost = function(post){
