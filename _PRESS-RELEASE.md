@@ -27,7 +27,7 @@ Once the project moves into development, the press release can be used as a touc
 ## Solution ##
   > It archives uploaded images with geographical coordinates as current events that can be accessed at later dates as relevant historical artifacts
     It allows user to hashtag images
-    It allwos user to add comments to images
+    It allows user to add comments to images
     It allows user to upvote images
 ## Quote from You ##
   > We are what comes to mind if you have the audacity to fuse instagram with the history channel
