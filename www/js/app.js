@@ -30,15 +30,6 @@ angular.module('app', [
   });
 })
 
-.filter('customSearch', function(){
-  return function(input){
-
-    return "#" + input;
-
-  };
-
-})
-
 .constant('apiEndPoint', {
   url: 'https://gentle-spire-1503.herokuapp.com'
 });
