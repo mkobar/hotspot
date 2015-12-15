@@ -166,9 +166,7 @@ angular.module('app.services', [])
 
 }])
 
-
-
-.factory('LocationFactory', ['$cordovaGeolocation', function($cordovaGeolocation){
+.factory('LocationFactory', ['$cordovaGeolocation', '$ionicLoading', function($cordovaGeolocation, $ionicLoading){
 
   var getPosition = function(){
     var options = {
@@ -179,8 +177,66 @@ angular.module('app.services', [])
     return $cordovaGeolocation.getCurrentPosition(options);
   };
 
+  //transferred over radius object - $scope
+  var radius = {
+    min : "1609.34",
+    max : "80467.2",
+    value: "40233.6"
+  };
+
+  var getRadius = function() {
+    console.log('heyyyyyyyyyyy', radius.value); //verify that getting the location is correct
+    return radius;
+  }
+
+
+  var getLocation = function(){
+    getPosition() // changed getPosition - LocationFactory
+    .then(function(position){
+
+      $ionicLoading.hide();
+
+      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      var mapOptions = {
+        center: latLng,
+        disableDoubleClickZoom: false,
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions); //changed map -$scope
+
+      var circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: map, //changed map -$scope
+        center: latLng,
+        radius: parseInt(radius.value,10) //radius.value - $scope
+      });
+
+      //modifies circle radius whenever user interacts with range bar
+      google.maps.event.addDomListener(document.getElementById("radius"), 'click', function(){
+        // alert('clicked!');
+        var rad = parseInt(radius.value, 10); //radius.value - $scope
+        circle.setRadius(rad);
+        console.log('heres the map dog', rad);
+        console.log('heres the map doggy', radius.value); //radius.value - $scope
+        console.log('heres another one', getRadius().value);
+      });
+    }, function(error){
+      console.log("Could not get location");
+    });
+
+};
+
   return {
-    getPosition : getPosition
+    getPosition : getPosition,
+    getRadius: getRadius,
+    getLocation: getLocation
   };
 
 }]);

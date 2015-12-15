@@ -1,9 +1,13 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', ['$scope', 'LoadPostsFactory', '$stateParams', function($scope, LoadPostsFactory,$stateParams) {
+
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory',
+  function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
+    $scope.bounds = parseInt(LocationFactory.getRadius().value,10);
+
 
     $scope.upvotePost = function(post){
       // console.log('in upvotePost ');
@@ -11,11 +15,7 @@ angular.module('app.controllers', [])
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
-
-    // $scope.search = '#' + $scope.search;
-
 }])
-
 
 .controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', function($scope, $state, CameraFactory, LocationFactory) {
   $scope.userPost = {
@@ -105,16 +105,12 @@ angular.module('app.controllers', [])
 }])
 
 
-
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
 
-  $scope.radius = {
-    min : "1609.34",
-    max : "80467.2",
-    value: "40233.6"
-  };
+  $scope.radius = LocationFactory.getRadius();
 
+  //shows the loading bar
   $ionicLoading.show({
     content: 'Loading',
     animation: 'fade-in',
@@ -123,47 +119,8 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
-  $scope.getLocation = function(){
-    LocationFactory.getPosition()
-      .then(function(position){
-
-        $ionicLoading.hide();
-
-        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-        var mapOptions = {
-          center: latLng,
-          disableDoubleClickZoom: false,
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-        $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-        var circle = new google.maps.Circle({
-            strokeColor: '#FF0000',
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
-            fillOpacity: 0.35,
-            map: $scope.map,
-            center: latLng,
-            radius: $scope.radius
-          });
-
-        //modifies circle radius whenever user interacts with range bar
-        google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function(){
-          // alert('clicked!');
-          var rad = parseInt($scope.radius.value, 10);
-          circle.setRadius(rad);
-        });
-      }, function(error){
-        console.log("Could not get location");
-      });
-  };
-
   $scope.$on('$ionicView.enter', function(){
-    $scope.getLocation();
+    LocationFactory.getLocation(); //changed $scope to LocationFactory
     console.log('success');
   });
 }])

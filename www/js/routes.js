@@ -26,6 +26,9 @@ angular.module('app.routes', [])
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
               return LoadPostsFactory.getPosts();
             }],
+            getRadius: ['LocationFactory', function(LocationFactory){
+              return LocationFactory.getRadius(); //verifying that I'm getting the right location
+            }]
           }
         }
       }
@@ -62,6 +65,11 @@ angular.module('app.routes', [])
         'map-tab': {
           templateUrl: 'templates/map.html',
           controller: 'mapCtrl'
+          // resolve: {
+          //   getRadius: ['LoadPostsFactory', function(LoadPostsFactory) {
+          //     return LoadPostsFactory.getRadius();
+          //   }]
+          // }
         }
       }
     })
