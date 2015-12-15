@@ -12,16 +12,16 @@ angular.module('app.services', [])
         url: apiEndPoint.url + '/posts'
       })
     .then(function(response){
-      console.log('getPosts() worked');
+      // console.log('getPosts() worked');
 
       angular.copy(response.data, data); // (src, dest)
 
-      console.log('response posts', posts);
-      console.log('response data', data);
-      console.log('all long and lats', getLongLat(data));
+      // console.log('response posts', posts);
+      // console.log('response data', data);
+      // console.log('all long and lats', getLongLat(data));
       getPosition(); //note getPosition()
       // angular.copy(data, posts); // (src, dest)
-      console.log('final result', posts);
+      // console.log('final result', posts);
 
      });
   };
@@ -39,24 +39,24 @@ angular.module('app.services', [])
   };
   //there's a slight delay in getting the current location
   var getPosition = function(){
-    var LongLatArray = getLongLat(data); 
+    var LongLatArray = getLongLat(data);
 
     LocationFactory.getPosition()
     .then(function(position) {
       var currentObj = {};
       currentObj.lat = position.coords.latitude;
       currentObj.long = position.coords.longitude;
-      console.log('current position here', currentObj);
+      // console.log('current position here', currentObj);
 
 
       for(var i=0; i<LongLatArray.length; i++) {
         var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
         data[i]['distance'] = distance;
       }
-      console.log('new distance property inside data',data);
+      // console.log('new distance property inside data',data);
       angular.copy(data, posts);
       console.log('final result', posts);
-    })
+    });
   };
 
   //get distance of two longitude and latitude coordinates. coords1 and coords2 are objects.
@@ -97,26 +97,26 @@ angular.module('app.services', [])
 
     //add a comment from comments view
   var addComment = function(id, comment){
-    console.log('args for addComment:\n id=',id, '\ncomment=', comment);
+    // console.log('args for addComment:\n id=',id, '\ncomment=', comment);
     return $http({
       method:'POST',
       url: apiEndPoint.url + '/posts/' + id + '/comments',
       data: {id: id ,comment: comment}
     })
     .then(function(response){
-      console.log('response in addComment POST', response.data);
+      // console.log('response in addComment POST', response.data);
     });
   };
 
   var upvotePost = function(id){
-    console.log('args for upvote :\n id=',id);
+    // console.log('args for upvote :\n id=',id);
     return $http({
       method:'PUT',
       url: apiEndPoint.url + '/posts/' + id + '/upvote',
       data: {id: id}
     })
     .then(function(response){
-      console.log('response in upvotePost PUT', response.data);
+      // console.log('response in upvotePost PUT', response.data);
     });
   };
 

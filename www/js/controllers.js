@@ -1,22 +1,18 @@
 angular.module('app.controllers', [])
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams',
-  function($scope, LoadPostsFactory,$stateParams) {
+.controller('homeCtrl', ['$scope', 'LoadPostsFactory', '$stateParams', function($scope, LoadPostsFactory,$stateParams) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.upvotePost = function(post){
-      console.log('in upvotePost ');
-      console.log('post._id', post._id);
+      // console.log('in upvotePost ');
+      // console.log('post._id', post._id);
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
 
-
-
-
-
+    // $scope.search = '#' + $scope.search;
 
 }])
 
@@ -27,7 +23,8 @@ angular.module('app.controllers', [])
     comments: [],
     imageURI: undefined,
     caption: '',
-    location: {}
+    location: {},
+    hashtag:''
   };
 
   // $scope.post.caption = "";
@@ -40,7 +37,6 @@ angular.module('app.controllers', [])
           console.log('error', err);
           $state.go('main.home');
       });
-    // $scope.userPost.imageURI = 'yooooooo';
   };
 
   $scope.getLocation = function(){
@@ -52,20 +48,28 @@ angular.module('app.controllers', [])
         console.log('There was an error: ', err);
       });
   };
+
   $scope.$on('$ionicView.enter', function(){
     $scope.userPost.caption = "";
     $scope.takePicture();
     $scope.getLocation();
-    console.log('success');
+    // console.log('success');
   });
 
   $scope.addPost = function(){
+    var hashtags = [];
+    var newArr = $scope.userPost.caption.split(" ");
+    for(var i = 0; i < newArr.length; i++){
+      if(newArr[i][0] === '#'){
+        hashtags.push(newArr[i]);
+        $scope.userPost.hashtag = hashtags.join(" ");
+      }
+    }
     console.log('this is the userPost being posted', $scope.userPost);
-    $scope.userPost.comments.push($scope.userPost.caption);
-
+    // $scope.userPost.comments.push($scope.userPost.caption);
     CameraFactory.postPhoto($scope.userPost)
       .then(function(){
-        console.log('posted! redirecting you now.');
+        // console.log('posted! redirecting you now.');
         $state.go('main.home');
       })
       .catch(function(err){
@@ -84,8 +88,6 @@ angular.module('app.controllers', [])
 //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
   $scope.post = singlePost;
-
-
   $scope.comment = { input: ""};
   $scope.addComment = function(){
     if(!$scope.comment.input) {return;}
@@ -158,16 +160,12 @@ angular.module('app.controllers', [])
       }, function(error){
         console.log("Could not get location");
       });
-
   };
 
   $scope.$on('$ionicView.enter', function(){
     $scope.getLocation();
     console.log('success');
   });
-
-
-
 }])
 
 

@@ -5,7 +5,8 @@ var PostSchema = new mongoose.Schema({
 	comments: Array,
 	imageURI: String,
 	caption: String,
-	location: Object
+  location: Object,
+	hashtag: String
 });
 
 //instantiate the model using a Schema

@@ -21,7 +21,8 @@ module.exports = (function() {
 				comments: request.body.comments,
 				imageURI: request.body.imageURI, //imageURL
 				caption: request.body.caption,
-				location: request.body.location
+        location: request.body.location,
+				hashtag: request.body.hashtag
 			});
 			post.save(function(error) {
 				if(error) {
