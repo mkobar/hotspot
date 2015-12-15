@@ -1,4 +1,4 @@
-# Project Name #
+# Pictury #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -17,7 +17,7 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > HotSpot.
+  > Location based anonymous photo sharing app.
 ## Sub-Heading ##
   > Anybody who loves to take pictures and share them to the world, creating historical artifact that can later be accessed.
 ## Summary ##
