@@ -27,7 +27,6 @@ angular.module('app.controllers', [])
     hashtag:''
   };
 
-  // $scope.post.caption = "";
   $scope.takePicture = function(){
     CameraFactory.takePhoto()
       .then(function (imageData) {

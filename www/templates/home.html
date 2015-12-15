@@ -18,7 +18,12 @@
 
 
         <!-- Cards Container Start-->
+<<<<<<< HEAD
         <div class="list card" ng-repeat="post in posts | filter: { hashtag: search}" ng-if="post.distance < bounds">
+=======
+        <div class="list card" ng-repeat="post in posts" ng-if="post.distance < bounds">
+        <!-- <div class="list card" ng-repeat="post in posts"> -->
+>>>>>>> update data and distance
           <!-- Card Start-->
           <div class="item item-body">
               <img class="full-image" ng-src="{{post.imageURI}}">

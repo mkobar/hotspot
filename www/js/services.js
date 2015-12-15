@@ -20,9 +20,8 @@ angular.module('app.services', [])
       // console.log('response data', data);
       // console.log('all long and lats', getLongLat(data));
       getPosition(); //note getPosition()
-      // angular.copy(data, posts); // (src, dest)
-      // console.log('final result', posts);
-
+      angular.copy(data, posts); // (src, dest)
+      console.log('final result', posts);
      });
   };
   //get an array of location objects with latitude and longitude properties
