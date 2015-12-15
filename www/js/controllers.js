@@ -69,11 +69,13 @@ angular.module('app.controllers', [])
     CameraFactory.postPhoto($scope.userPost)
       .then(function(){
         // console.log('posted! redirecting you now.');
-        $state.go('main.home');
       })
       .catch(function(err){
         console.log('There was an error: ', err);
       });
+
+    $state.go('main.home');
+
   };
 
 }])
