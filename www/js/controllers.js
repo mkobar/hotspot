@@ -17,7 +17,7 @@ angular.module('app.controllers', [])
     };
 }])
 
-.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', function($scope, $state, CameraFactory, LocationFactory) {
+.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
   $scope.userPost = {
     upvotes: 0,
     comments: [],
@@ -66,15 +66,25 @@ angular.module('app.controllers', [])
     }
     console.log('this is the userPost being posted', $scope.userPost);
     // $scope.userPost.comments.push($scope.userPost.caption);
+
+    $ionicLoading.show({
+      template: 'Posting you photo, please-wait...',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
     CameraFactory.postPhoto($scope.userPost)
-      .then(function(){
+      .success(function(){
         // console.log('posted! redirecting you now.');
+        $ionicLoading.hide();
+        $state.go('main.home');
       })
       .catch(function(err){
         console.log('There was an error: ', err);
       });
 
-    $state.go('main.home');
 
   };
 
