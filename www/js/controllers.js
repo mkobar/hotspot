@@ -50,6 +50,7 @@ angular.module('app.controllers', [])
 
   $scope.$on('$ionicView.enter', function(){
     $scope.userPost.caption = "";
+    $scope.userPost.imageURI = undefined;
     $scope.takePicture();
     $scope.getLocation();
     // console.log('success');
