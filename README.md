@@ -1,8 +1,9 @@
 [![Stories in Ready](https://badge.waffle.io/BillionaireBoysClub/hotspot.png?label=ready&title=Ready)](http://waffle.io/BillionaireBoysClub/hotspot)
 
-# Project Name
+# Pictury
 
-> " tagline "
+> A location-based photo-sharing application that enables users to post photos anonymously and see the history of pictures taken within their geographic location.
+
 
 ## Table of Contents
 
@@ -14,100 +15,72 @@
 1. [Team](#Team)
 1. [Contributing](#contributing)
 
-
+<br>
 
 ### Team
-
-[![CliffordFajardo](https://avatars0.githubusercontent.com/u/6743796?v=3&s=70)](https://github.com/cliffordfajardo) | [![Eric Eng](https://avatars1.githubusercontent.com/u/5885829?v=3&s=70)](https://github.com/starcraft168) | [![Gabriel Matias](https://avatars1.githubusercontent.com/u/11906352?v=3&s=70)](https://github.com/starcraft168) |[![Orobosa Omoregie](https://avatars2.githubusercontent.com/u/3477479?v=3&s=70)](https://github.com/saposki)
+[![CliffordFajardo](https://avatars0.githubusercontent.com/u/6743796?v=3&s=70)](https://github.com/cliffordfajardo) <br>Clifford Fajardo| [![Eric Eng](https://avatars1.githubusercontent.com/u/5885829?v=3&s=70)](https://github.com/starcraft168) <br>Eric Eng| [![Gabriel Matias](https://avatars1.githubusercontent.com/u/11906352?v=3&s=70)](https://github.com/Gmatias93)<br>Gabriel Matias |[![Orobosa Omoregie](http://i.imgur.com/S6o7rXu.jpg)](https://github.com/saposki) <br> Orobosa Omoregie
 --- | --- | --- | --- | --- | --- | ---
-[Clifford Fajardo](https://github.com/cliffordfajardo)<br>Website here | [Eric Eng](https://github.com/GMatias93)<br>Website here | [Gabriel Matias](https://github.com/GMatias93)<br>Website here | [Orobosa Omoregie](https://github.com/saposki)<br>Website here
+[Twitter](https://twitter.com/cliffordfajard0)<br>[Blog](http://cliffordfajardo.github.io/)<br>[LinkedIn](https://www.linkedin.com/in/cliffordfajardo)|[LinkedIn](https://www.linkedin.com/in/eric-eng-8a58a452) | [Twitter](https://twitter.com/GabeCodes)<br>[LinkedIn](https://www.linkedin.com/in/gabrielmatias)|[Twitter](https://twitter.com/saposki)<br>[LinkedIn](https://www.linkedin.com/pub/orobosa-omoregie/3/b0a/470)
 
 
+<br>
 ### Technology Stack
-<img src="http://i.imgur.com/dktBkgD.png"> |<img src="http://i.imgur.com/DTLdYkx.png">|  <img src="http://i.imgur.com/P5hKmWx.png">|<img src="http://i.imgur.com/hi6gCzf.png">|
+<img src="http://i.imgur.com/dktBkgD.png"> |<img src="http://i.imgur.com/DTLdYkx.png">|  <img src="http://i.imgur.com/P5hKmWx.png">|<img src="http://i.imgur.com/hi6gCzf.png">|<img src="http://i.imgur.com/jK9PTgu.png">
 --- | --- | --- | --- | --- |
-Angularjs| Ionic | MongoDB| Nodejs
+Angularjs| Ionic | MongoDB| Nodejs|Express.js
 
 
-
-
-## Usage
-
-> Some usage instructions
-
+<br>
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;version 4.2+
+- MongoDB&ensp;&ensp;&ensp;version3.0.7+
+- xCode   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;version 7.1.+ (for porting application to phone)
+- Bower   &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;version 1.4+
 
+<br>
 ## Development
 
 ### Installing Dependencies
-From within the root directory:
+After downloading the project, from within the root directory, run the following commands:
 
 ```sh
 sudo npm install -g bower
+```
+```sh
 npm install
+```
+```sh
 bower install
 ```
 
-
-
-### Roadmap
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
-
-
-## Contributing
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
-
-
-
-
-
-
-Ionic App Base
-=====================
-
-A starting project for Ionic that optionally supports using custom SCSS.
-
-## Using this project
-
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
-
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+<br>
+## Using & viewing this project
+In order to launch the app in your web browser, you first need to install the [Ionic CLI](https://github.com/driftyco/ionic-cli)
 
 ```bash
 $ npm install -g ionic
 ```
 
-Then run:
-
+Then run the following command from the root of the project directory:
 ```bash
-$ ionic start myProject tabs
+$ ionic serve
 ```
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
+<br>
+### Roadmap
+View the project roadmap [here](https://github.com/BillionaireBoysClub/hotspot/issues)
+
+<br>
+## Contributing
+See [CONTRIBUTING.md](_CONTRIBUTING.md) for contribution guidelines.
+
+
+
+<br>
+
 
 ## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
-
-
-## Updating Repository 
-If you forked your master, then you need to add the upstream master
-
-    git remote add upstream https://github.com/BillionaireBoysClub/hotspot.git
-
-This is how you fetch the upstream changes to your own master copy
-
-    git pull --rebase upstream master
-
-When working on your feature, make your own feature branch
-
-    git checkout -b <featureBranchName>
-
-Next:
+If find an issue or have a question consider messaging a member of the development team (noted above). Or else if there is truly an error, bug, etc, follow our guidelines for [submitting an issue](_CONTRIBUTING.md) to our [issues page](https://github.com/BillionaireBoysClub/hotspot/issues)
 
     Make a pull request to the upstream from your master
