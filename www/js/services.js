@@ -50,7 +50,7 @@ angular.module('app.services', [])
 
       for(var i=0; i<LongLatArray.length; i++) {
         var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
-        data[i]['distance'] = distance;
+        data[i].distance = distance;
       }
       // console.log('new distance property inside data',data);
       angular.copy(data, posts);
@@ -160,7 +160,7 @@ angular.module('app.services', [])
 
   return {
     takePhoto: takePhoto,
-    postPhoto: postPhoto,
+    postPhoto: postPhoto
   };
 
 }])
@@ -184,10 +184,10 @@ angular.module('app.services', [])
   };
 
   var getRadius = function() {
-    console.log('heyyyyyyyyyyy', parseInt(radius.value,10) /1609.344); //verify that getting the location is correct
-    console.log('heyyyyyyyyyyy', radius.value);
+    // console.log('heyyyyyyyyyyy', parseInt(radius.value,10) /1609.344); //verify that getting the location is correct
+    // console.log('heyyyyyyyyyyy', radius.value);
     return radius;
-  }
+  };
 
 
   var getLocation = function(){
@@ -205,7 +205,8 @@ angular.module('app.services', [])
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
-      var map = new google.maps.Map(document.getElementById("map"), mapOptions); //changed map -$scope
+       //changed map -$scope
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
       var circle = new google.maps.Circle({
         strokeColor: '#FF0000',
@@ -219,7 +220,7 @@ angular.module('app.services', [])
       });
 
       //modifies circle radius whenever user interacts with range bar
-      google.maps.event.addDomListener(document.getElementById("radius"), 'click', function(){
+      google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function(){
         // alert('clicked!');
         var rad = parseInt(radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);

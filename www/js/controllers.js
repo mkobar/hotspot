@@ -1,8 +1,7 @@
 angular.module('app.controllers', [])
 
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory',
-  function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
@@ -27,16 +26,6 @@ angular.module('app.controllers', [])
     hashtag:''
   };
 
-  $scope.takePicture = function(){
-    CameraFactory.takePhoto()
-      .then(function (imageData) {
-        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
-        }, function (err) {
-          // An error occured. Show a message to the user
-          console.log('error', err);
-          $state.go('main.home');
-      });
-  };
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
@@ -47,6 +36,18 @@ angular.module('app.controllers', [])
         console.log('There was an error: ', err);
       });
   };
+  $scope.takePicture = function(){
+    CameraFactory.takePhoto()
+      .then(function (imageData) {
+        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+          // An error occured. Show a message to the user
+          console.log('error', err);
+          $state.go('main.home');
+      });
+    // $scope.userPost.imageURI = 'test';
+
+  };
 
   $scope.$on('$ionicView.enter', function(){
     $scope.userPost.caption = "";
@@ -55,6 +56,7 @@ angular.module('app.controllers', [])
     $scope.getLocation();
     // console.log('success');
   });
+
 
   $scope.addPost = function(){
     var hashtags = [];
