@@ -1,8 +1,7 @@
 angular.module('app.controllers', [])
 
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory',
-  function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
@@ -17,7 +16,7 @@ angular.module('app.controllers', [])
     };
 }])
 
-.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', function($scope, $state, CameraFactory, LocationFactory) {
+.controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
   $scope.userPost = {
     upvotes: 0,
     comments: [],
@@ -27,16 +26,6 @@ angular.module('app.controllers', [])
     hashtag:''
   };
 
-  $scope.takePicture = function(){
-    CameraFactory.takePhoto()
-      .then(function (imageData) {
-        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
-        }, function (err) {
-          // An error occured. Show a message to the user
-          console.log('error', err);
-          $state.go('main.home');
-      });
-  };
 
   $scope.getLocation = function(){
     LocationFactory.getPosition()
@@ -47,13 +36,27 @@ angular.module('app.controllers', [])
         console.log('There was an error: ', err);
       });
   };
+  $scope.takePicture = function(){
+    CameraFactory.takePhoto()
+      .then(function (imageData) {
+        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+          // An error occured. Show a message to the user
+          console.log('error', err);
+          $state.go('main.home');
+      });
+    // $scope.userPost.imageURI = 'test';
+
+  };
 
   $scope.$on('$ionicView.enter', function(){
     $scope.userPost.caption = "";
+    $scope.userPost.imageURI = undefined;
     $scope.takePicture();
     $scope.getLocation();
     // console.log('success');
   });
+
 
   $scope.addPost = function(){
     var hashtags = [];
@@ -66,14 +69,26 @@ angular.module('app.controllers', [])
     }
     console.log('this is the userPost being posted', $scope.userPost);
     // $scope.userPost.comments.push($scope.userPost.caption);
+
+    $ionicLoading.show({
+      template: 'Posting you photo, please-wait...',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+
     CameraFactory.postPhoto($scope.userPost)
-      .then(function(){
+      .success(function(){
         // console.log('posted! redirecting you now.');
+        $ionicLoading.hide();
         $state.go('main.home');
       })
       .catch(function(err){
         console.log('There was an error: ', err);
       });
+
+
   };
 
 }])
