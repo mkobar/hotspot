@@ -3,7 +3,6 @@ angular.module('app.services', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
   var posts = []; //after putting the distance property into posts, you may pass into the
-  // var data = []; //put the getPosts data into here first
 
   //get all posts
   var getPosts = function(){
@@ -13,23 +12,19 @@ angular.module('app.services', [])
       })
     .then(function(response){
       angular.copy(response.data, posts); // (src, dest)
-
       getPosition(); //note getPosition()
       console.log('final result', posts);
      });
   };
   //get an array of location objects with latitude and longitude properties
   var getLongLat = function(posts) {
-    var arr = [];
-    for(var i=0; i<posts.length; i++) {
-      for(var key in posts[i]) {
-        if(key === "location") {
-          arr.push(posts[i][key]);
-        }
-      }
-    }
-    return arr;
+    var coordinates = [];
+    posts.forEach(function(post){
+      coordinates.push(post.location);
+    });
+    return coordinates;
   };
+
   //there's a slight delay in getting the current location
   var getPosition = function(){
     var LongLatArray = getLongLat(posts);
@@ -41,8 +36,7 @@ angular.module('app.services', [])
       currentObj.long = position.coords.longitude;
       // console.log('current position here', currentObj);
 
-
-      for(var i=0; i<LongLatArray.length; i++) {
+      for(var i = 0; i < LongLatArray.length; i++) {
         var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
         posts[i].distance = distance;
       }
