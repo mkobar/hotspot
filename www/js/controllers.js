@@ -38,16 +38,15 @@ angular.module('app.controllers', [])
       });
   };
   $scope.takePicture = function(){
-    // CameraFactory.takePhoto()
-    //   .then(function (imageData) {
-    //     $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
-    //     }, function (err) {
-    //       // An error occured. Show a message to the user
-    //       console.log('error', err);
-    //       $state.go('main.home');
-    //   });
-    $scope.userPost.imageURI = 'test';
-
+    CameraFactory.takePhoto()
+      .then(function (imageData) {
+        $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+        }, function (err) {
+          // An error occured. Show a message to the user
+          console.log('error', err);
+          $state.go('main.home');
+      });
+    // $scope.userPost.imageURI = 'test';
   };
 
   $scope.$on('$ionicView.enter', function(){
