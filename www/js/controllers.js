@@ -1,16 +1,15 @@
 angular.module('app.controllers', [])
 
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
-      // console.log('checking to see if object in factory is updated', LocationFactory.radius);
+      $ionicLoading.hide();
       $scope.bounds = parseInt(LocationFactory.radius.value,10) /1609.344;
     });
-
 
     $scope.upvotePost = function(post){
       LoadPostsFactory.upvotePost(post._id);
@@ -82,8 +81,6 @@ angular.module('app.controllers', [])
 
     CameraFactory.postPhoto($scope.userPost)
       .success(function(){
-        // console.log('posted! redirecting you now.');
-        $ionicLoading.hide();
         $state.go('main.home');
       })
       .catch(function(err){
