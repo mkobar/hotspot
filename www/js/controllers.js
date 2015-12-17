@@ -174,11 +174,11 @@ angular.module('app.controllers', [])
 
   $scope.addPinsToMap = function(posts){
     posts.forEach(function(post){
-      // console.log('testing the posts location property: ', typeof post.location.lat);
+      console.log('testing the posts location property: ', $scope.map);
       var pin = new google.maps.Marker({
         position: post.location,
         map: $scope.map,
-        title: 'picture'
+        title: 'Hello World'
       });
     });
   };
