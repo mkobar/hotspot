@@ -7,14 +7,12 @@ angular.module('app.controllers', [])
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
-      console.log('checking to see if object in factory is updated', LocationFactory.radius);
+      // console.log('checking to see if object in factory is updated', LocationFactory.radius);
       $scope.bounds = parseInt(LocationFactory.radius.value,10) /1609.344;
     });
 
 
     $scope.upvotePost = function(post){
-      // console.log('in upvotePost ');
-      // console.log('post._id', post._id);
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
