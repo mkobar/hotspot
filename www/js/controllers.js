@@ -1,16 +1,17 @@
 angular.module('app.controllers', [])
 
 
-.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', function($scope, LoadPostsFactory,$stateParams, LocationFactory) {
+.controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
     $scope.post = LoadPostsFactory.posts[$stateParams.id];
-    $scope.bounds = parseInt(LocationFactory.getRadius().value,10) /1609.344;
 
+    $scope.$on('$ionicView.enter', function(){
+      $ionicLoading.hide();
+      $scope.bounds = parseInt(LocationFactory.radius.value,10) /1609.344;
+    });
 
     $scope.upvotePost = function(post){
-      // console.log('in upvotePost ');
-      // console.log('post._id', post._id);
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
@@ -46,7 +47,6 @@ angular.module('app.controllers', [])
           $state.go('main.home');
       });
     // $scope.userPost.imageURI = 'test';
-
   };
 
   $scope.$on('$ionicView.enter', function(){
@@ -80,8 +80,6 @@ angular.module('app.controllers', [])
 
     CameraFactory.postPhoto($scope.userPost)
       .success(function(){
-        // console.log('posted! redirecting you now.');
-        $ionicLoading.hide();
         $state.go('main.home');
       })
       .catch(function(err){
@@ -122,7 +120,7 @@ angular.module('app.controllers', [])
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
 
-  $scope.radius = LocationFactory.getRadius();
+  $scope.radius = LocationFactory.radius;
 
   //shows the loading bar
   $ionicLoading.show({
@@ -133,8 +131,49 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
+  $scope.getLocation = function(){
+    LocationFactory.getPosition() // changed getPosition - LocationFactory
+    .then(function(position){
+
+      $ionicLoading.hide();
+
+      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      var mapOptions = {
+        center: latLng,
+        disableDoubleClickZoom: false,
+        zoom: 8,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+       //changed map -$scope
+      $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+      var circle = new google.maps.Circle({
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35,
+        map: $scope.map, //changed map -$scope
+        center: latLng,
+        radius: parseInt($scope.radius.value,10) //radius.value - $scope
+      });
+
+      //modifies circle radius whenever user interacts with range bar
+      google.maps.event.addDomListener(document.getElementById("radius"), 'click', function(){
+        // alert('clicked!');
+        var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
+        circle.setRadius(rad);
+      });
+    }, function(error){
+      console.log("Could not get location");
+    });
+
+  };
+
   $scope.$on('$ionicView.enter', function(){
-    LocationFactory.getLocation(); //changed $scope to LocationFactory
+    $scope.getLocation(); //changed $scope to LocationFactory
     console.log('success');
   });
 }])

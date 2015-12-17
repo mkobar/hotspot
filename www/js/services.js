@@ -3,7 +3,6 @@ angular.module('app.services', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
   var posts = []; //after putting the distance property into posts, you may pass into the
-  var data = []; //put the getPosts data into here first
 
   //get all posts
   var getPosts = function(){
@@ -12,48 +11,33 @@ angular.module('app.services', [])
         url: apiEndPoint.url + '/posts'
       })
     .then(function(response){
-      // console.log('getPosts() worked');
-
-      angular.copy(response.data, data); // (src, dest)
-
-      // console.log('response posts', posts);
-      // console.log('response data', data);
-      // console.log('all long and lats', getLongLat(data));
-      getPosition(); //note getPosition()
-      angular.copy(data, posts); // (src, dest)
+      angular.copy(response.data, posts); // (src, dest)
+      computeDistance(); //note computeDistance()
       console.log('final result', posts);
      });
   };
   //get an array of location objects with latitude and longitude properties
-  var getLongLat = function(data) {
-    var arr = [];
-    for(var i=0; i<data.length; i++) {
-      for(var key in data[i]) {
-        if(key === "location") {
-          arr.push(data[i][key]);
-        }
-      }
-    }
-    return arr;
+  var getLongLat = function(posts) {
+    var coordinates = [];
+    posts.forEach(function(post){
+      coordinates.push(post.location);
+    });
+    return coordinates;
   };
-  //there's a slight delay in getting the current location
-  var getPosition = function(){
-    var LongLatArray = getLongLat(data);
+
+  var computeDistance = function(){
+    var LongLatArray = getLongLat(posts);
 
     LocationFactory.getPosition()
     .then(function(position) {
       var currentObj = {};
       currentObj.lat = position.coords.latitude;
       currentObj.long = position.coords.longitude;
-      // console.log('current position here', currentObj);
 
-
-      for(var i=0; i<LongLatArray.length; i++) {
-        var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
-        data[i].distance = distance;
-      }
-      // console.log('new distance property inside data',data);
-      angular.copy(data, posts);
+      LongLatArray.forEach(function(post, i){
+        var distance = haversineDistance(currentObj, post, true);
+        posts[i].distance = distance;
+      });
       console.log('final result', posts);
     });
   };
@@ -126,7 +110,7 @@ angular.module('app.services', [])
     getSinglePost: getSinglePost,
     upvotePost: upvotePost,
     getLongLat: getLongLat,
-    getPosition: getPosition
+    computeDistance: computeDistance
   };
 }])
 
@@ -165,11 +149,11 @@ angular.module('app.services', [])
 
 }])
 
-.factory('LocationFactory', ['$cordovaGeolocation', '$ionicLoading', function($cordovaGeolocation, $ionicLoading){
-
+.factory('LocationFactory', ['$cordovaGeolocation', function($cordovaGeolocation){
   var getPosition = function(){
     var options = {
-      setTimeout : 10000,
+      setTimeout: 10000,
+      maximumAge : 60000,
       enableHighAccuracy : true
     };
 
@@ -184,60 +168,13 @@ angular.module('app.services', [])
   };
 
   var getRadius = function() {
-    // console.log('heyyyyyyyyyyy', parseInt(radius.value,10) /1609.344); //verify that getting the location is correct
-    // console.log('heyyyyyyyyyyy', radius.value);
     return radius;
   };
 
-
-  var getLocation = function(){
-    getPosition() // changed getPosition - LocationFactory
-    .then(function(position){
-
-      $ionicLoading.hide();
-
-      var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-      var mapOptions = {
-        center: latLng,
-        disableDoubleClickZoom: false,
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-
-       //changed map -$scope
-      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-      var circle = new google.maps.Circle({
-        strokeColor: '#FF0000',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#FF0000',
-        fillOpacity: 0.35,
-        map: map, //changed map -$scope
-        center: latLng,
-        radius: parseInt(radius.value,10) //radius.value - $scope
-      });
-
-      //modifies circle radius whenever user interacts with range bar
-      google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function(){
-        // alert('clicked!');
-        var rad = parseInt(radius.value, 10); //radius.value - $scope
-        circle.setRadius(rad);
-        console.log('heres the map dog', rad);
-        console.log('heres the map doggy', radius.value); //radius.value - $scope
-        console.log('heres another one', getRadius().value);
-      });
-    }, function(error){
-      console.log("Could not get location");
-    });
-
-};
-
   return {
     getPosition : getPosition,
-    getRadius: getRadius,
-    getLocation: getLocation
+    radius: radius,
+    getRadius: getRadius
   };
 
 }]);
