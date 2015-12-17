@@ -12,13 +12,8 @@ angular.module('app.services', [])
         url: apiEndPoint.url + '/posts'
       })
     .then(function(response){
-      // console.log('getPosts() worked');
-
       angular.copy(response.data, data); // (src, dest)
 
-      // console.log('response posts', posts);
-      // console.log('response data', data);
-      // console.log('all long and lats', getLongLat(data));
       getPosition(); //note getPosition()
       angular.copy(data, posts); // (src, dest)
       console.log('final result', posts);
@@ -166,10 +161,11 @@ angular.module('app.services', [])
 }])
 
 .factory('LocationFactory', ['$cordovaGeolocation', '$ionicLoading', function($cordovaGeolocation, $ionicLoading){
-
+console.log('checking to see if posts is available in LocationFactory: ', posts);
   var getPosition = function(){
     var options = {
-      setTimeout : 10000,
+      setTimeout: 10000,
+      maximumAge : 60000,
       enableHighAccuracy : true
     };
 
