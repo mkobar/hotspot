@@ -32,7 +32,7 @@ angular.module('app.services', [])
     .then(function(position) {
       var currentObj = {};
       currentObj.lat = position.coords.latitude;
-      currentObj.long = position.coords.longitude;
+      currentObj.lng = position.coords.longitude;
 
       LongLatArray.forEach(function(post, i){
         var distance = haversineDistance(currentObj, post, true);
@@ -48,9 +48,9 @@ angular.module('app.services', [])
       return x * Math.PI / 180;
     };
 
-    var lon1 = coords1.long;
+    var lon1 = coords1.lng;
     var lat1 = coords1.lat;
-    var lon2 = coords2.long;
+    var lon2 = coords2.lng;
     var lat2 = coords2.lat;
     var R = 6371; // km
     var x1 = lat2 - lat1;

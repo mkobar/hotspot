@@ -31,7 +31,7 @@ angular.module('app.controllers', [])
   $scope.getLocation = function(){
     LocationFactory.getPosition()
       .then(function(position){
-        $scope.userPost.location.long = position.coords.longitude;
+        $scope.userPost.location.lng = position.coords.longitude;
         $scope.userPost.location.lat = position.coords.latitude;
       }, function(err){
         console.log('There was an error: ', err);
@@ -119,7 +119,7 @@ angular.module('app.controllers', [])
 
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
-
+  $scope.posts = LoadPostsFactory.posts;
   $scope.radius = LocationFactory.radius;
 
   //shows the loading bar
@@ -131,7 +131,7 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
-  $scope.getLocation = function(){
+  $scope.createMap = function(){
     LocationFactory.getPosition() // changed getPosition - LocationFactory
     .then(function(position){
 
@@ -172,8 +172,20 @@ angular.module('app.controllers', [])
 
   };
 
+  $scope.addPinsToMap = function(posts){
+    posts.forEach(function(post){
+      console.log('testing the posts location property: ', $scope.map);
+      var pin = new google.maps.Marker({
+        position: post.location,
+        map: $scope.map,
+        title: 'Hello World'
+      });
+    });
+  };
+
   $scope.$on('$ionicView.enter', function(){
-    $scope.getLocation(); //changed $scope to LocationFactory
+    $scope.createMap(); //changed $scope to LocationFactory
+    $scope.addPinsToMap($scope.posts);
     console.log('success');
   });
 }])
