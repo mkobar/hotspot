@@ -3,7 +3,7 @@ angular.module('app.services', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
   var posts = []; //after putting the distance property into posts, you may pass into the
-  var data = []; //put the getPosts data into here first
+  // var data = []; //put the getPosts data into here first
 
   //get all posts
   var getPosts = function(){
@@ -12,20 +12,19 @@ angular.module('app.services', [])
         url: apiEndPoint.url + '/posts'
       })
     .then(function(response){
-      angular.copy(response.data, data); // (src, dest)
+      angular.copy(response.data, posts); // (src, dest)
 
       getPosition(); //note getPosition()
-      angular.copy(data, posts); // (src, dest)
       console.log('final result', posts);
      });
   };
   //get an array of location objects with latitude and longitude properties
-  var getLongLat = function(data) {
+  var getLongLat = function(posts) {
     var arr = [];
-    for(var i=0; i<data.length; i++) {
-      for(var key in data[i]) {
+    for(var i=0; i<posts.length; i++) {
+      for(var key in posts[i]) {
         if(key === "location") {
-          arr.push(data[i][key]);
+          arr.push(posts[i][key]);
         }
       }
     }
@@ -33,7 +32,7 @@ angular.module('app.services', [])
   };
   //there's a slight delay in getting the current location
   var getPosition = function(){
-    var LongLatArray = getLongLat(data);
+    var LongLatArray = getLongLat(posts);
 
     LocationFactory.getPosition()
     .then(function(position) {
@@ -45,10 +44,8 @@ angular.module('app.services', [])
 
       for(var i=0; i<LongLatArray.length; i++) {
         var distance = haversineDistance(currentObj, LongLatArray[i], true); //computes all the distances between currentObj and LongLat in database
-        data[i].distance = distance;
+        posts[i].distance = distance;
       }
-      // console.log('new distance property inside data',data);
-      angular.copy(data, posts);
       console.log('final result', posts);
     });
   };
@@ -161,7 +158,7 @@ angular.module('app.services', [])
 }])
 
 .factory('LocationFactory', ['$cordovaGeolocation', '$ionicLoading', function($cordovaGeolocation, $ionicLoading){
-console.log('checking to see if posts is available in LocationFactory: ', posts);
+// console.log('checking to see if posts is available in LocationFactory: ', posts);
   var getPosition = function(){
     var options = {
       setTimeout: 10000,
