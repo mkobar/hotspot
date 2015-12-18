@@ -169,9 +169,13 @@ angular.module('app.controllers', [])
         var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);
 
+        $scope.markers.forEach(function(marker){
+          marker.setMap(null);
+        });
+
+        $scope.markers = [];
 
         $scope.posts.forEach(function(post){
-          marker.setMap(null);
           if(post.distance < circle.radius/1609.344){
             createMarker(post);
           }
