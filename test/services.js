@@ -1,3 +1,3 @@
-describe("LoadPostsFactory", function(){
+// describe("LoadPostsFactory", function(){
 
-});
+// });
