@@ -168,6 +168,15 @@ angular.module('app.controllers', [])
         // alert('clicked!');
         var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);
+
+
+        $scope.posts.forEach(function(post){
+          marker.setMap(null);
+          if(post.distance < circle.radius/1609.344){
+            createMarker(post);
+          }
+        });
+
       });
 
 
@@ -188,14 +197,16 @@ angular.module('app.controllers', [])
         });
         marker.content = '<img src=' + post.imageURI + '>';
         marker.addListener('click', function(){
-          infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+          infoWindow.setContent('<center><h2>' + marker.title + '</h2>' + marker.content + '</center>');
           infoWindow.open($scope.map, marker);
         });
         $scope.markers.push(marker);
       };
 
       $scope.posts.forEach(function(post){
-        createMarker(post);
+        if(post.distance < circle.radius/1609.344){
+          createMarker(post);
+        }
       });
 
     }, function(error){
@@ -208,7 +219,7 @@ angular.module('app.controllers', [])
 
   $scope.$on('$ionicView.enter', function(){
     $scope.drawMap(); //changed $scope to LocationFactory
-    console.log('success');
+    // $scope.bounds = parseInt(LocationFactory.radius.value,10) /1609.344;
   });
 }])
 
