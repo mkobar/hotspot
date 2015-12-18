@@ -164,17 +164,19 @@ angular.module('app.controllers', [])
       });
 
       //modifies circle radius whenever user interacts with range bar
-      google.maps.event.addDomListener(document.getElementById("radius"), 'click', function(){
+      google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function(){
         // alert('clicked!');
         var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);
 
+        //removes markers from map
         $scope.markers.forEach(function(marker){
           marker.setMap(null);
         });
 
         $scope.markers = [];
 
+        //adds new markers based on circle radius
         $scope.posts.forEach(function(post){
           if(post.distance < circle.radius/1609.344){
             createMarker(post);
@@ -218,12 +220,9 @@ angular.module('app.controllers', [])
     });
   };
 
-  // console.log('checkin availability of $scope.posts outside of drawMap: ', $scope.posts);
-
 
   $scope.$on('$ionicView.enter', function(){
     $scope.drawMap(); //changed $scope to LocationFactory
-    // $scope.bounds = parseInt(LocationFactory.radius.value,10) /1609.344;
   });
 }])
 
