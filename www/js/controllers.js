@@ -131,7 +131,7 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
-  $scope.createMap = function(){
+  $scope.drawMap = function(){
     LocationFactory.getPosition() // changed getPosition - LocationFactory
     .then(function(position){
 
@@ -149,6 +149,9 @@ angular.module('app.controllers', [])
        //changed map -$scope
       $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+/////////////////////////////////////// Map Circle //////////////////////////////////////////////////
+
+
       var circle = new google.maps.Circle({
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -165,28 +168,61 @@ angular.module('app.controllers', [])
         // alert('clicked!');
         var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);
+
+        //removes markers from map
+        $scope.markers.forEach(function(marker){
+          marker.setMap(null);
+        });
+
+        $scope.markers = [];
+
+        //adds new markers based on circle radius
+        $scope.posts.forEach(function(post){
+          if(post.distance < circle.radius/1609.344){
+            createMarker(post);
+          }
+        });
+
       });
+
+
+
+////////////////////////////////////// Map Markers //////////////////////////////////////////////////
+
+
+      $scope.markers = [];
+
+      var infoWindow = new google.maps.InfoWindow();
+
+      var createMarker = function(post){
+        var marker = new google.maps.Marker({
+          position: post.location,
+          map: $scope.map,
+          animation: google.maps.Animation.DROP,
+          title: post.caption
+        });
+        marker.content = '<img src=' + post.imageURI + '>';
+        marker.addListener('click', function(){
+          infoWindow.setContent('<center><h2>' + marker.title + '</h2>' + marker.content + '</center>');
+          infoWindow.open($scope.map, marker);
+        });
+        $scope.markers.push(marker);
+      };
+
+      $scope.posts.forEach(function(post){
+        if(post.distance < circle.radius/1609.344){
+          createMarker(post);
+        }
+      });
+
     }, function(error){
       console.log("Could not get location");
     });
-
   };
 
-  $scope.addPinsToMap = function(posts){
-    posts.forEach(function(post){
-      console.log('testing the posts location property: ', $scope.map);
-      var pin = new google.maps.Marker({
-        position: post.location,
-        map: $scope.map,
-        title: 'Hello World'
-      });
-    });
-  };
 
   $scope.$on('$ionicView.enter', function(){
-    $scope.createMap(); //changed $scope to LocationFactory
-    $scope.addPinsToMap($scope.posts);
-    console.log('success');
+    $scope.drawMap(); //changed $scope to LocationFactory
   });
 }])
 
