@@ -131,7 +131,7 @@ angular.module('app.controllers', [])
     showDelay: 0
   });
 
-  $scope.createMap = function(){
+  $scope.drawMap = function(){
     LocationFactory.getPosition() // changed getPosition - LocationFactory
     .then(function(position){
 
@@ -148,6 +148,9 @@ angular.module('app.controllers', [])
 
        //changed map -$scope
       $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+/////////////////////////////////////// Map Circle //////////////////////////////////////////////////
+
 
       var circle = new google.maps.Circle({
         strokeColor: '#FF0000',
@@ -166,26 +169,45 @@ angular.module('app.controllers', [])
         var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
         circle.setRadius(rad);
       });
+
+
+
+////////////////////////////////////// Map Markers //////////////////////////////////////////////////
+
+
+      $scope.markers = [];
+
+      var infoWindow = new google.maps.InfoWindow();
+
+      var createMarker = function(post){
+        var marker = new google.maps.Marker({
+          position: post.location,
+          map: $scope.map,
+          animation: google.maps.Animation.DROP,
+          title: post.caption
+        });
+        marker.content = '<img src=' + post.imageURI + '>';
+        marker.addListener('click', function(){
+          infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+          infoWindow.open($scope.map, marker);
+        });
+        $scope.markers.push(marker);
+      };
+
+      $scope.posts.forEach(function(post){
+        createMarker(post);
+      });
+
     }, function(error){
       console.log("Could not get location");
     });
-
   };
 
-  $scope.addPinsToMap = function(posts){
-    posts.forEach(function(post){
-      console.log('testing the posts location property: ', $scope.map);
-      var pin = new google.maps.Marker({
-        position: post.location,
-        map: $scope.map,
-        title: 'Hello World'
-      });
-    });
-  };
+  // console.log('checkin availability of $scope.posts outside of drawMap: ', $scope.posts);
+
 
   $scope.$on('$ionicView.enter', function(){
-    $scope.createMap(); //changed $scope to LocationFactory
-    $scope.addPinsToMap($scope.posts);
+    $scope.drawMap(); //changed $scope to LocationFactory
     console.log('success');
   });
 }])
