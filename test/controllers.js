@@ -1,4 +1,4 @@
-describe('Controllers', function(){
+describe('cameraCtrl', function(){
   var $scope, $rootScope, createController, $state, CameraFactory, LocationFactory, $ionicLoading, $httpBackend;
 
   //load the controllers module
