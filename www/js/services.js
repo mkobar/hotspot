@@ -3,6 +3,7 @@ angular.module('app.services', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
   var posts = []; //after putting the distance property into posts, you may pass into the
+  var lastPostsId; //get the last ID of the post
 
   //get all posts
   var getPosts = function(){
@@ -16,6 +17,23 @@ angular.module('app.services', [])
       console.log('final result', posts);
      });
   };
+  //for infinite scrolling
+  var loadMorePosts = function(){
+    console.log('last???',apiEndPoint.url + '/posts/' + lastPostsId);
+    return $http({
+      method: 'GET',
+      url: apiEndPoint.url + '/posts/' + lastPostsId
+    })
+    .then(function(response){
+      angular.copy(response.data, posts); // (src, dest)
+      computeDistance(); //note computeDistance()
+      // console.log('final result', posts);
+      return posts;
+    });
+  };
+
+
+
   //get an array of location objects with latitude and longitude properties
   var getLongLat = function(posts) {
     var coordinates = [];
@@ -108,6 +126,7 @@ angular.module('app.services', [])
     posts: posts,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
+    loadMorePosts: loadMorePosts,
     upvotePost: upvotePost,
     getLongLat: getLongLat,
     computeDistance: computeDistance
