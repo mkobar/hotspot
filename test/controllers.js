@@ -25,9 +25,19 @@ describe('homeCtrl', function(){
     };
   }));
 
-  it('should have a posts array on the $scope', function(){
+  it('should have a posts property on the $scope', function(){
     createController();
     expect($scope.posts).to.be.an('array');
+  });
+
+  it('should have a post property on the $scope', function(){
+    createController();
+    expect($scope.posts).to.be.an('object');
+  });
+
+  it('should have a bounds property on the $scope', function(){
+    createController();
+    expect($scope.posts).to.be.a('array');
   });
 
 
@@ -74,7 +84,7 @@ describe('cameraCtrl', function(){
   }));
 
   //tests start here
-  it('should have a userPost object on the $scope', function(){
+  it('should have a userPost property on the $scope', function(){
     createController();
     expect($scope.userPost).to.be.an('object');
   });
