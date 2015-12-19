@@ -50,4 +50,11 @@ module.exports = function(app) {
 		posts.find_by_id(request, response);
 	});
 
+
+  app.get('/nextposts', function(request, response){
+    console.log('lastpost id', request.query.id);
+    console.log('GET to /nextposts/ ..worked');
+    posts.get_next_posts(request, response);
+  });
+
 };
