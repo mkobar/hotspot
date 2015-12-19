@@ -15,6 +15,22 @@ angular.module('app.controllers', [])
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
     };
+
+    //pull to refresh
+    $scope.doRefresh = function() {
+      LoadPostsFactory.getPosts().then(function(){
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+
+    // infite scroll load more posts from database
+    $scope.loadMorePosts = function() {
+      console.log('calling loadMorePosts----------');
+      LoadPostsFactory.loadMorePosts().then(function(){
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
+      debugger;
+    };
 }])
 
 .controller('cameraCtrl', ['$scope','$state','CameraFactory','LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
