@@ -1,45 +1,38 @@
+describe('Controllers', function(){
+  var $scope, $rootScope, createController, $state, CameraFactory, LocationFactory, $ionicLoading, $httpBackend;
 
-/*
-  Testing block for loading posts on homeview
-*/
-// describe('Homepage', function(){
-//   describe('', function(){
-//     it('should return the sum of two numbers', function(){
-//       expect(add(1,2)).toBe(3);
-//     });
+  //load the controllers module
+  beforeEach(module('app'));
+  beforeEach(inject(function($injector){
 
-//     it('should be a function', function(){
-//       expect(add).toEqual(jasmine.any(Object));
-//     });
+    //mock out dependencies
+    $rootScope = $injector.get('$rootScope');
+    $httpBackend = $injector.get('$httpBackend');
+    CameraFactory = $injector.get('CameraFactory');
+    LocationFactory = $injector.get('LocationFactory');
+    $ionicLoading = $injector.get('$ionicLoading');
+    $scope = $rootScope.$new();
+    $state = $injector.get('$state');
 
-//   });
+    var $controller = $injector.get('$controller');
 
-// });
+    //creating a controller
+    createController = function(){
+      return $controller('cameraCtrl', {
+        $scope: $scope,
+        $state: $state,
+        CameraFactory: CameraFactory,
+        LocationFactory: LocationFactory,
+        $ionicLoading: $ionicLoading
+      });
+    };
+  }));
 
+  //tests start here
+  it('should have a userPost object on the $scope', function(){
+    createController();
+    expect($scope.userPost).to.be.an('object');
+  });
 
-// describe('example', function(){
-//   beforeEach(module('app'));
+});
 
-//   it('should have a home controller', function(){
-//     expect(app.controllers.homeCtrl).toBeDefined();
-//   });
-  // describe('$scope.post', function() {
-  //     it('should contain an indvidual post object', function() {
-  //       var $scope = {};
-  //       var controller = $controller('commentsCtrl', { $scope: $scope });
-  //       $scope.password = 'longerthaneightchars';
-  //       $scope.grade();
-  //       expect($scope.post).toEqual('strong');
-  //     });
-
-  //     it('sets the strength to "weak" if the password length <3 chars', function() {
-  //       var $scope = {};
-  //       var controller = $controller('PasswordController', { $scope: $scope });
-  //       $scope.password = 'a';
-  //       $scope.grade();
-  //       expect($scope.strength).toEqual('weak');
-  //     });
-  // });
-
-
-// });

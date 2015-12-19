@@ -22,8 +22,10 @@ module.exports = function(config) {
        and ionic-angular.js
      */
      'www/lib/ionic/js/ionic.bundle.js',
+     'www/lib/ngCordova/dist/ng-cordova.js',
 
      // (Required) angular mocks for testing suite
+     'www/lib/ngCordova/dist/ng-cordova-mocks.js',
      'node_modules/angular-mocks/angular-mocks.js',
 
       // our app code
@@ -51,7 +53,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['nyan', 'unicorn'],
+    reporters: ['nyan'],
 
 
     // web server port
