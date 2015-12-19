@@ -17,14 +17,12 @@
 // });
 
 
-describe('commentsCtrl', function(){
-  beforeEach(module('app.controllers'));
-  var $controller;
+// describe('example', function(){
+//   beforeEach(module('app'));
 
-  beforeEach(inject(function(_$controller_){
-    $controller = _$controller_;
-  }));
-
+//   it('should have a home controller', function(){
+//     expect(app.controllers.homeCtrl).toBeDefined();
+//   });
   // describe('$scope.post', function() {
   //     it('should contain an indvidual post object', function() {
   //       var $scope = {};
@@ -44,4 +42,4 @@ describe('commentsCtrl', function(){
   // });
 
 
-});
+// });
