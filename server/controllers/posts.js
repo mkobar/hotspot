@@ -15,6 +15,7 @@ module.exports = (function() {
 				}
 			}).limit(2);
 		},
+
 		create: function(request, response) {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
@@ -31,11 +32,10 @@ module.exports = (function() {
 					console.log('success');
 					response.status(200);
 				}
-
 			});
 		},
-		update: function(request, response) { // update takes in a (query, update object, and callback)
 
+		update: function(request, response) { // update takes in a (query, update object, and callback)
       Post.findOne({_id: request.body.id}, function(error, post) {
         // console.log('findOne...post--->\n', post);
 				if(error) { console.log('error in update');}
@@ -50,6 +50,7 @@ module.exports = (function() {
 			});
 
 		},
+
 		destroy: function(request, response) {
 			Post.remove({_id: request.body.id}, function(error) {
 					if(error) {
@@ -60,6 +61,7 @@ module.exports = (function() {
 					response.end();
 			});
 		},
+
 		find_by_id: function(request, response){
 
 			Post.find({_id: request.params.id}, function(error, result){
@@ -71,7 +73,6 @@ module.exports = (function() {
 				}
 			});
 		},
-
 
     get_next_posts: function(request, response){
       Post.find({ _id: {$gt: request.query.id}}, function(error, results){
