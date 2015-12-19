@@ -23,12 +23,16 @@ angular.module('app.controllers', [])
     };
 
     // infite scroll load more posts from database
+    $scope.moreDataCanBeLoaded = true;
     $scope.loadMorePosts = function() {
       console.log('calling loadMorePosts----------');
-      LoadPostsFactory.loadMorePosts().then(function(){
+      LoadPostsFactory.loadMorePosts().then(function(response){
+        // console.lof('factory posts', LoadPostsFactory.posts);
+        $scope.posts = response;
+        $scope.moreDataCanBeLoaded  = false;
         $scope.$broadcast('scroll.infiniteScrollComplete');
+        // debugger;
       });
-      debugger;
     };
 }])
 

@@ -13,13 +13,13 @@ module.exports = (function() {
 					response.json(results);
 					console.log('success');
 				}
-			});
+			}).limit(2);
 		},
 		create: function(request, response) {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
 				comments: request.body.comments,
-				imageURI: request.body.imageURI, //imageURL
+				imageURI: request.body.imageURI,
 				caption: request.body.caption,
         location: request.body.location,
 				hashtag: request.body.hashtag
@@ -70,7 +70,19 @@ module.exports = (function() {
           response.json(result[0]); //object return back is wrapped in an array, so I'm directly accesing it's value
 				}
 			});
-		}
+		},
+
+
+    get_next_posts: function(request, response){
+      Post.find({ _id: {$gt: request.query.id}}, function(error, results){
+        if(error){
+          console.log('error in get_next_posts');
+        } else {
+          console.log('results from get_next_posts-->',results.length , '/n', results);
+          response.json(results);
+        }
+      }).limit(2);
+    }
 	};
 })();
 
