@@ -72,7 +72,7 @@ angular.module('app.routes', [])
           controller: 'MapController'
         }
       }
-    })
+    });
 
 
 

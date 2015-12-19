@@ -213,14 +213,9 @@ angular.module('app.services', [])
     value: "40233.6"
   };
 
-  var getRadius = function() {
-    return radius;
-  };
-
   return {
     getPosition : getPosition,
     radius: radius,
-    getRadius: getRadius
   };
 
 }]);
