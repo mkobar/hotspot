@@ -6,7 +6,8 @@ var PostSchema = new mongoose.Schema({
 	imageURI: String,
 	caption: String,
   location: Object,
-	hashtag: String
+	hashtag: String,
+  created_at: { type: Date, default: Date.now },
 });
 
 //instantiate the model using a Schema
