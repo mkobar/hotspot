@@ -30,28 +30,19 @@ describe('homeCtrl', function(){
     expect($scope.posts).to.be.an('array');
   });
 
-  it('should have a post property on the $scope', function(){
+  //not sure how to test this
+  xit('should create a bounds property on the $scope when controller is loaded', function(){
     createController();
-    expect($scope.posts).to.be.an('object');
+    expect($scope.bounds).to.be.an('number');
   });
 
-  it('should have a bounds property on the $scope', function(){
+  it('should have an upvotePost method on the $scope', function(){
     createController();
-    expect($scope.posts).to.be.a('array');
+    expect($scope.upvotePost).to.be.a('function');
   });
 
 
 });
-
-
-
-
-
-
-
-
-
-
 
 describe('cameraCtrl', function(){
   var $scope, $rootScope, createController, $state, CameraFactory, LocationFactory, $ionicLoading, $httpBackend;
@@ -105,6 +96,44 @@ describe('cameraCtrl', function(){
   });
 
 });
+
+xdescribe('commentsCtrl', function(){
+  var $scope, $rootScope, $stateParams, LoadPostsFactory, singlePost, $httpBackend;
+
+  beforeEach(module('app'));
+  beforeEach(inject(function($injector){
+
+    $rootScope = $injector.get('$rootScope');
+    $httpBackend = $injector.get('$httpBackend');
+    LoadPostsFactory = $injector.get('LoadPostsFactory');
+    $scope = $rootScope.$new();
+    $stateParams = $injector.get('$stateParams');
+    singlePost = $injector.get('singlePost');
+
+    var $controller = $injector.get('$controller');
+
+    //creating a controller
+    createController = function(){
+      return $controller('cameraCtrl', {
+        $scope: $scope,
+        $stateParams: $stateParams,
+        LoadPostsFactory: LoadPostsFactory,
+        singlePost: singlePost
+      });
+    };
+  }));
+
+  it('should have a post property on the $scope', function(){
+    expect($scope.post).to.be.an('object');
+  });
+
+  it('should have a comment property on the $scope', function(){
+    expect($scope.comment).to.be.an('object');
+  });
+
+
+});
+
 
 
 
