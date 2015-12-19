@@ -4,6 +4,11 @@
   </ion-nav-bar>
 
     <ion-content padding="'true'" class="has-header">
+      <!-- pull to refresh-->
+      <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="doRefresh()">
+      </ion-refresher>
 
         <!--Search bar-->
         <form class="bar bar-header item-input-inset">
@@ -27,7 +32,7 @@
               </p>
               <p>
                 <a href="#" class="subdued">{{post.upvotes}} Upvotes</a>
-                <a href="#" class="subdued">{{post.comments.length}} Comments</a>
+                <a href="#/posts/{{post._id}}/comments" class="subdued">{{post.comments.length}} Comments</a>
               </p>
           </div>
 
@@ -49,5 +54,10 @@
         </div>
         <!-- Card Container End-->
 
+        <!--Infinite Scroll -->
+         <ion-infinite-scroll
+           on-infinite="loadMorePosts()"
+           distance="1%">
+         </ion-infinite-scroll>
     </ion-content>
 </ion-view>
