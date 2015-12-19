@@ -14,18 +14,23 @@ angular.module('app.services', [])
     .then(function(response){
       angular.copy(response.data, posts); // (src, dest)
       computeDistance(); //note computeDistance()
+      lastPostsId = response.data[response.data.length-1]._id;
+      console.log('last post -->', response.data[response.data.length-1], 'lastPostsId', lastPostsId);
       console.log('final result', posts);
      });
   };
   //for infinite scrolling
   var loadMorePosts = function(){
-    console.log('last???',apiEndPoint.url + '/posts/' + lastPostsId);
+    console.log('lastPostsId',lastPostsId);
     return $http({
       method: 'GET',
-      url: apiEndPoint.url + '/posts/' + lastPostsId
+      url: apiEndPoint.url + '/nextposts',
+      params: {id: lastPostsId}
     })
     .then(function(response){
-      angular.copy(response.data, posts); // (src, dest)
+      console.log('response from loadMore ->', response);
+      posts = posts.concat( angular.copy(response.data) );
+
       computeDistance(); //note computeDistance()
       // console.log('final result', posts);
       return posts;
