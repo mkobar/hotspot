@@ -37,6 +37,7 @@ angular.module('app.controllers', [])
         console.log('There was an error: ', err);
       });
   };
+
   $scope.takePicture = function(){
     CameraFactory.takePhoto()
       .then(function (imageData) {
@@ -67,6 +68,7 @@ angular.module('app.controllers', [])
         $scope.userPost.hashtag = hashtags.join(" ");
       }
     }
+
     console.log('this is the userPost being posted', $scope.userPost);
     // $scope.userPost.comments.push($scope.userPost.caption);
 
