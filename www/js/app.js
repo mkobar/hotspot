@@ -34,5 +34,3 @@ angular.module('app', [
   // url: 'https://gentle-spire-1503.herokuapp.com'
   url: 'http://localhost:3000'
 });
-
-
