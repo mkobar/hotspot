@@ -4,7 +4,6 @@ angular.module('app.controllers', [])
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
-    $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
       $ionicLoading.hide();
@@ -37,6 +36,7 @@ angular.module('app.controllers', [])
         console.log('There was an error: ', err);
       });
   };
+
   $scope.takePicture = function(){
     CameraFactory.takePhoto()
       .then(function (imageData) {
@@ -67,6 +67,7 @@ angular.module('app.controllers', [])
         $scope.userPost.hashtag = hashtags.join(" ");
       }
     }
+
     console.log('this is the userPost being posted', $scope.userPost);
     // $scope.userPost.comments.push($scope.userPost.caption);
 
@@ -100,7 +101,7 @@ angular.module('app.controllers', [])
 //in order to get the route parameters from the url (e.g, posts/{id}) we need to inject this $stateParams
 .controller('commentsCtrl',['$scope', '$stateParams', 'LoadPostsFactory', 'singlePost', function($scope, $stateParams, LoadPostsFactory, singlePost) {
   $scope.post = singlePost;
-  $scope.comment = { input: ""};
+  $scope.comment = { input: "" };
   $scope.addComment = function(){
     if(!$scope.comment.input) {return;}
     console.log('$scope.comment === obj ?', $scope.comment.input);

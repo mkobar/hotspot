@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
@@ -22,26 +22,31 @@ module.exports = function(config) {
        and ionic-angular.js
      */
      'www/lib/ionic/js/ionic.bundle.js',
+     'www/lib/ngCordova/dist/ng-cordova.js',
 
      // (Required) angular mocks for testing suite
-     'www/lib/angular-mocks/angular-mocks.js',
+     'www/lib/ngCordova/dist/ng-cordova-mocks.js',
+     'node_modules/angular-mocks/angular-mocks.js',
 
       // our app code
       'www/js/*.js',
 
       // our spec files
+      'node_modules/expect.js/index.js',
       'test/*.js'
     ],
 
     // list of files to exclude
     exclude: [
-    'karma.conf.js'
+      'karma.conf.js',
+      'test/serverSpec.js'
     ],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+
     },
 
 
@@ -65,7 +70,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
@@ -75,10 +80,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultanous
-    concurrency: Infinity
-  })
-}
+    // concurrency: Infinity
+  });
+};
