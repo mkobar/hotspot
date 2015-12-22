@@ -4,23 +4,39 @@ angular.module('app.services', [])
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
   var posts = []; //after putting the distance property into posts, you may pass into the
   var lastPostsId; //get the last ID of the post
+  var dbPostCount;
+
+  //get postCount for to tell infinite scroll when to stop
+  var getDBPostCount = function(){
+    return $http({
+        method: 'GET',
+        url: apiEndPoint.url + '/postscount'
+    })
+    .then(function(response){
+      dbPostCount = response.data;
+      console.log('dbPostCount -->', dbPostCount);
+    });
+  };
 
   //get all posts
   var getPosts = function(){
     return $http({
         method: 'GET',
         url: apiEndPoint.url + '/posts'
-      })
+    })
     .then(function(response){
       angular.copy(response.data, posts); // (src, dest)
       computeDistance(); //note computeDistance()
       lastPostsId = response.data[response.data.length-1]._id;
       console.log('last post -->', response.data[response.data.length-1], 'lastPostsId', lastPostsId);
-      console.log('final result', posts);
+      // console.log('final result', posts);
      });
   };
-  //for infinite scrolling
+
+
+  //for infinite scrolling - MIGHT NEED TO RESET DB POST COUNT...restart in this func.
   var loadMorePosts = function(){
+
     console.log('lastPostsId',lastPostsId);
     return $http({
       method: 'GET',
@@ -30,9 +46,12 @@ angular.module('app.services', [])
     .then(function(response){
       console.log('response from loadMore ->', response);
       posts = posts.concat( angular.copy(response.data) );
-
-      computeDistance(); //note computeDistance()
-      // console.log('final result', posts);
+      computeDistance();
+      dbPostCount = dbPostCount - response.data.length;
+      console.log('dbPostCount after load more -->', dbPostCount);
+      console.log('final result', posts);
+      lastPostsId = posts[posts.length - 1]._id;
+      console.log('new last post', lastPostsId);
       return posts;
     });
   };
@@ -127,6 +146,7 @@ angular.module('app.services', [])
   };
 
   return {
+    getDBPostCount: getDBPostCount,
     addComment: addComment,
     posts: posts,
     getPosts: getPosts,
