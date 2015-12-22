@@ -57,4 +57,9 @@ module.exports = function(app) {
     posts.get_next_posts(request, response);
   });
 
+  app.get('/postscount', function(request, response){
+    console.log('GET to /postscount');
+    posts.total_post_count(request, response);
+  });
+
 };
