@@ -56,9 +56,10 @@
 
         <!--Infinite Scroll -->
          <ion-infinite-scroll
+           immediate-check="false"
            ng-if="moreDataCanBeLoaded"
            on-infinite="loadMorePosts()"
-           distance="1%">
+           distance="10%"> <!-- start loading earlier -->
          </ion-infinite-scroll>
     </ion-content>
 </ion-view>
