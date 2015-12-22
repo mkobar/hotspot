@@ -24,6 +24,7 @@ angular.module('app.controllers', [])
     };
 
     // infite scroll load more posts from database
+    //needs to be connected to factory
     $scope.moreDataCanBeLoaded = true;
     $scope.loadMorePosts = function() {
       console.log('calling loadMorePosts----------');
@@ -32,8 +33,8 @@ angular.module('app.controllers', [])
         $scope.posts = response;
         $scope.moreDataCanBeLoaded  = false;
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        // debugger;
-      });
+        //debugger
+        });
     };
 }])
 
@@ -64,7 +65,7 @@ angular.module('app.controllers', [])
         }, function (err) {
           // An error occured. Show a message to the user
           console.log('error', err);
-          $state.go('main.home');
+          $state.go('main.home'); //this causes a home refresh, which may not be necessary
       });
     // $scope.userPost.imageURI = 'test';
   };
