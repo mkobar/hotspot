@@ -4,13 +4,11 @@
   "description": "A photo sharing application.",
   "engines": {
     "node": "5.1.1"
-
   },
   "scripts": {
     "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
     "servertest": "mocha test",
     "start": "nodemon server.js"
-
   },
   "repository": {
     "type": "git",
