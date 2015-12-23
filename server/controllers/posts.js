@@ -24,7 +24,7 @@ module.exports = (function() {
 					console.log('show query successful');
           response.json(results);
 				}
-			}).sort({_id:1}).limit(4);
+			}).sort({_id:1}).limit(2);
 		},
 
 		create: function(request, response) {
@@ -91,10 +91,10 @@ module.exports = (function() {
           console.log('error in get_next_posts');
         } else {
           console.log('get_next_posts query successfull');
-          console.log('results from get_next_posts-->',results.length , '/n', results);
+          console.log('results from get_next_posts-->',results.length , '----', results);
           response.json(results);
         }
-      }).limit(3);
+      }).limit(2);
     }
 	};
 })();
