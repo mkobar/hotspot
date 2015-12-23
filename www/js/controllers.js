@@ -4,7 +4,7 @@ angular.module('app.controllers', [])
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
-    $scope.post = LoadPostsFactory.posts[$stateParams.id];
+    // $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
       $ionicLoading.hide();
@@ -26,15 +26,15 @@ angular.module('app.controllers', [])
     // infite scroll load more posts from database
     //needs to be connected to factory
     $scope.moreDataCanBeLoaded = true;
+
     $scope.loadMorePosts = function() {
       console.log('calling loadMorePosts----------');
       LoadPostsFactory.loadMorePosts().then(function(response){
-        // console.lof('factory posts', LoadPostsFactory.posts);
-        $scope.posts = response;
-        $scope.moreDataCanBeLoaded  = false;
+        console.log('response from loaf more', response);
+        $scope.posts = response.posts;
+        $scope.moreDataCanBeLoaded = response.postsLeft;
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        //debugger
-        });
+      });
     };
 }])
 
@@ -140,6 +140,7 @@ angular.module('app.controllers', [])
 
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
+  console.log('inside mapCtrl...factory posts are -->', LoadPostsFactory.posts);
   $scope.posts = LoadPostsFactory.posts;
   $scope.radius = LocationFactory.radius;
 
@@ -153,6 +154,7 @@ angular.module('app.controllers', [])
   });
 
   $scope.drawMap = function(){
+    console.log('draw map?---------------', LoadPostsFactory.posts);
     LocationFactory.getPosition() // changed getPosition - LocationFactory
     .then(function(position){
 
@@ -230,7 +232,8 @@ angular.module('app.controllers', [])
         $scope.markers.push(marker);
       };
 
-      $scope.posts.forEach(function(post){
+      console.log('scope posts', $scope.posts);
+      $scope.posts.posts.forEach(function(post){
         if(post.distance < circle.radius/1609.344){
           createMarker(post);
         }

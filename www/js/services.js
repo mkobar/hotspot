@@ -2,19 +2,19 @@ angular.module('app.services', [])
 
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
-  var posts = []; //after putting the distance property into posts, you may pass into the
+  var posts = {posts:[]}; //after putting the distance property into posts, you may pass into the
   var lastPostsId; //get the last ID of the post
   var dbPostCount;
 
   //get postCount for to tell infinite scroll when to stop
   var getDBPostCount = function(){
+    console.log('should only be called once!');
     return $http({
         method: 'GET',
         url: apiEndPoint.url + '/postscount'
     })
     .then(function(response){
-      dbPostCount = response.data;
-      console.log('dbPostCount -->', dbPostCount);
+      dbPostCount = response.data; console.log('dbPostCount -->', dbPostCount);
     });
   };
 
@@ -25,13 +25,16 @@ angular.module('app.services', [])
         url: apiEndPoint.url + '/posts'
     })
     .then(function(response){
-      angular.copy(response.data, posts); // (src, dest)
-      computeDistance(); //note computeDistance()
+      angular.copy(response.data, posts.posts); // (src, dest)
+      computeDistance();
       lastPostsId = response.data[response.data.length-1]._id;
       console.log('last post -->', response.data[response.data.length-1], 'lastPostsId', lastPostsId);
       // console.log('final result', posts);
+      dbPostCount = dbPostCount - response.data.length;
+      console.log('dbPostCount initial load -->', dbPostCount);
      });
   };
+
 
 
   //for infinite scrolling - MIGHT NEED TO RESET DB POST COUNT...restart in this func.
@@ -44,15 +47,15 @@ angular.module('app.services', [])
       params: {id: lastPostsId}
     })
     .then(function(response){
-      console.log('response from loadMore ->', response);
-      posts = posts.concat( angular.copy(response.data) );
+      posts.posts = posts.posts.concat( angular.copy(response.data) );
+      console.log('calling compute distance from loadMore');
       computeDistance();
       dbPostCount = dbPostCount - response.data.length;
       console.log('dbPostCount after load more -->', dbPostCount);
-      console.log('final result', posts);
-      lastPostsId = posts[posts.length - 1]._id;
+      lastPostsId = posts.posts[posts.posts.length - 1]._id;
       console.log('new last post', lastPostsId);
-      return posts;
+      console.log('posts inside service ---------------', posts);
+      return {posts:posts, postsLeft: dbPostCount} ;
     });
   };
 
@@ -68,7 +71,8 @@ angular.module('app.services', [])
   };
 
   var computeDistance = function(){
-    var LongLatArray = getLongLat(posts);
+    console.log('in compute distance');
+    var LongLatArray = getLongLat(posts.posts);
 
     LocationFactory.getPosition()
     .then(function(position) {
@@ -78,9 +82,9 @@ angular.module('app.services', [])
 
       LongLatArray.forEach(function(post, i){
         var distance = haversineDistance(currentObj, post, true);
-        posts[i].distance = distance;
+        posts.posts[i].distance = distance;
       });
-      console.log('final result', posts);
+      console.log('inside LoadPostsFactory -- posts', posts);
     });
   };
 
@@ -144,7 +148,6 @@ angular.module('app.services', [])
       // console.log('response in upvotePost PUT', response.data);
     });
   };
-
   return {
     getDBPostCount: getDBPostCount,
     addComment: addComment,
@@ -200,7 +203,7 @@ angular.module('app.services', [])
       maximumAge : 60000,
       enableHighAccuracy : true
     };
-
+    console.log()
     return $cordovaGeolocation.getCurrentPosition(options);
   };
 
