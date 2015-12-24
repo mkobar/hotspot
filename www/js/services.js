@@ -1,7 +1,7 @@
 angular.module('app.services', [])
 
 
-.factory('LoadPostsFactory', ['$http', 'LocationFactory', 'apiEndPoint', function($http, LocationFactory, apiEndPoint){
+.factory('LoadPostsFactory', ['$http', 'LocationFactory', 'SERVER', function($http, LocationFactory, SERVER){
   var posts = {posts:[]}; //after putting the distance property into posts, you may pass into the
   var lastPostsId; //get the last ID of the post
   var dbPostCount;
@@ -11,7 +11,7 @@ angular.module('app.services', [])
     console.log('should only be called once!');
     return $http({
         method: 'GET',
-        url: apiEndPoint.url + '/postscount'
+        url: SERVER.url + '/postscount'
     })
     .then(function(response){
       dbPostCount = response.data; console.log('dbPostCount -->', dbPostCount);
@@ -22,7 +22,7 @@ angular.module('app.services', [])
   var getPosts = function(){
     return $http({
         method: 'GET',
-        url: apiEndPoint.url + '/posts'
+        url: SERVER.url + '/posts'
     })
     .then(function(response){
       angular.copy(response.data, posts.posts); // (src, dest)
@@ -43,7 +43,7 @@ angular.module('app.services', [])
     console.log('lastPostsId',lastPostsId);
     return $http({
       method: 'GET',
-      url: apiEndPoint.url + '/nextposts',
+      url: SERVER.url + '/nextposts',
       params: {id: lastPostsId}
     })
     .then(function(response){
@@ -117,7 +117,7 @@ angular.module('app.services', [])
   var getSinglePost = function(id){
     return $http({
        method:'GET',
-       url: apiEndPoint.url + '/posts/' + id
+       url: SERVER.url + '/posts/' + id
     })
     .then(function(response){
       return response.data;
@@ -129,7 +129,7 @@ angular.module('app.services', [])
     // console.log('args for addComment:\n id=',id, '\ncomment=', comment);
     return $http({
       method:'POST',
-      url: apiEndPoint.url + '/posts/' + id + '/comments',
+      url: SERVER.url + '/posts/' + id + '/comments',
       data: {id: id ,comment: comment}
     })
     .then(function(response){
@@ -141,7 +141,7 @@ angular.module('app.services', [])
     // console.log('args for upvote :\n id=',id);
     return $http({
       method:'PUT',
-      url: apiEndPoint.url + '/posts/' + id + '/upvote',
+      url: SERVER.url + '/posts/' + id + '/upvote',
       data: {id: id}
     })
     .then(function(response){
@@ -149,9 +149,9 @@ angular.module('app.services', [])
     });
   };
   return {
+    posts: posts,
     getDBPostCount: getDBPostCount,
     addComment: addComment,
-    posts: posts,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
     loadMorePosts: loadMorePosts,
@@ -161,7 +161,7 @@ angular.module('app.services', [])
   };
 }])
 
-.factory('CameraFactory', ['$cordovaCamera','$http', 'apiEndPoint', function($cordovaCamera, $http, apiEndPoint){
+.factory('CameraFactory', ['$cordovaCamera','$http', 'SERVER', function($cordovaCamera, $http, SERVER){
 
   var takePhoto = function (){
     var options = {
@@ -184,7 +184,7 @@ angular.module('app.services', [])
   var postPhoto = function(userPost){
     return $http({
       method: 'POST',
-      url: apiEndPoint.url + '/addPost',
+      url: SERVER.url + '/addPost',
       data: userPost
     });
   };

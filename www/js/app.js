@@ -30,7 +30,7 @@ angular.module('app', [
   });
 })
 
-.constant('apiEndPoint', {
+.constant('SERVER', {
   // url: 'https://gentle-spire-1503.herokuapp.com'
   url: 'http://localhost:3000'
 });
