@@ -1,4 +1,3 @@
-<!-- homeCtrl attached here-->
 <ion-view title="Photos near you">
   <ion-nav-bar class="bar-stable">
   </ion-nav-bar>
@@ -30,9 +29,7 @@
           <!-- Card Start-->
           <div class="item item-body">
               <img class="full-image" ng-src="{{post.imageURI}}">
-              <p>
-                {{post.caption}}
-              </p>
+              <p> {{post.caption}} </p>
               <p>
                 <a href="#" class="subdued">{{post.upvotes}} Upvotes</a>
                 <a href="#/posts/{{post._id}}/comments" class="subdued">{{post.comments.length}} Comments</a>
@@ -41,21 +38,19 @@
 
           <div class="item tabs tabs-secondary tabs-icon-left">
             <a class="tab-item" href="#" ng-click="upvotePost(post)">
-              <i class="icon ion-thumbsup"></i>
-              Upvotes
+              <i class="icon ion-thumbsup"></i> Upvotes
             </a>
             <a class="tab-item" href="#/posts/{{post._id}}/comments">
-              <i class="icon ion-chatbox"></i>
-              Comment
+              <i class="icon ion-chatbox"></i> Comment
             </a>
             <a class="tab-item" href="#">
-              <i class="icon ion-share"></i>
-              Share
+              <i class="icon ion-share"></i> Share
             </a>
           </div>
           <!-- Card End -->
         </div>
         <!-- Card Container End-->
+
 
         <!--Infinite Scroll -->
          <ion-infinite-scroll
