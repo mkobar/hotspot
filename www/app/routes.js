@@ -46,7 +46,6 @@ angular.module('app.routes', [])
       controller: 'CommentsController',
       resolve: { //singlePost gets resolved to a value. To access the resolved value, add single post to controller
         singlePost: ['$stateParams','LoadPostsFactory', function($stateParams, LoadPostsFactory){
-          console.log('$stateParams.id', $stateParams.id); //grabbing stateparam from URL in comments view
           return LoadPostsFactory.getSinglePost($stateParams.id);
         }]
       }

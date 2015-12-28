@@ -84,7 +84,6 @@ angular.module('app.services', [])
         var distance = haversineDistance(currentObj, post, true);
         posts.posts[i].distance = distance;
       });
-      console.log('inside LoadPostsFactory -- posts', posts);
     });
   };
 
@@ -126,26 +125,22 @@ angular.module('app.services', [])
 
     //add a comment from comments view
   var addComment = function(id, comment){
-    // console.log('args for addComment:\n id=',id, '\ncomment=', comment);
     return $http({
       method:'POST',
       url: SERVER.url + '/posts/' + id + '/comments',
       data: {id: id ,comment: comment}
     })
     .then(function(response){
-      // console.log('response in addComment POST', response.data);
     });
   };
 
   var upvotePost = function(id){
-    // console.log('args for upvote :\n id=',id);
     return $http({
       method:'PUT',
       url: SERVER.url + '/posts/' + id + '/upvote',
       data: {id: id}
     })
     .then(function(response){
-      // console.log('response in upvotePost PUT', response.data);
     });
   };
   return {

@@ -3,8 +3,6 @@ angular.module('app.controllers', [])
 
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
-    console.log('$scope.posts after factory loaded', $scope.posts);
-    // $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
       $ionicLoading.hide();
@@ -55,7 +53,6 @@ angular.module('app.controllers', [])
         $scope.userPost.location.lng = position.coords.longitude;
         $scope.userPost.location.lat = position.coords.latitude;
       }, function(err){
-        console.log('There was an error: ', err);
       });
   };
 
@@ -68,7 +65,6 @@ angular.module('app.controllers', [])
           console.log('error', err);
           $state.go('main.home'); //this causes a home refresh, which may not be necessary
       });
-    // $scope.userPost.imageURI = 'test';
   };
 
   $scope.$on('$ionicView.enter', function(){
@@ -76,7 +72,6 @@ angular.module('app.controllers', [])
     $scope.userPost.imageURI = undefined;
     $scope.takePicture();
     $scope.getLocation();
-    // console.log('success');
   });
 
 
@@ -89,8 +84,6 @@ angular.module('app.controllers', [])
         $scope.userPost.hashtag = hashtags.join(" ");
       }
     }
-
-    console.log('this is the userPost being posted', $scope.userPost);
     // $scope.userPost.comments.push($scope.userPost.caption);
 
     $ionicLoading.show({
@@ -106,7 +99,6 @@ angular.module('app.controllers', [])
         $state.go('main.home');
       })
       .catch(function(err){
-        console.log('There was an error: ', err);
       });
 
 
@@ -126,11 +118,9 @@ angular.module('app.controllers', [])
   $scope.comment = { input: "" };
   $scope.addComment = function(){
     if(!$scope.comment.input) {return;}
-    console.log('$scope.comment === obj ?', $scope.comment.input);
 
     LoadPostsFactory.addComment(singlePost._id, $scope.comment.input)
     .then(function(comment){
-      console.log('inside controller then..comment =?', comment);
     });
 
     //update users comment view
@@ -242,7 +232,6 @@ angular.module('app.controllers', [])
       });
 
     }, function(error){
-      console.log("Could not get location");
     });
   };
 
