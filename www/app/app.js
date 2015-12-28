@@ -7,12 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('app', [
   'ionic',
-  'app.controllers',
   'app.routes',
-  'app.services',
-  'app.directives',
   'ngCordova'
-  //next dependencies go here...
 ])
 
 .run(function($ionicPlatform) {
@@ -23,7 +19,6 @@ angular.module('app', [
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false);
     }
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
       navigator.splashscreen.hide();
     }
