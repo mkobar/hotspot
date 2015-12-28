@@ -1,6 +1,4 @@
-<!-- Comments view that from click the comments tab on a Card(post) -->
-<!-- commentrsCtrl attached here-->
-<ion-view title="Comments" >
+<ion-view title="Comments">
 
   <ion-nav-bar class="bar-stable">
     <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">
@@ -8,18 +6,18 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-    <ion-content padding="'true'" class="has-header">
-        <ion-list ng-repeat="comment in post.comments track by $index">
-          <ion-item menu-close="" >
-            {{comment}}
-          </ion-item>
-        </ion-list>
-        <!-- input field to comments-->
-        <label class="item item-input" name="photo-comment">
-          <form ng-submit="addComment(comment._id, comment)">
-            <input type="text" placeholder="comment" ng-model="comment.input">
-            <button type="submit">send</button>
-          </form>
-        </label>
-    </ion-content>
+  <ion-content padding="'true'" class="has-header">
+    <ion-list ng-repeat="comment in post.comments track by $index">
+      <ion-item menu-close="">
+        {{comment}}
+      </ion-item>
+    </ion-list>
+    <!-- input field to comments-->
+    <label class="item item-input" name="photo-comment">
+      <form ng-submit="addComment(comment._id, comment)">
+        <input type="text" placeholder="comment" ng-model="comment.input">
+        <button type="submit">send</button>
+      </form>
+    </label>
+  </ion-content>
 </ion-view>

@@ -1,26 +1,26 @@
 <!-- Dummy Camera view, will be removed in the future - simply using for emulation purposes -->
 <ion-view title="Camera">
-    <ion-nav-bar class="bar-stable">
-    </ion-nav-bar>
-    <ion-content padding="'true'" style="" class="has-header">
+  <ion-nav-bar class="bar-stable">
+  </ion-nav-bar>
+  <ion-content padding="'true'" style="" class="has-header">
 
-     <!--  <button ng-hide="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
+    <!--  <button ng-hide="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
         Take Picture
       </button> -->
-      <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
+    <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
 
-      <label class="item item-input" name="photo-comment">
-        <form ng-submit="addPost()">
-          <!-- <input type="text" placeholder="comment" ng-model="message"> -->
-          <input type="text" placeholder="caption" ng-model="userPost.caption">
-          <!-- <button type="submit">send</button> -->
-        </form>
-      </label>
-      <button type="submit" class="button button-full button-assertive" ng-click="addPost()">
-        Post Picture
-      </button>
+    <label class="item item-input" name="photo-comment">
+      <form ng-submit="addPost()">
+        <!-- <input type="text" placeholder="comment" ng-model="message"> -->
+        <input type="text" placeholder="caption" ng-model="userPost.caption">
+        <!-- <button type="submit">send</button> -->
+      </form>
+    </label>
+    <button type="submit" class="button button-full button-assertive" ng-click="addPost()">
+      Post Picture
+    </button>
 
 
 
-    </ion-content>
+  </ion-content>
 </ion-view>
