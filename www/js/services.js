@@ -203,7 +203,6 @@ angular.module('app.services', [])
       maximumAge : 60000,
       enableHighAccuracy : true
     };
-    console.log()
     return $cordovaGeolocation.getCurrentPosition(options);
   };
 
