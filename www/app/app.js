@@ -26,6 +26,5 @@ angular.module('app', [
 })
 
 .constant('SERVER', {
-  // url: 'https://gentle-spire-1503.herokuapp.com'
-  url: 'http://localhost:3000'
+  url: 'https://gentle-spire-1503.herokuapp.com'
 });
