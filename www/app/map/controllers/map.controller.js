@@ -3,9 +3,9 @@ angular.module('app')
 .controller('MapController', ['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
   var posts = LoadPostsFactory.posts;
   $scope.radius = {
-    min: "1209.34",
-    max: "40467.2",
-    value: "20233.6"
+    min: "1609.34",
+    max: "80467.2",
+    value: "40233.6"
   };
 
   // shows the loading bar
@@ -34,9 +34,9 @@ angular.module('app')
         });
 
         var circleRadius = {
-          min: "1209.34",
-          max: "40467.2",
-          value: "20233.6"
+          min: "1609.34",
+          max: "80467.2",
+          value: "40233.6"
         }; // min : "1609.34", max : "80467.2", value: "40233.6"
 
 
