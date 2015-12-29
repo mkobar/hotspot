@@ -6,8 +6,14 @@
     "node": "5.1.1"
   },
   "scripts": {
+<<<<<<< HEAD
     "test": "karma start karma.conf.js",
     "start": "gulp"
+=======
+    "angulartest": "./node_modules/karma/bin/karma start karma.conf.js --reporters nyan",
+    "servertest": "mocha test",
+    "start": "nodemon server.js"
+>>>>>>> 836b99a0623bdb62f33ade685e13ee04991583c4
   },
   "repository": {
     "type": "git",
