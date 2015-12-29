@@ -28,7 +28,6 @@ angular.module('app.routes', [])
           // resolve will only change the view if the request url exists.
           resolve: {
             getDBPostCount: ['LoadPostsFactory',function(LoadPostsFactory){
-              console.log('resolve db post count worked');
               return LoadPostsFactory.getDBPostCount();
             }],
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
@@ -46,7 +45,6 @@ angular.module('app.routes', [])
       controller: 'CommentsController',
       resolve: { //singlePost gets resolved to a value. To access the resolved value, add single post to controller
         singlePost: ['$stateParams','LoadPostsFactory', function($stateParams, LoadPostsFactory){
-          console.log('$stateParams.id', $stateParams.id); //grabbing stateparam from URL in comments view
           return LoadPostsFactory.getSinglePost($stateParams.id);
         }]
       }
@@ -72,7 +70,7 @@ angular.module('app.routes', [])
           controller: 'MapController'
         }
       }
-    })
+    });
 
 
 

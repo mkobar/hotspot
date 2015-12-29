@@ -14,4 +14,4 @@ angular.module('app')
       $scope.post.comments.push($scope.comment.input);
       $scope.comment.input = "";
     };
-}])
+}]);

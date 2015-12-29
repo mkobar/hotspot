@@ -6,7 +6,7 @@ angular.module('app')
   $scope.$on('$ionicView.enter', function() {
     $ionicLoading.hide();
     $scope.bounds = parseInt(LocationFactory.radius.value, 10) / 1609.344;
-    console.log('scope.bounds -->', $scope.bounds);
+    // console.log('scope.bounds -->', $scope.bounds);
   });
 
   $scope.upvotePost = function(post) {
@@ -25,12 +25,12 @@ angular.module('app')
 
   $scope.moreDataCanBeLoaded = true;
   $scope.loadMorePosts = function() {
-    console.log('calling loadMorePosts----------');
+    // console.log('calling loadMorePosts----------');
     LoadPostsFactory.loadMorePosts().then(function(response) {
-      console.log('response from loaf more', response);
+      // console.log('response from loaf more', response);
       $scope.posts = response.posts;
       $scope.moreDataCanBeLoaded = response.postsLeft;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
-}])
+}]);

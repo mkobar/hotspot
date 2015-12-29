@@ -9,14 +9,14 @@ angular.module('app')
 
   //get postCount for to tell infinite scroll when to stop
   var getDBPostCount = function() {
-    console.log('should only be called once!');
+    // console.log('should only be called once!');
     return $http({
         method: 'GET',
         url: SERVER.url + '/postscount'
       })
       .then(function(response) {
         dbPostCount = response.data;
-        console.log('dbPostCount -->', dbPostCount);
+        // console.log('dbPostCount -->', dbPostCount);
       });
   };
 
@@ -31,17 +31,17 @@ angular.module('app')
         angular.copy(response.data, posts.posts); // (src, dest)
         computeDistance();
         lastPostsId = response.data[response.data.length - 1]._id;
-        console.log('last post -->', response.data[response.data.length - 1], 'lastPostsId', lastPostsId);
+        // console.log('last post -->', response.data[response.data.length - 1], 'lastPostsId', lastPostsId);
         // console.log('final result', posts);
         dbPostCount = dbPostCount - response.data.length;
-        console.log('dbPostCount initial load -->', dbPostCount);
+        // console.log('dbPostCount initial load -->', dbPostCount);
       });
   };
 
 
   //Fetch more posts if user hits bottom of newsfeed
   var loadMorePosts = function() {
-    console.log('lastPostsId', lastPostsId);
+    // console.log('lastPostsId', lastPostsId);
     return $http({
         method: 'GET',
         url: SERVER.url + '/nextposts',
@@ -51,13 +51,13 @@ angular.module('app')
       })
       .then(function(response) {
         posts.posts = posts.posts.concat(angular.copy(response.data));
-        console.log('calling compute distance from loadMore');
+        // console.log('calling compute distance from loadMore');
         computeDistance();
         dbPostCount = dbPostCount - response.data.length;
-        console.log('dbPostCount after load more -->', dbPostCount);
+        // console.log('dbPostCount after load more -->', dbPostCount);
         lastPostsId = posts.posts[posts.posts.length - 1]._id;
-        console.log('new last post', lastPostsId);
-        console.log('posts inside service ---------------', posts);
+        // console.log('new last post', lastPostsId);
+        // console.log('posts inside service ---------------', posts);
         return {
           posts: posts,
           postsLeft: dbPostCount
@@ -73,17 +73,17 @@ angular.module('app')
     posts.forEach(function(post) {
       coordinates.push(post.location);
     });
-    console.log('coordinates array====', coordinates);
+    // console.log('coordinates array====', coordinates);
     return coordinates; //array of objects {lat: 37.481674, lng: -122.155591}
   };
 
   var computeDistance = function() {
-    console.log('in compute distance');
+    // console.log('in compute distance');
     var LongLatArray = getLongLat(posts.posts); // new array
 
     LocationFactory.getCurrentPosition()
       .then(function(coordinates) {
-        console.log('what is coordinates', coordinates)
+        // console.log('what is coordinates', coordinates)
         var currentObj = {};
         currentObj.lat = coordinates.latitude;
         currentObj.lng = coordinates.longitude;
@@ -93,7 +93,7 @@ angular.module('app')
           var distance = haversineDistance(currentObj, post, true);
           posts.posts[i].distance = distance;
         });
-        console.log('inside LoadPostsFactory -- posts', posts);
+        // console.log('inside LoadPostsFactory -- posts', posts);
       });
   };
 
@@ -172,4 +172,4 @@ angular.module('app')
     getLongLat: getLongLat,
     computeDistance: computeDistance
   };
-}])
+}]);
