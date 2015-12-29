@@ -28,7 +28,6 @@ angular.module('app.routes', [])
           // resolve will only change the view if the request url exists.
           resolve: {
             getDBPostCount: ['LoadPostsFactory',function(LoadPostsFactory){
-              console.log('resolve db post count worked');
               return LoadPostsFactory.getDBPostCount();
             }],
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){

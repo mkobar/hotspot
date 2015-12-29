@@ -2,7 +2,6 @@ angular.module('app')
 
 .controller('MapController', ['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
   var posts = LoadPostsFactory.posts;
-  console.log('posts??????????', $scope.posts);
   $scope.radius = {
     min: "1209.34",
     max: "40467.2",
@@ -19,7 +18,6 @@ angular.module('app')
   });
 
   function createGoogleMap() {
-    console.log('locFac', LocationFactory);
     LocationFactory.getCurrentPosition()
       .then(function(coordinates) {
         $ionicLoading.hide();
@@ -92,7 +90,6 @@ angular.module('app')
           });
           marker.content = '<img src=' + post.imageURI + '>';
           marker.addListener('click', function() {
-            console.log('clicked??????????????????');
             infoWindow.setContent('<center><h2>' + marker.title + '</h2>' + marker.content + '</center>');
             infoWindow.open(map, marker);
           });
