@@ -20,18 +20,19 @@ angular.module('app.routes', [])
       views: {
         'home-tab': {
           templateUrl: 'templates/home.html',
-          controller: 'homeCtrl', //why is the resolve useful?
+          controller: 'HomeController', //why is the resolve useful?
           //resolve allows us to provide our controller with data before it gets loaded.
           // This saves you the burden of asynchronously making $http calls (and even service calls)
           // inside your controller and promotes a separation of concerns. Added benefit of resolve,
           // if I try to make a url request that doesn't exist from my current page,
           // resolve will only change the view if the request url exists.
           resolve: {
+            getDBPostCount: ['LoadPostsFactory',function(LoadPostsFactory){
+              console.log('resolve db post count worked');
+              return LoadPostsFactory.getDBPostCount();
+            }],
             getPosts: ['LoadPostsFactory', function(LoadPostsFactory){
               return LoadPostsFactory.getPosts();
-            }],
-            getRadius: ['LocationFactory', function(LocationFactory){
-              return LocationFactory.getRadius(); //verifying that I'm getting the right location
             }]
           }
         }
@@ -42,7 +43,7 @@ angular.module('app.routes', [])
     .state('comments', {
       url: '/posts/{id}/comments', //{} is a route paramater (https://goo.gl/5cXZEu) that will be made available to our controller. Why: Since the posts page is about viewing the comments on a particular post, we need to use the id route parameter to grab the post and associated information.
       templateUrl: 'templates/comments.html',
-      controller: 'commentsCtrl',
+      controller: 'CommentsController',
       resolve: { //singlePost gets resolved to a value. To access the resolved value, add single post to controller
         singlePost: ['$stateParams','LoadPostsFactory', function($stateParams, LoadPostsFactory){
           console.log('$stateParams.id', $stateParams.id); //grabbing stateparam from URL in comments view
@@ -56,7 +57,7 @@ angular.module('app.routes', [])
       views: {
         'camera-tab': {
           templateUrl: 'templates/camera.html',
-          controller: 'cameraCtrl'
+          controller: 'CameraController'
         }
       }
     })
@@ -68,23 +69,10 @@ angular.module('app.routes', [])
       views: {
         'map-tab': {
           templateUrl: 'templates/map.html',
-          controller: 'mapCtrl'
-          // resolve: {
-          //   getRadius: ['LoadPostsFactory', function(LoadPostsFactory) {
-          //     return LoadPostsFactory.getRadius();
-          //   }]
-          // }
+          controller: 'MapController'
         }
       }
     })
-
-
-
-    .state('splashPage', {
-      url: '/splashPage',
-      templateUrl: 'templates/splashPage.html',
-      controller: 'splashPageCtrl'
-    });
 
 
 

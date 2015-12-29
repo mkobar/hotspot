@@ -20,7 +20,7 @@
 ### Team
 [![CliffordFajardo](https://avatars0.githubusercontent.com/u/6743796?v=3&s=70)](https://github.com/cliffordfajardo) <br>Clifford Fajardo| [![Eric Eng](https://avatars1.githubusercontent.com/u/5885829?v=3&s=70)](https://github.com/starcraft168) <br>Eric Eng| [![Gabriel Matias](https://avatars1.githubusercontent.com/u/11906352?v=3&s=70)](https://github.com/Gmatias93)<br>Gabriel Matias |[![Orobosa Omoregie](http://i.imgur.com/S6o7rXu.jpg)](https://github.com/saposki) <br> Orobosa Omoregie
 --- | --- | --- | --- | --- | --- | ---
-[Twitter](https://twitter.com/cliffordfajard0)<br>[Blog](http://cliffordfajardo.github.io/)<br>[LinkedIn](https://www.linkedin.com/in/cliffordfajardo)|[LinkedIn](https://www.linkedin.com/in/eric-eng-8a58a452) | [Twitter](https://twitter.com/GabeCodes)<br>[LinkedIn](https://www.linkedin.com/in/gabrielmatias)|[Twitter](https://twitter.com/saposki)<br>[LinkedIn](https://www.linkedin.com/pub/orobosa-omoregie/3/b0a/470)
+[LinkedIn](https://www.linkedin.com/in/cliffordfajardo)<br>[Blog](http://cliffordfajardo.github.io/)<br>[Twitter](https://twitter.com/cliffordfajard0)|[LinkedIn](https://www.linkedin.com/in/eric-eng-8a58a452) | [LinkedIn](https://www.linkedin.com/in/gabrielmatias)<br>[Twitter](https://twitter.com/GabeCodes)|[LinkedIn](https://www.linkedin.com/pub/orobosa-omoregie/3/b0a/470)<br>[Twitter](https://twitter.com/saposki)
 
 
 <br>

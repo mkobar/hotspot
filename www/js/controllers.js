@@ -4,6 +4,7 @@ angular.module('app.controllers', [])
 .controller('homeCtrl', ['$scope','LoadPostsFactory','$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory,$stateParams, LocationFactory, $ionicLoading) {
     $scope.posts = LoadPostsFactory.posts;
     console.log('$scope.posts after factory loaded', $scope.posts);
+    // $scope.post = LoadPostsFactory.posts[$stateParams.id];
 
     $scope.$on('$ionicView.enter', function(){
       $ionicLoading.hide();
@@ -13,6 +14,27 @@ angular.module('app.controllers', [])
     $scope.upvotePost = function(post){
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
+    };
+
+    //pull to refresh
+    $scope.doRefresh = function() {
+      LoadPostsFactory.getPosts().then(function(){
+        $scope.$broadcast('scroll.refreshComplete');
+      });
+    };
+
+    // infite scroll load more posts from database
+    //needs to be connected to factory
+    $scope.moreDataCanBeLoaded = true;
+
+    $scope.loadMorePosts = function() {
+      console.log('calling loadMorePosts----------');
+      LoadPostsFactory.loadMorePosts().then(function(response){
+        console.log('response from loaf more', response);
+        $scope.posts = response.posts;
+        $scope.moreDataCanBeLoaded = response.postsLeft;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      });
     };
 }])
 
@@ -44,7 +66,7 @@ angular.module('app.controllers', [])
         }, function (err) {
           // An error occured. Show a message to the user
           console.log('error', err);
-          $state.go('main.home');
+          $state.go('main.home'); //this causes a home refresh, which may not be necessary
       });
     // $scope.userPost.imageURI = 'test';
   };
@@ -120,6 +142,7 @@ angular.module('app.controllers', [])
 
 //controller for interacting with the map view
 .controller('mapCtrl',['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
+  console.log('inside mapCtrl...factory posts are -->', LoadPostsFactory.posts);
   $scope.posts = LoadPostsFactory.posts;
   $scope.radius = LocationFactory.radius;
 
@@ -133,6 +156,7 @@ angular.module('app.controllers', [])
   });
 
   $scope.drawMap = function(){
+    console.log('draw map?---------------', LoadPostsFactory.posts);
     LocationFactory.getPosition() // changed getPosition - LocationFactory
     .then(function(position){
 
@@ -210,7 +234,8 @@ angular.module('app.controllers', [])
         $scope.markers.push(marker);
       };
 
-      $scope.posts.forEach(function(post){
+      console.log('scope posts', $scope.posts);
+      $scope.posts.posts.forEach(function(post){
         if(post.distance < circle.radius/1609.344){
           createMarker(post);
         }
