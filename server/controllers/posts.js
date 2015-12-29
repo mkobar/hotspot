@@ -8,20 +8,20 @@ module.exports = (function() {
     total_post_count: function(request, response){
       Post.count({}, function( error, count){
          if(error){
-          console.log('db count -->', count);
+          console.log('There was an error: ', error);
          } else {
-          console.log('count from tpc -->', count);
+          // console.log('count from tpc -->', count);
           response.json(count);
-          console.log('total_post_count query successful');
+          // console.log('total_post_count query successful');
          }
       });
     },
 		show: function(request, response) {
 			Post.find({}, function(error, results) {
 				if(error) {
-				  console.log('error in show');
+				  console.log('There was an error: ', error);
 				} else {
-					console.log('show query successful');
+					// console.log('show query successful');
           response.json(results);
 				}
 			}).sort({_id:1}).limit(2);
@@ -38,9 +38,9 @@ module.exports = (function() {
 			});
 			post.save(function(error) {
 				if(error) {
-					console.log('error in create');
+					console.log('There was an error: ', error);
 				} else {
-					console.log('create query successful');
+					// console.log('create query successful');
 					response.status(200);
 				}
 			});
@@ -48,15 +48,19 @@ module.exports = (function() {
 
 		update: function(request, response) { // update takes in a (query, update object, and callback)
       Post.findOne({_id: request.body.id}, function(error, post) {
-				if(error) { console.log('error in update');}
+				if(error) {
+          console.log('There was an error: ', error);
+        }
         if(request.body.comment){
           post.comments.push(request.body.comment);
         } else {
-          console.log('update query successful');
+          // console.log('update query successful');
           post.upvotes++;
         }
         post.save(function(error){
-          if(error) console.log('error in adding new comment');
+          if(error) {
+            console.log('There was an error: ', error);
+          }
         });
 			});
 
@@ -65,9 +69,9 @@ module.exports = (function() {
 		destroy: function(request, response) {
 			Post.remove({_id: request.body.id}, function(error) {
 					if(error) {
-						console.log('error in destroy');
+            console.log('There was an error: ', error);
 					} else {
-						console.log('destroy query successful');
+						// console.log('destroy query successful');
   					response.end();
           }
 			});
@@ -77,9 +81,9 @@ module.exports = (function() {
 
 			Post.find({_id: request.params.id}, function(error, result){
 				if(error) {
-					console.log('error in find_by_id');
+          console.log('There was an error: ', error);
 				} else {
-          console.log('find_by_id query successful');
+          // console.log('find_by_id query successful');
           response.json(result[0]); //object return back is wrapped in an array, so I'm directly accesing it's value
 				}
 			});
@@ -88,10 +92,10 @@ module.exports = (function() {
     get_next_posts: function(request, response){
       Post.find({ _id: {$gt: request.query.id}}, function(error, results){
         if(error){
-          console.log('error in get_next_posts');
+          console.log('There was an error: ', error);
         } else {
-          console.log('get_next_posts query successfull');
-          console.log('results from get_next_posts-->',results.length , '----', results);
+          // console.log('get_next_posts query successfull');
+          // console.log('results from get_next_posts-->',results.length , '----', results);
           response.json(results);
         }
       }).limit(2);
