@@ -54,7 +54,7 @@ module.exports = function(app) {
     response.send();
   });
 
-	app.post('/posts/:id/removePost', function(request, response) {
+	app.delete('/posts/:id/removePost', function(request, response) {
 		posts.destroy(request, response);
 		response.send();
 	});
