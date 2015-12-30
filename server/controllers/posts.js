@@ -24,7 +24,7 @@ module.exports = (function() {
 					// console.log('show query successful');
           response.json(results);
 				}
-			}).sort({_id:1}).limit(2);
+			}).sort({_id:1}).limit(10);
 		},
 
 		create: function(request, response) {
