@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.LoadPostsFactory', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'SERVER', function($http, LocationFactory, SERVER) {
   var posts = {

@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.HomeController', [])
 
 .controller('HomeController', ['$scope', 'LoadPostsFactory', '$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory, $stateParams, LocationFactory, $ionicLoading) {
   $scope.posts = LoadPostsFactory.posts;

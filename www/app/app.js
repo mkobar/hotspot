@@ -8,7 +8,16 @@
 angular.module('app', [
   'ionic',
   'app.routes',
-  'ngCordova'
+  'ngCordova',
+  'app.MapController',
+  'app.LocationFactory',
+  'app.LoadPostsFactory',
+  'app.HomeController',
+  'app.CommentsFactory',
+  'app.CommentsController',
+  'app.CameraFactory',
+  'app.CameraController'
+
 ])
 
 .run(function($ionicPlatform) {

@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.MapController', [])
 
 .controller('MapController', ['$scope', '$ionicLoading', 'LocationFactory', 'LoadPostsFactory', function($scope, $ionicLoading, LocationFactory, LoadPostsFactory) {
   var posts = LoadPostsFactory.posts;

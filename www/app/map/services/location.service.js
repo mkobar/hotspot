@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.LocationFactory', [])
 
 .factory('LocationFactory', ['$cordovaGeolocation', function($cordovaGeolocation) {
   function getCurrentPosition() {

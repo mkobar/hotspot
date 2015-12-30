@@ -1,5 +1,5 @@
-angular.module('app')
+angular.module('app.CommentsFactory', [])
 
-.factory('commentsFactory', [function() {
+.factory('CommentsFactory', [function() {
 
 }]);

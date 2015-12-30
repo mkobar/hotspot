@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.CameraController', [])
 
 .controller('CameraController', ['$scope', '$state', 'CameraFactory', 'LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
   $scope.userPost = {
