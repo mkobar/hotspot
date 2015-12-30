@@ -111,7 +111,7 @@ module.exports = (function() {
           // console.log('results from get_next_posts-->',results.length , '----', results);
           response.json(results);
         }
-      }).limit(2);
+      }).limit(10);
     }
 	};
 })();
