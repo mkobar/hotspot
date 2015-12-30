@@ -48,7 +48,7 @@ module.exports = (function() {
 
 		update: function(request, response) { // update takes in a (query, update object, and callback)
       Post.findOne({_id: request.body.id}, function(error, post) {
-				if(error) {
+			if(error) {
           console.log('There was an error: ', error);
         }
         if(request.body.comment){
@@ -64,6 +64,19 @@ module.exports = (function() {
         });
 			});
 
+		},
+		downvote: function(request, response) {
+			Post.findOne({_id: request.body.id}, function(error, post) {
+				if(error) {
+					console.log('There was an error ', error);
+				}
+				post.upvotes--;
+				post.save(function(error) { 
+					if(error) {
+						console.log('There was an error: ', error);
+					}
+				});
+			});
 		},
 
 		destroy: function(request, response) {

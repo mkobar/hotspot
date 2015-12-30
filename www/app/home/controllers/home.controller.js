@@ -10,8 +10,21 @@ angular.module('app')
   });
 
   $scope.upvotePost = function(post) {
-    LoadPostsFactory.upvotePost(post._id);
-    post.upvotes++;
+    if(sessionStorage[post._id] !== undefined) {
+      LoadPostsFactory.downvotePost(post._id);
+      post.upvotes--;
+      delete sessionStorage[post._id];
+      return;
+      console.log('deleted sessionStorage id', sessionStorage[post._id]);
+    }
+
+    if(sessionStorage[post._id] === undefined) {
+      LoadPostsFactory.upvotePost(post._id);
+      post.upvotes++;
+      sessionStorage[post._id] = true;
+      console.log('upvoted the sessionStorage', sessionStorage);      
+    }
+    
   };
 
   //pull to refresh

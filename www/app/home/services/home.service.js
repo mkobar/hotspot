@@ -161,6 +161,20 @@ angular.module('app')
         // console.log('response in upvotePost PUT', response.data);
       });
   };
+
+   var downvotePost = function(id) {
+      return $http({
+        method: 'PUT',
+        url: SERVER.url + '/posts/' + id + '/downvote',
+        data: {
+          id: id
+        }
+      })
+      .then(function(response) {
+         console.log('downvote post not working man');
+      });
+  };
+
   return {
     posts: posts,
     getDBPostCount: getDBPostCount,
@@ -170,6 +184,7 @@ angular.module('app')
     loadMorePosts: loadMorePosts,
     upvotePost: upvotePost,
     getLongLat: getLongLat,
-    computeDistance: computeDistance
+    computeDistance: computeDistance,
+    downvotePost: downvotePost
   };
 }]);

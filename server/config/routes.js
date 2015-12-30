@@ -40,6 +40,12 @@ module.exports = function(app) {
     response.send();
   });
 
+  //downvote a post
+  app.put('posts/:id/downvote', function(request, response) {
+    posts.update(request,response);
+    response.send();
+  });
+
 	app.post('/removePost', function(request, response) {
 		posts.destroy(request, response);
 		response.send();
