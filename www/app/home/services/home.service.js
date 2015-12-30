@@ -150,19 +150,19 @@ angular.module('app.LoadPostsFactory', [])
   };
 
 
-  var addComment = function(id, comment) {
-    return $http({
-        method: 'POST',
-        url: SERVER.url + '/posts/' + id + '/comments',
-        data: {
-          id: id,
-          comment: comment
-        }
-      })
-      .then(function(response) {
-        // console.log('response in addComment POST', response.data);
-      });
-  };
+  // var addComment = function(id, comment) {
+  //   return $http({
+  //       method: 'POST',
+  //       url: SERVER.url + '/posts/' + id + '/comments',
+  //       data: {
+  //         id: id,
+  //         comment: comment
+  //       }
+  //     })
+  //     .then(function(response) {
+  //       // console.log('response in addComment POST', response.data);
+  //     });
+  // };
 
   var upvotePost = function(id) {
     return $http({
@@ -177,23 +177,36 @@ angular.module('app.LoadPostsFactory', [])
       });
   };
 
-   var downvotePost = function(id) {
-      return $http({
-        method: 'PUT',
-        url: SERVER.url + '/posts/' + id + '/downvote',
-        data: {
-          id: id
-        }
-      })
-      .then(function(response) {
-         console.log('response in downvotePost', response.data);
+ var downvotePost = function(id) {
+    return $http({
+      method: 'PUT',
+      url: SERVER.url + '/posts/' + id + '/downvote',
+      data: {
+        id: id
+      }
+    })
+    .then(function(response) {
+       console.log('response in downvotePost', response.data);
+     });
+  };
+
+  var reportPost = function(id) {
+    return $http({
+      method: 'PUT',
+      url: SERVER.url + '/posts/' + id + '/report',
+      data: {
+        id: id
+      }
+    })
+      .then(function(response){
+        alert('reported');
       });
   };
 
   return {
     posts: posts,
     getDBPostCount: getDBPostCount,
-    addComment: addComment,
+    // addComment: addComment,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
     loadMorePosts: loadMorePosts,

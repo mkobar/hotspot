@@ -32,6 +32,11 @@ angular.module('app.HomeController', [])
     $scope.bounds = 10000000;
   };
 
+  $scope.reportPost = function(post) {
+    LoadPostsFactory.reportPost(post._id);
+    post.reports++;
+  };
+
   //pull to refresh
   $scope.doRefresh = function() {
     LoadPostsFactory.getPosts().then(function() {
