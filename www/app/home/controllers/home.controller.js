@@ -1,6 +1,6 @@
 angular.module('app.HomeController', [])
 
-.controller('HomeController', ['$scope', 'LoadPostsFactory', '$stateParams', 'LocationFactory', '$ionicLoading', function($scope, LoadPostsFactory, $stateParams, LocationFactory, $ionicLoading) {
+.controller('HomeController', ['$scope', 'LoadPostsFactory', '$stateParams', 'LocationFactory', '$ionicLoading', '$ionicActionSheet', function($scope, LoadPostsFactory, $stateParams, LocationFactory, $ionicLoading, $ionicActionSheet) {
   $scope.posts = LoadPostsFactory.posts;
 
   $scope.$on('$ionicView.enter', function() {
@@ -15,14 +15,13 @@ angular.module('app.HomeController', [])
       post.upvotes--;
       delete sessionStorage[post._id];
       return;
-      console.log('deleted sessionStorage id', sessionStorage[post._id]);
     }
 
     if(sessionStorage[post._id] === undefined) {
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
       sessionStorage[post._id] = true;
-      console.log('upvoted the sessionStorage', sessionStorage);      
+      console.log('upvoted the sessionStorage', sessionStorage);
     }
   };
 
@@ -33,6 +32,9 @@ angular.module('app.HomeController', [])
   };
 
   $scope.reportPost = function(post) {
+    if(post.reports === 0){
+      LoadPostsFactory.removePost(post._id);
+    }
     LoadPostsFactory.reportPost(post._id);
     post.reports++;
   };
@@ -43,7 +45,6 @@ angular.module('app.HomeController', [])
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
-
 
   $scope.moreDataCanBeLoaded = true;
   $scope.loadMorePosts = function() {
