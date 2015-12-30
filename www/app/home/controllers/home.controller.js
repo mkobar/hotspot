@@ -35,7 +35,6 @@ angular.module('app')
   };
 
 
-
   $scope.moreDataCanBeLoaded = true;
   $scope.loadMorePosts = function() {
     // console.log('calling loadMorePosts----------');
