@@ -211,6 +211,8 @@ angular.module('app.LoadPostsFactory', [])
     getLongLat: getLongLat,
     computeDistance: computeDistance,
     downvotePost: downvotePost,
-    getAllPosts: getAllPosts
+    getAllPosts: getAllPosts,
+    removePost: removePost,
+    reportPost: reportPost
   };
 }]);

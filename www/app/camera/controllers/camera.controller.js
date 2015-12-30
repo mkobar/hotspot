@@ -14,8 +14,8 @@ angular.module('app.CameraController', [])
   $scope.getLocation = function() {
     LocationFactory.getCurrentPosition()
       .then(function(position) {
-        $scope.userPost.location.lng = position.coords.longitude;
-        $scope.userPost.location.lat = position.coords.latitude;
+        $scope.userPost.location.lng = position.longitude;
+        $scope.userPost.location.lat = position.latitude;
       }, function(err) {
         console.log('There was an error: ', err);
       });

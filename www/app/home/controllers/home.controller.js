@@ -34,9 +34,10 @@ angular.module('app.HomeController', [])
   $scope.reportPost = function(post) {
     if(post.reports === 0){
       LoadPostsFactory.removePost(post._id);
+    } else {
+      LoadPostsFactory.reportPost(post._id);
+      post.reports++;
     }
-    LoadPostsFactory.reportPost(post._id);
-    post.reports++;
   };
 
   //pull to refresh
