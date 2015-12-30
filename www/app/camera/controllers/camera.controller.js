@@ -38,7 +38,30 @@ angular.module('app')
     $scope.getLocation();
   });
 
+ 
 
+  $scope.addInvertFilter = function(){
+     var image = new Image();
+     image.src = $scope.userPost.imageURI;
+
+     var canvas = document.createElement('canvas');
+     document.body.appendChild(canvas);
+
+     var ctx = canvas.getContext('2d');
+     ctx.drawImage(image, 0, 0);
+     image.style.display = 'none';
+     var imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
+     var data = imageData.data;
+
+     // var invert = function(){
+     for (var i = 0; i < data.length; i += 4) {
+       data[i]     = 255 - data[i];     // red
+       data[i + 1] = 255 - data[i + 1]; // green
+       data[i + 2] = 255 - data[i + 2]; // blue
+     }
+     ctx.putImageData(imageData, 0, 0);
+     $scope.userPost.imageURI = canvas.toDataURL();
+   };
   $scope.addPost = function() {
     var hashtags = [];
     var postCaptionWords = $scope.userPost.caption.split(" ");
