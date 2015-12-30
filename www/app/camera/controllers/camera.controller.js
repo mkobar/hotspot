@@ -3,6 +3,7 @@ angular.module('app.CameraController', [])
 .controller('CameraController', ['$scope', '$state', 'CameraFactory', 'LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
   $scope.userPost = {
     upvotes: 0,
+    reports: 0,
     comments: [],
     imageURI: undefined,
     caption: '',
@@ -11,7 +12,7 @@ angular.module('app.CameraController', [])
   };
 
   $scope.getLocation = function() {
-    LocationFactory.getPosition()
+    LocationFactory.getCurrentPosition()
       .then(function(position) {
         $scope.userPost.location.lng = position.coords.longitude;
         $scope.userPost.location.lat = position.coords.latitude;

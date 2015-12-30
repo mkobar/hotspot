@@ -52,7 +52,7 @@ angular.module('app.MapController', [])
         });
 
         //modifies circle radius whenever user interacts with range bar
-        google.maps.event.addDomListener(document.getElementById("radius"), 'click', function() {
+        google.maps.event.addDomListener(document.getElementById("radius"), 'drag', function() {
           // alert('clicked!');
           var rad = parseInt($scope.radius.value, 10); //radius.value - $scope
           circle.setRadius(rad);
