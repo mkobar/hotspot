@@ -20,6 +20,8 @@ angular.module('app')
         console.log('There was an error: ', err);
       });
   };
+
+
   $scope.takePicture = function() {
     CameraFactory.takePhoto()
       .then(function(imageData) {
@@ -38,7 +40,7 @@ angular.module('app')
     $scope.getLocation();
   });
 
- $scope.addInvertSepia = function(){
+ $scope.addSepiaFilter = function(){
     var image = new Image();
     image.src = $scope.userPost.imageURI;
 
@@ -51,13 +53,13 @@ angular.module('app')
     var imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
     var data = imageData.data;
 
-    // var invert = function(){
     for (var i = 0; i < data.length; i += 4) {
         var avg = (data[i] + data[i +1] + data[i +2]) / 3;
         data[i]     = avg; // red
         data[i + 1] = avg; // green
         data[i + 2] = avg; // blue
       }
+
     ctx.putImageData(imageData, 0, 0);
     $scope.userPost.imageURI = canvas.toDataURL();
   };
@@ -75,15 +77,40 @@ angular.module('app')
      var imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
      var data = imageData.data;
 
-     // var invert = function(){
      for (var i = 0; i < data.length; i += 4) {
        data[i]     = 255 - data[i];     // red
        data[i + 1] = 255 - data[i + 1]; // green
        data[i + 2] = 255 - data[i + 2]; // blue
      }
+
      ctx.putImageData(imageData, 0, 0);
      $scope.userPost.imageURI = canvas.toDataURL();
    };
+
+  $scope.addSaturateFilter = function(){
+     var image = new Image();
+     image.src = $scope.userPost.imageURI;
+
+     var canvas = document.createElement('canvas');
+     document.body.appendChild(canvas);
+
+     var ctx = canvas.getContext('2d');
+     ctx.drawImage(image, 0, 0);
+     image.style.display = 'none';
+     var imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
+     var data = imageData.data;
+
+     for (var i = 0; i < data.length; i += 4) {
+       data[i]     = 235 // red
+       data[i + 1] = 126 // green
+       data[i + 2] = 126 // blue
+     }
+
+     ctx.putImageData(imageData, 0, 0);
+     $scope.userPost.imageURI = canvas.toDataURL();
+   };
+
+
   $scope.addPost = function() {
     var hashtags = [];
     var postCaptionWords = $scope.userPost.caption.split(" ");
