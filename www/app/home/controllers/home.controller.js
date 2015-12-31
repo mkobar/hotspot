@@ -10,8 +10,26 @@ angular.module('app')
   });
 
   $scope.upvotePost = function(post) {
-    LoadPostsFactory.upvotePost(post._id);
-    post.upvotes++;
+    if(sessionStorage[post._id] !== undefined) {
+      LoadPostsFactory.downvotePost(post._id);
+      post.upvotes--;
+      delete sessionStorage[post._id];
+      return;
+      console.log('deleted sessionStorage id', sessionStorage[post._id]);
+    }
+
+    if(sessionStorage[post._id] === undefined) {
+      LoadPostsFactory.upvotePost(post._id);
+      post.upvotes++;
+      sessionStorage[post._id] = true;
+      console.log('upvoted the sessionStorage', sessionStorage);      
+    }
+  };
+
+  //show trending images
+  $scope.showTrending = function() {
+    LoadPostsFactory.getAllPosts();
+    $scope.bounds = 10000000;
   };
 
   //pull to refresh
@@ -20,7 +38,6 @@ angular.module('app')
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
-
 
 
   $scope.moreDataCanBeLoaded = true;

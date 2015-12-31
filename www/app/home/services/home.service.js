@@ -38,6 +38,21 @@ angular.module('app')
       });
   };
 
+  //grabs all posts
+  var getAllPosts = function() {
+    return $http({
+      method: 'GET',
+      url: SERVER.url +'/posts'
+    })
+    .then(function(response) {
+      var arr = response.data.sort(function(a,b) {
+        return b.upvotes - a.upvotes;
+      });
+      angular.copy(arr, posts.posts);
+      console.log('good',response.data);
+    });
+  };
+
 
   //Fetch more posts if user hits bottom of newsfeed
   var loadMorePosts = function() {
@@ -158,9 +173,23 @@ angular.module('app')
         }
       })
       .then(function(response) {
-        // console.log('response in upvotePost PUT', response.data);
+        console.log('response in upvotePost PUT', response.data);
       });
   };
+
+   var downvotePost = function(id) {
+      return $http({
+        method: 'PUT',
+        url: SERVER.url + '/posts/' + id + '/downvote',
+        data: {
+          id: id
+        }
+      })
+      .then(function(response) {
+         console.log('response in downvotePost', response.data);
+      });
+  };
+
   return {
     posts: posts,
     getDBPostCount: getDBPostCount,
@@ -170,6 +199,8 @@ angular.module('app')
     loadMorePosts: loadMorePosts,
     upvotePost: upvotePost,
     getLongLat: getLongLat,
-    computeDistance: computeDistance
+    computeDistance: computeDistance,
+    downvotePost: downvotePost,
+    getAllPosts: getAllPosts
   };
 }]);

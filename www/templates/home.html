@@ -1,4 +1,4 @@
-<ion-view title="Photos near you">
+<ion-view title="Photos Near You">
   <ion-nav-bar class="bar-stable">
   </ion-nav-bar>
 
@@ -8,6 +8,12 @@
           pulling-text="Pull to refresh..."
           on-refresh="doRefresh()">
       </ion-refresher>
+
+      <form>
+        <button class='button' ng-click='showTrending()'>
+          Trending
+        </button>
+      </form>
 
         <!--Search bar-->
         <form class="bar bar-header item-input-inset">
