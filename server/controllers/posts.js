@@ -30,6 +30,7 @@ module.exports = (function() {
 		create: function(request, response) {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
+        reports: request.body.reports,
 				comments: request.body.comments,
 				imageURI: request.body.imageURI,
 				caption: request.body.caption,

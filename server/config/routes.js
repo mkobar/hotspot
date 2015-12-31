@@ -56,6 +56,7 @@ module.exports = function(app) {
 
 	app.delete('/posts/:id/removePost', function(request, response) {
 		posts.destroy(request, response);
+    console.log('success');
 		response.send();
 	});
 
