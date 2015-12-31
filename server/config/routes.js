@@ -41,7 +41,7 @@ module.exports = function(app) {
   });
 
   //downvote a post
-  app.put('posts/:id/downvote', function(request, response) {
+  app.put('/posts/:id/downvote', function(request, response) {
     posts.downvote(request,response);
     response.send();
   });

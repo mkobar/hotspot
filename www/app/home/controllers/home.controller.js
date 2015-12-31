@@ -24,7 +24,12 @@ angular.module('app')
       sessionStorage[post._id] = true;
       console.log('upvoted the sessionStorage', sessionStorage);      
     }
-    
+  };
+
+  //show trending images
+  $scope.showTrending = function() {
+    LoadPostsFactory.getAllPosts();
+    $scope.bounds = 10000000;
   };
 
   //pull to refresh
