@@ -45,8 +45,7 @@ angular.module('app')
     image.src = $scope.userPost.imageURI;
 
     var canvas = document.createElement('canvas');
-    canvas.width = 300;
-    canvas.height = 300;
+    canvas.height = canvas.width;
     document.body.appendChild(canvas);
 
     var ctx = canvas.getContext('2d');
@@ -71,8 +70,7 @@ angular.module('app')
      image.src = $scope.userPost.imageURI;
 
      var canvas = document.createElement('canvas');
-     canvas.width = 300;
-     canvas.height = 300;
+     canvas.height = canvas.width;
      document.body.appendChild(canvas);
 
      var ctx = canvas.getContext('2d');
@@ -96,8 +94,7 @@ angular.module('app')
      image.src = $scope.userPost.imageURI;
 
      var canvas = document.createElement('canvas');
-     canvas.width = 300;
-     canvas.height = 300;
+     canvas.height = canvas.width;
      document.body.appendChild(canvas);
 
      var ctx = canvas.getContext('2d');
