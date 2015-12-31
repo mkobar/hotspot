@@ -29,6 +29,14 @@
     {
       "path": "/posts/:id",
       "proxyUrl": "http://gentle-spire-1503.herokuapp.com/posts/:id"
+    },
+    {
+      "path": "/nextposts",
+      "proxyUrl": "http://gentle-spire-1503.herokuapp.com/nextposts"
+    },
+    {
+      "path": "/postscount",
+      "proxyUrl": "http://gentle-spire-1503.herokuapp.com/postscount"
     }
   ]
 }
