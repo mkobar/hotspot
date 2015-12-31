@@ -184,7 +184,7 @@ angular.module('app.LoadPostsFactory', [])
       }
     })
       .then(function(response){
-        alert('reported!');
+        // alert('reported!');
       });
   };
 
@@ -197,7 +197,7 @@ angular.module('app.LoadPostsFactory', [])
       }
     })
       .then(function(response){
-        alert('deleted!');
+        // alert('deleted!');
       });
   };
 

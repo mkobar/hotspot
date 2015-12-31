@@ -80,15 +80,11 @@ module.exports = (function() {
 		},
 
 		destroy: function(request, response) {
-			Post.findOne({_id: request.body.id}, function(error, post) {
+			Post.remove({_id: request.body.id}, function(error) {
 					if(error) {
             console.log('There was an error: ', error);
 					} else {
-            post.remove(function(error, post){
-              if(error){
-                console.log('There was an error: ', error);
-              }
-            });
+						// console.log('destroy query successful');
   					response.end();
           }
 			});
