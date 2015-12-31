@@ -45,6 +45,7 @@ angular.module('app')
     image.src = $scope.userPost.imageURI;
 
     var canvas = document.createElement('canvas');
+    canvas.height = canvas.width;
     document.body.appendChild(canvas);
 
     var ctx = canvas.getContext('2d');
@@ -69,6 +70,7 @@ angular.module('app')
      image.src = $scope.userPost.imageURI;
 
      var canvas = document.createElement('canvas');
+     canvas.height = canvas.width;
      document.body.appendChild(canvas);
 
      var ctx = canvas.getContext('2d');
@@ -92,6 +94,7 @@ angular.module('app')
      image.src = $scope.userPost.imageURI;
 
      var canvas = document.createElement('canvas');
+     canvas.height = canvas.width;
      document.body.appendChild(canvas);
 
      var ctx = canvas.getContext('2d');
@@ -101,9 +104,9 @@ angular.module('app')
      var data = imageData.data;
 
      for (var i = 0; i < data.length; i += 4) {
-       data[i]     = 235 // red
-       data[i + 1] = 126 // green
-       data[i + 2] = 126 // blue
+       data[i]     = 235 - data[i];     // red
+       data[i + 1] = 126 - data[i + 1]; // green
+       data[i + 2] = 126 - data[i + 2]; // blue
      }
 
      ctx.putImageData(imageData, 0, 0);
