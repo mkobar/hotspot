@@ -26,6 +26,7 @@ angular.module('app')
     CameraFactory.takePhoto()
       .then(function(imageData) {
         $scope.userPost.imageURI = "data:image/jpeg;base64," + imageData;
+        $scope.temp = $scope.userPost.imageURI;
       }, function(err) {
         // An error occured. Show a message to the user
         console.log('error', err);
@@ -39,6 +40,7 @@ angular.module('app')
     $scope.takePicture();
     $scope.getLocation();
   });
+
 
  $scope.addSepiaFilter = function(){
     var image = new Image();
@@ -115,7 +117,7 @@ angular.module('app')
 
    $scope.clearFilter = function(){
      var image = new Image();
-     image.src = $scope.userPost.imageURI;
+     image.src = $scope.temp;
 
      var canvas = document.createElement('canvas');
      canvas.height = canvas.width;
