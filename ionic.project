@@ -15,6 +15,10 @@
       "proxyUrl": "http://gentle-spire-1503.herokuapp.com/posts/:id/comments"
     },
     {
+      "path": "/posts/:id/downvote",
+      "proxyUrl": "http://gentle-spire-1503.herokuapp.com/posts/:id/downvote"
+    },
+    {
       "path": "/posts/:id/upvote",
       "proxyUrl": "http://gentle-spire-1503.herokuapp.com/posts/:id/upvote"
     },
