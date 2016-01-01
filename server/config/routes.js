@@ -36,6 +36,7 @@ module.exports = function(app) {
   app.put('/posts/:id/upvote', function(request, response) {
     // console.log('inside POST (server) /posts/:id/comments');
     // console.log('request.body',request.body);
+    console.log('request.body',request.body);
     posts.update(request, response);
     response.send();
   });
@@ -49,12 +50,12 @@ module.exports = function(app) {
   //report a post
   app.put('/posts/:id/report', function(request, response) {
     // console.log('inside POST (server) /posts/:id/comments');
-    // console.log('request.body',request.body);
     posts.update(request, response);
     response.send();
   });
 
 	app.delete('/posts/:id/removePost', function(request, response) {
+    // console.log('this is the body inside of the delete route', request);
 		posts.destroy(request, response);
     console.log('success');
 		response.send();

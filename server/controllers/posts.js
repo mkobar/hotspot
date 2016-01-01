@@ -49,7 +49,7 @@ module.exports = (function() {
 
 		update: function(request, response) { // update takes in a (query, update object, and callback)
       Post.findOne({_id: request.body.id}, function(error, post) {
-			if(error) {
+        if(error) {
           console.log('There was an error: ', error);
         }
         if(request.body.comment){
@@ -63,16 +63,16 @@ module.exports = (function() {
             console.log('There was an error: ', error);
           }
         });
-			});
+      });
+    },
 
-		},
 		downvote: function(request, response) {
 			Post.findOne({_id: request.body.id}, function(error, post) {
 				if(error) {
 					console.log('There was an error ', error);
 				}
 				post.upvotes--;
-				post.save(function(error) { 
+				post.save(function(error) {
 					if(error) {
 						console.log('There was an error: ', error);
 					}
@@ -80,20 +80,18 @@ module.exports = (function() {
 			});
 		},
 
-		destroy: function(request, response) {
-			Post.findOne({_id: request.body.id}, function(error, post) {
+    destroy: function(request, response) {
+      // console.log(request);
+			Post.findOne({_id: request.params.id}, function(error, post) {
 					if(error) {
             console.log('There was an error: ', error);
-					} else {
-            post.remove(function(error, post){
-              if(error){
-                console.log('There was an error: ', error);
-              } else {
-                console.log('post successfully deleted');
-              }
-            });
-  					response.end();
-          }
+					}
+          post.remove(function(error){
+            if(error){
+              console.log('There was an error: ', error);
+            }
+          });
+					response.end();
 			});
 		},
 

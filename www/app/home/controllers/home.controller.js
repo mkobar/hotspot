@@ -31,8 +31,8 @@ angular.module('app.HomeController', [])
     $scope.bounds = 10000000;
   };
 
-  $scope.reportPost = function(post) {
-    if(post.reports === 0){
+  $scope.report = function(post) {
+    if(post.reports === 100){
       LoadPostsFactory.removePost(post._id);
     } else {
       LoadPostsFactory.reportPost(post._id);

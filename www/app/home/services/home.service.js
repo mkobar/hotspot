@@ -192,12 +192,14 @@ angular.module('app.LoadPostsFactory', [])
     return $http({
       method: 'DELETE',
       url: SERVER.url + '/posts/' + id + '/removePost',
-      data: {
-        id: id
-      }
+      // params: {
+      //   id: id
+      // }
     })
       .then(function(response){
-        // alert('deleted!');
+        console.log('this is the response object: ', response);
+      }, function(error){
+        console.log('There was an error', error);
       });
   };
 
