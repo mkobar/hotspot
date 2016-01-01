@@ -113,6 +113,24 @@ angular.module('app')
      $scope.userPost.imageURI = canvas.toDataURL();
    };
 
+   $scope.clearFilter = function(){
+     var image = new Image();
+     image.src = $scope.userPost.imageURI;
+
+     var canvas = document.createElement('canvas');
+     canvas.height = canvas.width;
+     document.body.appendChild(canvas);
+
+     var ctx = canvas.getContext('2d');
+     ctx.drawImage(image, 0, 0);
+     image.style.display = 'none';
+     var imageData = ctx.getImageData(0,0, canvas.width, canvas.height);
+     var data = imageData.data;
+
+     ctx.putImageData(imageData, 0, 0);
+     $scope.userPost.imageURI = canvas.toDataURL();
+   }
+
 
   $scope.addPost = function() {
     var hashtags = [];
