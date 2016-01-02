@@ -66,6 +66,22 @@ module.exports = (function() {
       });
     },
 
+    report: function(request, response) { // update takes in a (query, update object, and callback)
+      Post.findOne({_id: request.body.id}, function(error, post) {
+        if(error) {
+          console.log('There was an error: ', error);
+        }
+        // console.log('update query successful');
+        post.reports++;
+
+        post.save(function(error){
+          if(error) {
+            console.log('There was an error: ', error);
+          }
+        });
+      });
+    },
+
 		downvote: function(request, response) {
 			Post.findOne({_id: request.body.id}, function(error, post) {
 				if(error) {

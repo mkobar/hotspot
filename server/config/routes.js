@@ -50,7 +50,7 @@ module.exports = function(app) {
   //report a post
   app.put('/posts/:id/report', function(request, response) {
     // console.log('inside POST (server) /posts/:id/comments');
-    posts.update(request, response);
+    posts.report(request, response);
     response.send();
   });
 

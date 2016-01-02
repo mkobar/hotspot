@@ -32,7 +32,7 @@ angular.module('app.HomeController', [])
   };
 
   $scope.report = function(post) {
-    if(post.reports === 100){
+    if(post.reports === 99){
       LoadPostsFactory.removePost(post._id);
     } else {
       LoadPostsFactory.reportPost(post._id);
