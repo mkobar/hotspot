@@ -182,10 +182,7 @@ angular.module('app.LoadPostsFactory', [])
       data: {
         id: id
       }
-    })
-      .then(function(response){
-        // alert('reported!');
-      });
+    });
   };
 
   var removePost = function(id) {
