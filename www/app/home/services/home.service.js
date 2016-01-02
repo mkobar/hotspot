@@ -171,7 +171,7 @@ angular.module('app.LoadPostsFactory', [])
       }
     })
     .then(function(response) {
-       console.log('response in downvotePost', response.data);
+       // console.log('response in downvotePost', response.data);
      });
   };
 

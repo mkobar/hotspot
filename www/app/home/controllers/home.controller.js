@@ -14,14 +14,10 @@ angular.module('app.HomeController', [])
       LoadPostsFactory.downvotePost(post._id);
       post.upvotes--;
       delete sessionStorage[post._id];
-      return;
-    }
-
-    if(sessionStorage[post._id] === undefined) {
+    } else {
       LoadPostsFactory.upvotePost(post._id);
       post.upvotes++;
       sessionStorage[post._id] = true;
-      console.log('upvoted the sessionStorage', sessionStorage);
     }
   };
 
