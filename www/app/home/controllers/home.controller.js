@@ -41,6 +41,11 @@ angular.module('app.HomeController', [])
             });
           });
         });
+    } else if(sessionStorage[post._id + 'Reported'] !== undefined){
+          $ionicPopup.alert({
+            title: 'Already Reported',
+            template: 'You have already reported this post. We will work diligently to handle the issue, thank you!'
+          });
     } else {
       LoadPostsFactory.reportPost(post._id)
         .then(function(){
@@ -48,6 +53,7 @@ angular.module('app.HomeController', [])
             title: 'Reported',
             template: 'Thank you for reporting this malicious content'
           });
+          sessionStorage[post._id + 'Reported'] = true;
         });
       post.reports++;
     }
