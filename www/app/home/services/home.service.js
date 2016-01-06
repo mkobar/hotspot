@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.LoadPostsFactory', [])
 
 .factory('LoadPostsFactory', ['$http', 'LocationFactory', 'SERVER', function($http, LocationFactory, SERVER) {
   var posts = {
@@ -149,21 +149,6 @@ angular.module('app')
       });
   };
 
-
-  var addComment = function(id, comment) {
-    return $http({
-        method: 'POST',
-        url: SERVER.url + '/posts/' + id + '/comments',
-        data: {
-          id: id,
-          comment: comment
-        }
-      })
-      .then(function(response) {
-        // console.log('response in addComment POST', response.data);
-      });
-  };
-
   var upvotePost = function(id) {
     return $http({
         method: 'PUT',
@@ -177,23 +162,47 @@ angular.module('app')
       });
   };
 
-   var downvotePost = function(id) {
-      return $http({
-        method: 'PUT',
-        url: SERVER.url + '/posts/' + id + '/downvote',
-        data: {
-          id: id
-        }
-      })
-      .then(function(response) {
-         console.log('response in downvotePost', response.data);
+ var downvotePost = function(id) {
+    return $http({
+      method: 'PUT',
+      url: SERVER.url + '/posts/' + id + '/downvote',
+      data: {
+        id: id
+      }
+    })
+    .then(function(response) {
+       // console.log('response in downvotePost', response.data);
+     });
+  };
+
+  var reportPost = function(id) {
+    return $http({
+      method: 'PUT',
+      url: SERVER.url + '/posts/' + id + '/report',
+      data: {
+        id: id
+      }
+    });
+  };
+
+  var removePost = function(id) {
+    return $http({
+      method: 'DELETE',
+      url: SERVER.url + '/posts/' + id + '/removePost',
+      // params: {
+      //   id: id
+      // }
+    })
+      .then(function(response){
+        console.log('this is the response object: ', response);
+      }, function(error){
+        console.log('There was an error', error);
       });
   };
 
   return {
     posts: posts,
     getDBPostCount: getDBPostCount,
-    addComment: addComment,
     getPosts: getPosts,
     getSinglePost: getSinglePost,
     loadMorePosts: loadMorePosts,
@@ -201,6 +210,8 @@ angular.module('app')
     getLongLat: getLongLat,
     computeDistance: computeDistance,
     downvotePost: downvotePost,
-    getAllPosts: getAllPosts
+    getAllPosts: getAllPosts,
+    removePost: removePost,
+    reportPost: reportPost
   };
 }]);

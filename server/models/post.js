@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var PostSchema = new mongoose.Schema({
-	upvotes: {type: Number, default: 0},
+  upvotes: {type: Number, default: 0},
+	reports: {type: Number, default: 0},
 	comments: Array,
 	imageURI: String,
 	caption: String,

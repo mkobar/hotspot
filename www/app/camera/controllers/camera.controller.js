@@ -1,8 +1,9 @@
-angular.module('app')
+angular.module('app.CameraController', [])
 
 .controller('CameraController', ['$scope', '$state', 'CameraFactory', 'LocationFactory', '$ionicLoading', function($scope, $state, CameraFactory, LocationFactory, $ionicLoading) {
   $scope.userPost = {
     upvotes: 0,
+    reports: 0,
     comments: [],
     imageURI: undefined,
     caption: '',
@@ -10,17 +11,15 @@ angular.module('app')
     hashtag: ''
   };
 
-
   $scope.getLocation = function() {
-    LocationFactory.getPosition()
+    LocationFactory.getCurrentPosition()
       .then(function(position) {
-        $scope.userPost.location.lng = position.coords.longitude;
-        $scope.userPost.location.lat = position.coords.latitude;
+        $scope.userPost.location.lng = position.longitude;
+        $scope.userPost.location.lat = position.latitude;
       }, function(err) {
         console.log('There was an error: ', err);
       });
   };
-
 
   $scope.takePicture = function() {
     CameraFactory.takePhoto()
@@ -29,7 +28,7 @@ angular.module('app')
         $scope.temp = $scope.userPost.imageURI;
       }, function(err) {
         // An error occured. Show a message to the user
-        console.log('error', err);
+        console.log('There was an error: ', err);
         $state.go('main.home'); //this causes a home refresh, which may not be necessary
       });
   };
@@ -131,8 +130,7 @@ angular.module('app')
 
      ctx.putImageData(imageData, 0, 0);
      $scope.userPost.imageURI = canvas.toDataURL();
-   }
-
+   };
 
   $scope.addPost = function() {
     var hashtags = [];
@@ -146,7 +144,6 @@ angular.module('app')
       }
     };
 
-    console.log('this is the userPost being posted', $scope.userPost);
     $ionicLoading.show({
       template: 'Posting you photo, please-wait...',
       animation: 'fade-in',

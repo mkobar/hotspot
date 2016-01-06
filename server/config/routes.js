@@ -7,7 +7,7 @@ module.exports = function(app) {
 
   app.use(function(request, response, next){
     response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS");
+    response.header("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
     response.header("Access-Control-Allow-Headers", "Origin, X-Request-With, Content-Type, Accept");
     next();
   });
@@ -36,6 +36,7 @@ module.exports = function(app) {
   app.put('/posts/:id/upvote', function(request, response) {
     // console.log('inside POST (server) /posts/:id/comments');
     // console.log('request.body',request.body);
+    console.log('request.body',request.body);
     posts.update(request, response);
     response.send();
   });
@@ -46,8 +47,17 @@ module.exports = function(app) {
     response.send();
   });
 
-	app.post('/removePost', function(request, response) {
+  //report a post
+  app.put('/posts/:id/report', function(request, response) {
+    // console.log('inside POST (server) /posts/:id/comments');
+    posts.report(request, response);
+    response.send();
+  });
+
+	app.delete('/posts/:id/removePost', function(request, response) {
+    // console.log('this is the body inside of the delete route', request);
 		posts.destroy(request, response);
+    console.log('success');
 		response.send();
 	});
 

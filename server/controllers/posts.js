@@ -24,12 +24,13 @@ module.exports = (function() {
 					// console.log('show query successful');
           response.json(results);
 				}
-			}).sort({_id:1}).limit(2);
+			}).sort({_id:1}).limit(10);
 		},
 
 		create: function(request, response) {
 			var post = new Post({ //document is an instance of a model
 				upvotes: request.body.upvotes, //request.body is the contents of the data entered in the client
+        reports: request.body.reports,
 				comments: request.body.comments,
 				imageURI: request.body.imageURI,
 				caption: request.body.caption,
@@ -48,7 +49,7 @@ module.exports = (function() {
 
 		update: function(request, response) { // update takes in a (query, update object, and callback)
       Post.findOne({_id: request.body.id}, function(error, post) {
-			if(error) {
+        if(error) {
           console.log('There was an error: ', error);
         }
         if(request.body.comment){
@@ -62,16 +63,32 @@ module.exports = (function() {
             console.log('There was an error: ', error);
           }
         });
-			});
+      });
+    },
 
-		},
+    report: function(request, response) { // update takes in a (query, update object, and callback)
+      Post.findOne({_id: request.body.id}, function(error, post) {
+        if(error) {
+          console.log('There was an error: ', error);
+        }
+        // console.log('update query successful');
+        post.reports++;
+
+        post.save(function(error){
+          if(error) {
+            console.log('There was an error: ', error);
+          }
+        });
+      });
+    },
+
 		downvote: function(request, response) {
 			Post.findOne({_id: request.body.id}, function(error, post) {
 				if(error) {
 					console.log('There was an error ', error);
 				}
 				post.upvotes--;
-				post.save(function(error) { 
+				post.save(function(error) {
 					if(error) {
 						console.log('There was an error: ', error);
 					}
@@ -79,14 +96,18 @@ module.exports = (function() {
 			});
 		},
 
-		destroy: function(request, response) {
-			Post.remove({_id: request.body.id}, function(error) {
+    destroy: function(request, response) {
+      // console.log(request);
+			Post.findOne({_id: request.params.id}, function(error, post) {
 					if(error) {
             console.log('There was an error: ', error);
-					} else {
-						// console.log('destroy query successful');
-  					response.end();
-          }
+					}
+          post.remove(function(error){
+            if(error){
+              console.log('There was an error: ', error);
+            }
+          });
+					response.end();
 			});
 		},
 
@@ -111,7 +132,7 @@ module.exports = (function() {
           // console.log('results from get_next_posts-->',results.length , '----', results);
           response.json(results);
         }
-      }).limit(2);
+      }).limit(10);
     }
 	};
 })();

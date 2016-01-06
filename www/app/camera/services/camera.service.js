@@ -1,4 +1,4 @@
-angular.module('app')
+angular.module('app.CameraFactory', [])
 
 .factory('CameraFactory', ['$cordovaCamera', '$http', 'SERVER', function($cordovaCamera, $http, SERVER) {
 

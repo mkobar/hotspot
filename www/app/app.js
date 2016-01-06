@@ -8,7 +8,16 @@
 angular.module('app', [
   'ionic',
   'app.routes',
-  'ngCordova'
+  'ngCordova',
+  'app.MapController',
+  'app.LocationFactory',
+  'app.LoadPostsFactory',
+  'app.HomeController',
+  'app.CommentsFactory',
+  'app.CommentsController',
+  'app.CameraFactory',
+  'app.CameraController'
+
 ])
 
 .run(function($ionicPlatform) {
@@ -26,6 +35,6 @@ angular.module('app', [
 })
 
 .constant('SERVER', {
-  // url: 'https://gentle-spire-1503.herokuapp.com'
-  url: 'http://localhost:3000'
+  url: 'https://gentle-spire-1503.herokuapp.com'
+  // url: 'http://localhost:3000'
 });
