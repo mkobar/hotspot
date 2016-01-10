@@ -1,6 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/BillionaireBoysClub/hotspot.png?label=ready&title=Ready)](http://waffle.io/BillionaireBoysClub/hotspot)
 
-# Pictury
+# Hotspot
 
 > A location-based photo-sharing application that enables users to post photos anonymously and see the history of pictures taken within their geographic location.
 
