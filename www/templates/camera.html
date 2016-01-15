@@ -2,31 +2,36 @@
 <ion-view title="Camera">
   <ion-nav-bar class="bar-stable">
   </ion-nav-bar>
+  
   <ion-content padding="'true'" style="" class="has-header">
 
-    <!--  <button ng-hide="userPost.imageURI !== undefined" class="button button-full button-assertive" ng-click="takePicture(); getLocation()">
-        Take Picture
-      </button> -->
-    <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
+    <div class="item item-image">
+      <img ng-show="userPost.imageURI !== undefined" ng-src="{{userPost.imageURI}}" style="text-align: center">
+    </div>
+
+    <!-- TODO: fix filters, they are partially working. Error occurs upon submitting the photo after it has been modified with filter -->
+    <!-- <div class="button-bar">
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"ng-click="addSepiaFilter()">sepia</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"ng-click="addInvertFilter()">invert</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"ng-click="addSaturateFilter()">strong</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"ng-click="clearFilter()">none</a>
+    </div> -->
+
 
     <label class="item item-input" name="photo-comment">
       <form ng-submit="addPost()">
-        <!-- <input type="text" placeholder="comment" ng-model="message"> -->
-        <input type="text" placeholder="caption" ng-model="userPost.caption">
-        <!-- <button type="submit">send</button> -->
+        <input type="text" placeholder="photo caption" ng-model="userPost.caption">
       </form>
     </label>
-    <div class="button-bar">
-        <!-- <a class="button" ng-click="myVar='sepia'">sepia</a> -->
-        <a class="button" ng-click="addSepiaFilter()">sepia</a>
-        <a class="button" ng-click="addInvertFilter()">invert</a>
-        <a class="button" ng-click="addSaturateFilter()">saturate</a>
-        <a class="button" ng-click="clearFilter()">none</a>
-    </div>
 
-    <button type="submit" class="button button-full button-assertive" ng-click="addPost()">
+
+    <button type="submit"
+     class="button button-full mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+     ng-click="addPost()">
       Post Picture
     </button>
+
 
 
 
