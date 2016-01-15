@@ -3,14 +3,19 @@ angular.module('app.HomeController', [])
 .controller('HomeController', ['$scope', 'LoadPostsFactory', '$stateParams', 'LocationFactory', '$ionicLoading', '$ionicActionSheet', '$ionicPopup', function($scope, LoadPostsFactory, $stateParams, LocationFactory, $ionicLoading, $ionicActionSheet, $ionicPopup) {
   $scope.posts = LoadPostsFactory.posts;
 
+  //
   $scope.$on('$ionicView.enter', function() {
     $ionicLoading.hide();
-    $scope.bounds = parseInt(LocationFactory.radius.value, 10) / 1609.344;
-    // console.log('scope.bounds -->', $scope.bounds);
   });
+
+  $scope.search = {input: ""}
+  $scope.searchCanel = function(){
+    $scope.search.input = "";
+  }
 
   $scope.upvotePost = function(post) {
     if(sessionStorage[post._id] !== undefined) {
+      $scope.upVoteActive = true;
       LoadPostsFactory.downvotePost(post._id);
       post.upvotes--;
       delete sessionStorage[post._id];
@@ -21,6 +26,7 @@ angular.module('app.HomeController', [])
     }
   };
 
+
   //show trending images
   $scope.showTrending = function() {
     LoadPostsFactory.getAllPosts();
@@ -28,6 +34,7 @@ angular.module('app.HomeController', [])
   };
 
   $scope.report = function(post) {
+    $scope.reportActive = true;
     if(post.reports === 99){
       LoadPostsFactory.removePost(post._id)
         .then(function(){
