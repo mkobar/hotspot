@@ -145,7 +145,7 @@ angular.module('app.CameraController', [])
     };
 
     $ionicLoading.show({
-      template: 'Posting you photo, please-wait...',
+      template: 'Posting your photo, please-wait...',
       animation: 'fade-in',
       showBackdrop: true,
       maxWidth: 200,
