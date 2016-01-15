@@ -10,6 +10,7 @@ angular.module('app', [
   'app.routes',
   'ngCordova',
   'app.MapController',
+  'app.GoogleMapsService',
   'app.LocationFactory',
   'app.LoadPostsFactory',
   'app.HomeController',
@@ -20,8 +21,19 @@ angular.module('app', [
 
 ])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+.run(['$rootScope', '$state','$ionicPlatform', function($rootScope, $state, $ionicPlatform) {
+      $ionicPlatform.ready(function() {
+        $rootScope.$on('$stateChangeStart',function(){
+          console.log('----------------------------------')
+          $rootScope.stateIsLoading = true;
+     });
+
+
+      $rootScope.$on('$stateChangeSuccess',function(){
+          $rootScope.stateIsLoading = false;
+     });
+
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -32,7 +44,7 @@ angular.module('app', [
       navigator.splashscreen.hide();
     }
   });
-})
+}])
 
 .constant('SERVER', {
   url: 'https://gentle-spire-1503.herokuapp.com'
