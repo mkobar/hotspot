@@ -13,15 +13,9 @@ angular.module('app.LocationFactory', [])
         return position.coords;
       });
   }
-  var radius = {
-    min: "1209.34",
-    max: "40467.2",
-    value: "20233.6"
-  };
-
 
   return {
-    getCurrentPosition: getCurrentPosition,
-    radius: radius
+    getCurrentPosition: getCurrentPosition
   };
+
 }]);
