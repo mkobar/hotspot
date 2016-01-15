@@ -7648,7 +7648,7 @@ input:checked + .checkbox-icon:after {
     left: -2001px;
     width: 2000px;
     height: 2px;
-    background: #444;
+    background: #7C7C7C;
     content: ' '; }
   .range input::-webkit-slider-thumb:after {
     /* create a larger (but hidden) hit area */
@@ -9088,3 +9088,136 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+/**************** Our style changes *************/
+.item-body p{
+  margin: 0 !important
+}
+
+.card .item:last-child, .list-inset .item:last-child, .padding > .list .item:last-child{
+border-top: 1px solid lightgrey !important;
+}
+
+/*Title color of View's Bar*/
+.bar.bar-stable .title {
+  color: white;
+}
+/*Color of view's title bar*/
+[nav-bar-transition="ios"] [nav-bar="active"] .bar, [nav-bar-transition="ios"] [nav-bar="entering"] .bar {
+  background: #00BBD5 !important;
+}
+
+
+.tabs-stable > .tabs, .tabs.tabs-stable {
+  border-color: #b2b2b2;
+  background-color: #00BBD5;
+  /*background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);*/
+  color: #fff;
+  font-weight: bold;
+}
+
+.button.button-full {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #A7A7A7;
+    color: white;
+    font-weight: bold;
+}
+
+
+.bar .back-button.hide, .bar .buttons .hide {
+    display:inline;
+    color: white;
+}
+
+.scroll {
+     height: 100%;
+ }
+
+ #map {
+     width: 100%;
+     height: 90%;
+ }
+
+
+ .button-bar > .button {
+     border-radius: 2px 0px 0px 2px;
+     background: lightgrey
+ }
+
+/*form submit*/
+.comment-form {
+  width: 90%;
+}
+
+/********** START Slide-in animation **************/
+/*animation for slide in posts*/
+.repeat-items-transition.ng-enter {
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+}
+
+#post-item.ng-enter-stagger {
+  -webkit-animation-delay:200ms;
+  animation-delay:200ms;
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration:0;
+  animation-duration:0;
+}
+
+.comments-transition {
+  -webkit-animation-delay:500ms;
+  animation-delay:500ms;
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration:0;
+  animation-duration:0;
+}
+/********** END Slide-in animation **************/
+
+html {
+  font-family: Roboto !important;
+}
+/* light backgroudn contrast for content */
+ion-content {
+  background: #EFE7E7;
+}
+
+.comment-form {
+    width: 95%;
+}
+form  {
+  border-radius: 5px;
+}
+
+.item-body p:first-child{
+font-weight: bold;
+color: #7C7C7C;
+}
+.button-bar {
+  margin-bottom: 1%;
+}
+
+.button-bar button{
+  float:left;
+  width:33%;
+  font-size:12px;
+  text-transform: lowercase;
+  background: #7C7C7C !important;
+  color: white;
+}
+
+ion-footer-bar{
+  margin-bottom: 15px;
+  background:#EFE7E7 !important;
+}
+
+ion-footer-bar button, label form button {
+  background: #7C7C7C !important;
+}
+em {
+  position: fixed;
+}
+
+h6 img{
+  max-width: 100%
+}
