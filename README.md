@@ -36,18 +36,6 @@ Trending photos view| Comments for individual posts | Take photos & add captions
 
 
 
-
-### Application Overview:
-<img src="http://i.imgur.com/qSsTjsM.png"> |<img src="http://i.imgur.com/zshMQW1.png">|  <img src="http://i.imgur.com/7rouh8Q.png">| <img src="http://i.imgur.com/cjPtxqa.png">|<img src="http://i.imgur.com/Dlkb2lT.png">| <img src="http://i.imgur.com/den8EjV.png">
---- | --- | --- | --- | --- | --- |
-Trending photos view| Comments for individual posts | Take photos & add captions| View local photos on map | Expand photo search radius | Interact with local photos
-
-
-
-
-
-
-
 <br>
 ## Requirements
 
